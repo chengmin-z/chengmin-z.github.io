@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>cmHubs</title>
+    <link>https://Zhangchengmin99.github.io/</link>
+    <description>Recent content on cmHubs</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>[ A student iOS developer in BUPT 👨🏻‍💻 ]</copyright>
+    <lastBuildDate>Sat, 21 Sep 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://Zhangchengmin99.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>使用nodemcu（基于官方SDK）接入阿里云物联网平台</title>
+      <link>https://Zhangchengmin99.github.io/2019/09/%E4%BD%BF%E7%94%A8nodemcu%E5%9F%BA%E4%BA%8E%E5%AE%98%E6%96%B9sdk%E6%8E%A5%E5%85%A5%E9%98%BF%E9%87%8C%E4%BA%91%E7%89%A9%E8%81%94%E7%BD%91%E5%B9%B3%E5%8F%B0/</link>
+      <pubDate>Sat, 21 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://Zhangchengmin99.github.io/2019/09/%E4%BD%BF%E7%94%A8nodemcu%E5%9F%BA%E4%BA%8E%E5%AE%98%E6%96%B9sdk%E6%8E%A5%E5%85%A5%E9%98%BF%E9%87%8C%E4%BA%91%E7%89%A9%E8%81%94%E7%BD%91%E5%B9%B3%E5%8F%B0/</guid>
+      <description>&lt;h4 id=&#34;引言&#34;&gt;引言&lt;/h4&gt;
+
+&lt;p&gt;作为物联网开发者，ESP8266应该一点都不陌生了。只需十几块钱淘宝一个小开发板，就可以连上Wi-Fi接入互联网，尽情享受从手机端或Web端控制设备的乐趣。ESP8266接入Wi-Fi是没问题，但是用户端不能直接设计成与ESP8266通信，还是需要一个中心服务器作为用户端和设备端的代理。一种方案是自己搭建设计这么一个中心服务器，只是费时费力；另一种方案，就是直接使用大厂提供的物联网平台服务，使设计方案PaaS化。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Flutter（一）MAC环境搭建</title>
+      <link>https://Zhangchengmin99.github.io/2019/09/flutter%E4%B8%80mac%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</link>
+      <pubDate>Fri, 20 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://Zhangchengmin99.github.io/2019/09/flutter%E4%B8%80mac%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</guid>
+      <description>&lt;p&gt;flutter中文网 &lt;a href=&#34;https://flutterchina.club&#34;&gt;https://flutterchina.club&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;第一步-根据中文网的介绍我们首先配置环境变量&#34;&gt;第一步：根据中文网的介绍我们首先配置环境变量&lt;/h4&gt;
+
+&lt;p&gt;MacBook-Pro:~ TommyHan$ export PUB_HOSTED_URL=&lt;a href=&#34;https://pub.flutter-io.cn&#34;&gt;https://pub.flutter-io.cn&lt;/a&gt;&lt;br /&gt;
+MacBook-Pro:~ TommyHan$ export FLUTTER_STORAGE_BASE_URL=&lt;a href=&#34;https://storage.flutter-io.cn&#34;&gt;https://storage.flutter-io.cn&lt;/a&gt;&lt;br /&gt;
+注意： 此镜像为临时镜像，并不能保证一直可用，读者可以参考详情请参考 Using Flutter in China 以获得有关镜像服务器的最新动态。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>https://Zhangchengmin99.github.io/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://Zhangchengmin99.github.io/about/</guid>
+      <description>一.我是谁？ 张成敏，内蒙古呼伦贝尔人，现就就读于北京邮电大学计算机学院，预计选择计算机科学与技术专业，个人爱好 iOS程序设计开发/跨平台开发/原型设计/影视后期。
+二.为什么建站？  技术文章发表与储存，写一些技术总结。 作为经历的日志分享，适当分享生活。 国内iOS开发资源与社区较少，作为资料分享。  三.希望能和有趣的人相识 感谢️️❤你访问我的网站，通过博客，我的想法可以分享给别人，也希望能和有共同兴趣的小伙伴结识！</description>
+    </item>
+    
+    <item>
+      <title>Contact Me</title>
+      <link>https://Zhangchengmin99.github.io/contact/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://Zhangchengmin99.github.io/contact/</guid>
+      <description>邮箱1: 18547083863@163.com
+邮箱2: george.zhang99@hotmail.com
+github: zhangchengmin99</description>
+    </item>
+    
+  </channel>
+</rss>
