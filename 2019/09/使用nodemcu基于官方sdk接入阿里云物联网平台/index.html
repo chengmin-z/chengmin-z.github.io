@@ -158,12 +158,13 @@ cmHubs
 <img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g76yup8w2ej311b0i1dgr.jpg" width = "746"  div align=left /></p>
 
 <p>第三步：创建设备
-然后是创建设备，随便输入一个DeviceName即可。
-<img width = "746"  div align=left /> <img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g76yup3m6aj31120hkdh0.jpg" alt="" /></p>
+然后是创建设备，随便输入一个DeviceName即可。</p>
+
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g76yup3m6aj31120hkdh0.jpg" width = "746"  div align=left /></p>
 
 <p>第四步：获取认证三元组
 最后就得到了设备认证三元组：ProductKey、DeviceName和DeviceSecret。
-<img width = "746"  div align=left /> <img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g76yuozzq9j31160g2q41.jpg" alt="" /></p>
+<img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g76yuozzq9j31160g2q41.jpg" width = "746"  div align=left /></p>
 
 <h4 id="二-安信可esp8266-ide">二、安信可ESP8266 IDE</h4>
 
@@ -182,9 +183,8 @@ cmHubs
 （2018-11-02更新：github已经更新到基于SDKv3.0.0版本，SDKv2.0和SDKv3.0不兼容，如果编译报错请参考这篇博客。）
 <a href="https://blog.csdn.net/yannanxiu/article/details/83550183">https://blog.csdn.net/yannanxiu/article/details/83550183</a></p>
 
-<p>下载官方SDK后，把driver_lib、examples和third_party三个文件夹压缩备份再删除，以免编译的时候出现干扰信息。</p>
-
-<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g76yuox98xj30910a1dfv.jpg" alt="" /></p>
+<p>下载官方SDK后，把driver_lib、examples和third_party三个文件夹压缩备份再删除，以免编译的时候出现干扰信息。<br />
+<img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g76yuox98xj30910a1dfv.jpg" alt="" /></p>
 
 <h4 id="四-下载aliyun-mqtt-app并导入">四、下载aliyun_mqtt_app并导入</h4>
 
@@ -202,13 +202,13 @@ cmHubs
 <h4 id="五-接入成功">五、接入成功</h4>
 
 <p>编译、烧写、重启nodemcu，观察串口打印的信息，感觉没有异常后在看看阿里云IoT Hub控制台，可以看到设备已经接入成功了！<br />
-<img width = "746"  div align=left /> <img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g76yuoug1zj30vf0943z0.jpg" alt="" /></p>
+<img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g76yuoug1zj30vf0943z0.jpg" width = "746"  div align=left /></p>
 
 <p>然后到设备的topic列表，可以看到 update topic 消息数加1了，那是因为我在代码里面写了只要连接成功就发布一条「hello」消息。
-<img width = "746"  div align=left /> <img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g76yuordr6j30v20bkjs0.jpg" alt="" /></p>
+<img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g76yuordr6j30v20bkjs0.jpg" width = "746"  div align=left /></p>
 
 <p>然后尝试一下对get topic发布消息！
-<img width = "746"  div align=left /> <img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g76yuoo5tnj30g60ddq37.jpg" alt="" /></p>
+<img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g76yuoo5tnj30g60ddq37.jpg" width = "746"  div align=left /></p>
 
 <p>可以看到串口打印如下：</p>
 
