@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<meta property="og:title" content="iOS中的重要图形概念Core Graphics" />
+<meta property="og:description" content="引言
+
+Core Graphics框架是基于Quartz的高级绘图引擎。 它提供了无与伦比的输出保真度和轻量级2D渲染。 使用此框架可以来处理基于路径的绘图，转换，颜色管理，屏幕渲染，图案，渐变和阴影，图像数据管理，图像创建和图像蒙版，以及PDF文档的创建，显示和解析。在macOS中，Core Graphics还包括用于处理显示硬件，用户基础输入事件和窗口系统的服务。本文将重点介绍这套框架下重要的数据类型概念。（几乎是各种组件的基础，十分重要）" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://Zhangchengmin99.github.io/2019/09/ios%E4%B8%AD%E7%9A%84%E9%87%8D%E8%A6%81%E5%9B%BE%E5%BD%A2%E6%A6%82%E5%BF%B5core-graphics/" />
+<meta property="article:published_time" content="2019-09-21T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-09-21T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="iOS中的重要图形概念Core Graphics"/>
+<meta name="twitter:description" content="引言
+
+Core Graphics框架是基于Quartz的高级绘图引擎。 它提供了无与伦比的输出保真度和轻量级2D渲染。 使用此框架可以来处理基于路径的绘图，转换，颜色管理，屏幕渲染，图案，渐变和阴影，图像数据管理，图像创建和图像蒙版，以及PDF文档的创建，显示和解析。在macOS中，Core Graphics还包括用于处理显示硬件，用户基础输入事件和窗口系统的服务。本文将重点介绍这套框架下重要的数据类型概念。（几乎是各种组件的基础，十分重要）"/>
+
+
+
+    <link rel="canonical" href="https://Zhangchengmin99.github.io/2019/09/ios%E4%B8%AD%E7%9A%84%E9%87%8D%E8%A6%81%E5%9B%BE%E5%BD%A2%E6%A6%82%E5%BF%B5core-graphics/">
+
+    <title>
+      
+        iOS中的重要图形概念Core Graphics | cmHubs
+      
+    </title>
+
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="https://Zhangchengmin99.github.io/css/style.css" rel="stylesheet">
+
+    
+
+    
+
+    
+  </head>
+  <body>
+    
+      
+
+<header class="blog-header">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">
+            <img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g75u7zx3o0j30tf0tf0u0.jpg" width="30" height="30" class="d-inline-block align-top"
+    alt="">
+cmHubs
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+            <ul class="navbar-nav">
+                
+                
+                <li class="nav-item ">
+                    
+                        <a class="nav-link" href="/post/">Home</a>
+                    
+                </li>
+                
+                <li class="nav-item ">
+                    
+                        <a class="nav-link" href="/about/">About</a>
+                    
+                </li>
+                
+                <li class="nav-item ">
+                    
+                        <a class="nav-link" href="/contact/">Contact</a>
+                    
+                </li>
+                
+            </ul>
+            
+        </div>
+    </nav>
+</header>
+
+    
+
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-lg-8 blog-main">
+
+          
+
+<header>
+    <h2 class="blog-post-title">
+    <a class="text-dark" href="/2019/09/ios%E4%B8%AD%E7%9A%84%E9%87%8D%E8%A6%81%E5%9B%BE%E5%BD%A2%E6%A6%82%E5%BF%B5core-graphics/">iOS中的重要图形概念Core Graphics</a>
+</h2>
+
+    
+
+
+<div class="blog-post-date text-secondary">
+    
+        <time datetime="2019-09-21">Sep 21, 2019</time>
+    
+    
+        by <span rel="author">Chengmin</span>
+    
+</div>
+
+    
+<div class="blog-post-tags text-secondary">
+    <strong>Tags:</strong>
+    
+        <a class="badge badge-primary" href="/tags/core-graphics">Core Graphics</a>
+    
+        <a class="badge badge-primary" href="/tags/ios">iOS</a>
+    
+</div>
+
+    
+<div class="blog-post-categories text-secondary">
+    <strong>Categories:</strong>
+    
+        <a class="badge badge-primary" href="/categories/development">Development👨🏻‍💻</a>
+    
+</div>
+
+    <hr>
+</header>
+<article class="blog-post">
+    <h4 id="引言">引言</h4>
+
+<p>Core Graphics框架是基于Quartz的高级绘图引擎。 它提供了无与伦比的输出保真度和轻量级2D渲染。 使用此框架可以来处理基于路径的绘图，转换，颜色管理，屏幕渲染，图案，渐变和阴影，图像数据管理，图像创建和图像蒙版，以及PDF文档的创建，显示和解析。在macOS中，Core Graphics还包括用于处理显示硬件，用户基础输入事件和窗口系统的服务。本文将重点介绍这套框架下重要的数据类型概念。（几乎是各种组件的基础，十分重要）</p>
+
+<h4 id="一-geometric数据类型">一 Geometric数据类型</h4>
+
+<p>Core Graphics框架最广泛采用的功能是以CGGeometry（CG代表Core Graphics）的名称定义的一系列数据类型。 在Swift中，这些数据类型被实现为具有自己的初始化函数，属性和方法的结构。 它们不仅用于绘图，还用于在屏幕上定位图形元素，例如按钮，标签等。此框架中定义的每种数据类型都存储代表属性的值，例如位置或大小。 以下是框架中包含的用于指定这些值的数据类型。</p>
+
+<h5 id="1-cgfloat">1 CGFloat</h5>
+
+<p>此结构用于存储浮点类型值以进行绘图</p>
+
+<h5 id="2-cgsize">2 CGSize</h5>
+
+<p>CGSize是更加复杂的结构，设计用于存储表示尺度的值。这个数据类型包含以下的初始化函数，属性和方法。</p>
+
+<ul>
+<li><p>CGSize(width: CGFloat, height: CGFloat)<br />
+此初始化程序使用由width和height属性指定的值创建一个CGSize结构。 该结构定义了初始化程序，以根据Int，CGFloat和Double类型的值创建实例。</p></li>
+
+<li><p>zero<br />
+此类型属性返回CGSize结构，其值设置为0。</p></li>
+
+<li><p>width<br />
+此属性设置或返回结构的宽度。</p></li>
+
+<li><p>height<br />
+此属性设置或返回结构的高度。</p></li>
+
+<li><p>equalTo(CGSize)<br />
+此方法返回一个布尔值，该值指示CGSize结构是否等于属性的值。</p></li>
+</ul>
+
+<h5 id="3-cgpoint">3 CGPoint</h5>
+
+<p>另一个结构是CGPoint，它用于定义二维坐标系中的点。 此数据类型包括以下初始化程序，属性和方法。</p>
+
+<ul>
+<li>CGPoint（x：CGFloat，y：CGFloat）<br />
+该初始化程序使用由x和y属性指定的坐标来创建CGPoint结构。 该结构定义了初始化程序，以根据Int，CGFloat和Double类型的值创建实例。</li>
+<li>zero<br />
+此类型属性返回一个CGPoint结构，其值设置为0。</li>
+<li>x<br />
+此属性设置或返回结构的x坐标。</li>
+<li>y
+此属性设置或返回结构的y坐标。</li>
+<li>equalTo（CGPoint）<br />
+此方法返回一个布尔值，该值确定CGPoint结构是否等于该属性的值。</li>
+</ul>
+
+<h5 id="4-cgvector">4 CGVector</h5>
+
+<p>还有一个类似的结构称为CGVector，用于管理二维矢量。 此数据类型包括以下初始化程序和属性。</p>
+
+<ul>
+<li>CGVector（dx：CGFloat，dy：CGFloat）<br />
+此初始化程序使用dx和dy属性指定的矢量坐标创建CGVector结构。 该结构定义了初始化程序，以根据Int，CGFloat和Double类型的值创建实例。</li>
+<li>zero
+此类型属性返回CGVector结构，其值设置为零。</li>
+<li>dx<br />
+此属性设置或返回结构的x坐标。</li>
+<li>dy<br />
+此属性设置或返回结构的y坐标。</li>
+</ul>
+
+<h5 id="5-cgrect">5 CGRect</h5>
+
+<p>最后，还有一个称为CGRect的更复杂的结构，我们可以使用它来定义和使用矩形。该数据类型包括以下初始化器，属性和方法。</p>
+
+<ul>
+<li>CGRect(origin: CGPoint, size: CGSize)<br />
+该初始化程序创建一个CGRect结构来存储矩形的原点和大小。 origin属性是带有矩形原点坐标的CGPoint结构，而size属性是带有矩形的宽度和高度的CGSize结构。</li>
+<li>CGRect(x: CGFloat, y: CGFloat, width: CGFloat, height: CGFloat)<br />
+此初始化程序创建一个CGRect结构，以存储矩形的原点和大小。 x和y属性定义矩形原点的坐标，而width和height属性定义矩形的大小。该结构定义了初始化程序，以根据Int，CGFloat和Double类型的值创建实例。</li>
+<li>zero<br />
+此类型属性返回一个CGRect结构，其值设置为零。
+原点-此属性设置或返回带有矩形原点坐标的CGPoint结构。</li>
+<li>size<br />
+此属性设置或返回带有矩形的宽度和高度的CGSize结构。</li>
+<li>minX<br />
+此属性返回矩形的x坐标的最小值。</li>
+<li>minY<br />
+此属性返回矩形的y坐标的最小值。</li>
+<li>maxX<br />
+此属性返回矩形的x坐标的最大值。</li>
+<li>maxY<br />
+此属性返回矩形y坐标的最大值。</li>
+<li>midX<br />
+此属性返回位于矩形水平中心的矩形x坐标的值。</li>
+<li>midY<br />
+此属性返回位于矩形垂直中心的矩形的y坐标值。</li>
+<li>equalTo(CGRect)<br />
+此方法返回一个布尔值，该布尔值确定是否CGRect结构等于该属性指定的值。</li>
+<li>contains(CGPoint)<br />
+此方法返回一个布尔值，该值确定该属性指定的值是否包含在CGRect结构内。该属性的类型可以是CGPoint（用于检测点是否在矩形内）或CGRect（用于检测另一个矩形是否在原始矩形内）。</li>
+<li>intersects(CGRect)<br />
+此方法返回一个布尔值，以指示该属性指定的矩形是否与原始矩形相交。</li>
+<li>intersection(CGRect)
+此方法返回一个CGRect结构，其结构和矩形的大小由原始矩形与该属性指定的矩形的交集形成。</li>
+<li>union(CGRect)
+此方法返回一个新的并集的CGRect结构，该结构的矩形的坐标和大小包括原始矩形和该属性指定的矩形。</li>
+</ul>
+
+<h4 id="二-应用举例">二 应用举例</h4>
+
+<h5 id="例子1-使用便利构造器">例子1 使用便利构造器</h5>
+
+<pre><code class="language-swift">import CoreGraphics
+var myrect = CGRect(x: 30, y: 20, width: 100, height: 200)
+print(“The origin is at \(myrect.origin.x) and \(myrect.origin.y)”) print(“The size is \(myrect.size.width) by \(myrect.size.height)”)
+</code></pre>
+
+<p>CGRect值的原点和大小属性分别是CGPoint和CGSize结构，因此它们可以像其他任何值一样复制到其他变量或属性中。</p>
+
+<h5 id="例子2-访问cgrect结构内部的结构">例子2 访问CGRect结构内部的结构</h5>
+
+<pre><code class="language-swift">import CoreGraphics
+var mypoint = myrect.origin
+var mysize = myrect.size
+print(“The origin is at \(mypoint.x) and \(mypoint.y)”) print(“The size is \(mysize.width) by \(mysize.height)”)
+</code></pre>
+
+<p>有时我们的应用程序必须使用Core Graphic的结构，但是我们不知道它们将需要的值。 在这种情况下，我们可以利用零类型属性。 此属性在大多数结构中都可用，它的作用是返回一个其值初始化为0的结构。</p>
+
+<h5 id="例子3-将空结构分配给cgrect变量">例子3 将空结构分配给CGRect变量</h5>
+
+<pre><code class="language-swift">import CoreGraphics
+var myrect = CGRect.zero
+print(“The origin is at \(myrect.origin.x) and \(myrect.origin.y)”) print(“The size is \(myrect.size.width) by \(myrect.size.height)”)
+</code></pre>
+
+<p>有时我们的应用程序必须使用Core Graphic的结构，但是我们不知道它们将需要的值。 在这种情况下，我们可以利用零类型属性。 此属性在大多数结构中都可用，它的作用是返回一个其值初始化为0的结构。<br />
+例子的myrect变量是一个CGRect结构，其所有属性均以值0初始化。将零属性的值分配给变量与使用初始化程序CGRect(x: 0, y: 0, width: 0, height: 0) 。CGRect结构还包括用于根据其坐标和大小来计算值的属性。 例如，midX和midY属性返回每侧中心的坐标。</p>
+
+<h5 id="例子4-计算矩形中心的坐标">例子4 计算矩形中心的坐标</h5>
+
+<pre><code class="language-swift">import CoreGraphics
+var rect = CGRect(x: 0, y: 0, width: 100, height: 100)
+print(“The horizontal center is \(rect.midX)”) // 50.0
+</code></pre>
+
+<p>CGRect结构中包含的其余方法也易于实现。 下面的示例创建一个矩形和一个点，然后使用contains()方法检查该点是否在矩形内。</p>
+
+<h5 id="例子5-检测点是否在矩形内">例子5 检测点是否在矩形内</h5>
+
+<pre><code class="language-swift">import CoreGraphics
+var rect = CGRect(x: 0, y: 0, width: 100, height: 100) var point = CGPoint(x: 10, y: 50)
+if rect.contains(point) {
+print(“The point is inside the rectangle”)
+</code></pre>
+
+<h4 id="三-其他cg概念简述">三 其他CG概念简述</h4>
+
+<h5 id="cgaffinetransform">CGAffineTransform</h5>
+
+<p>An affine transformation matrix for use in drawing 2D graphics.</p>
+
+<h5 id="2d-drawing">2D Drawing</h5>
+
+<ul>
+<li>CGContext<br />
+Quartz 2D 绘图环境<br /></li>
+<li>CGImage<br />
+位图图像或图像蒙版<br /></li>
+<li>CGPath<br />
+不变的图形路径：对要在图形上下文中绘制的形状或线条的数学描述<br /></li>
+<li>CGMutablePath<br />
+可变的图形路径：在图形上下文中绘制形状或线条的数学描述<br /></li>
+<li>CGLayer<br />
+屏幕外上下文，用于重用Core Graphics绘制的内容<br /></li>
+</ul>
+
+<h5 id="colors-and-fonts">Colors and Fonts</h5>
+
+<ul>
+<li>CGColor<br />
+一组定义颜色的组件，颜色空间指定如何解释它们<br /></li>
+<li>CGColorConversionInfo<br />
+一个对象，描述如何在色彩空间之间转换以供其他系统服务使用<br /></li>
+<li>CGColorSpace<br />
+一个配置文件，指定如何解释显示的颜色值<br /></li>
+<li>CGFont<br />
+一组用于图形文字的字形和布局信息<br /></li>
+</ul>
+
+<h4 id="四-更多资料请参考">四 更多资料请参考</h4>
+
+<p><a href="https://developer.apple.com/documentation/coregraphics" title="With a Title">Apple Developer Documentation about Core Graphics</a></p>
+
+<blockquote>
+<p>参考文献：《iOS 12 Apps for Masterminds》</p>
+</blockquote>
+
+    
+
+    
+
+
+</article>
+
+
+
+        </div>
+
+        <aside class="col-12 col-lg-3 ml-auto blog-sidebar">
+    
+        
+
+
+<section>
+    <h4>Recent Posts</h4>
+    <ol class="list-unstyled">
+        
+        <li>
+            <a href="/post/">Home</a>
+        </li>
+        
+        <li>
+            <a href="/2019/09/ios%E4%B8%AD%E7%9A%84%E9%87%8D%E8%A6%81%E5%9B%BE%E5%BD%A2%E6%A6%82%E5%BF%B5core-graphics/">iOS中的重要图形概念Core Graphics</a>
+        </li>
+        
+        <li>
+            <a href="/2019/09/%E4%BD%BF%E7%94%A8nodemcu%E5%9F%BA%E4%BA%8E%E5%AE%98%E6%96%B9sdk%E6%8E%A5%E5%85%A5%E9%98%BF%E9%87%8C%E4%BA%91%E7%89%A9%E8%81%94%E7%BD%91%E5%B9%B3%E5%8F%B0/">使用nodemcu（基于官方SDK）接入阿里云物联网平台</a>
+        </li>
+        
+        <li>
+            <a href="/2019/09/flutter%E4%B8%80mac%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">Flutter（一）MAC环境搭建</a>
+        </li>
+        
+    </ol>
+</section>
+
+    
+    
+        <section>
+    
+        
+        <h4>Categories</h4>
+        <p>
+            
+            <a class="badge badge-primary" href="/categories/development">development</a>
+            
+        </p>
+        
+    
+        
+        <h4>Tags</h4>
+        <p>
+            
+            <a class="badge badge-primary" href="/tags/core-graphics">core-graphics</a>
+            
+            <a class="badge badge-primary" href="/tags/flutter">flutter</a>
+            
+            <a class="badge badge-primary" href="/tags/ios">ios</a>
+            
+            <a class="badge badge-primary" href="/tags/nodemcu">nodemcu</a>
+            
+        </p>
+        
+    
+</section>
+    
+</aside>
+
+      </div>
+    </div>
+    
+
+    
+      
+
+
+
+
+
+
+
+<footer class="blog-footer w-100">
+    <nav class="navbar navbar-light bg-light">
+        <p class="w-100 text-center">[ A student iOS developer in BUPT 👨🏻‍💻 ]</p>
+        <p class="w-100 text-center"><a href="#">Back to top</a></p>
+    </nav>
+</footer>
+
+    
+
+    
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </body>
+</html>

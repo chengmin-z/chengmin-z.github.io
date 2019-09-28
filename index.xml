@@ -13,6 +13,17 @@
     
     
     <item>
+      <title>iOS中的重要图形概念Core Graphics</title>
+      <link>https://Zhangchengmin99.github.io/2019/09/ios%E4%B8%AD%E7%9A%84%E9%87%8D%E8%A6%81%E5%9B%BE%E5%BD%A2%E6%A6%82%E5%BF%B5core-graphics/</link>
+      <pubDate>Sat, 21 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://Zhangchengmin99.github.io/2019/09/ios%E4%B8%AD%E7%9A%84%E9%87%8D%E8%A6%81%E5%9B%BE%E5%BD%A2%E6%A6%82%E5%BF%B5core-graphics/</guid>
+      <description>&lt;h4 id=&#34;引言&#34;&gt;引言&lt;/h4&gt;
+
+&lt;p&gt;Core Graphics框架是基于Quartz的高级绘图引擎。 它提供了无与伦比的输出保真度和轻量级2D渲染。 使用此框架可以来处理基于路径的绘图，转换，颜色管理，屏幕渲染，图案，渐变和阴影，图像数据管理，图像创建和图像蒙版，以及PDF文档的创建，显示和解析。在macOS中，Core Graphics还包括用于处理显示硬件，用户基础输入事件和窗口系统的服务。本文将重点介绍这套框架下重要的数据类型概念。（几乎是各种组件的基础，十分重要）&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>使用nodemcu（基于官方SDK）接入阿里云物联网平台</title>
       <link>https://Zhangchengmin99.github.io/2019/09/%E4%BD%BF%E7%94%A8nodemcu%E5%9F%BA%E4%BA%8E%E5%AE%98%E6%96%B9sdk%E6%8E%A5%E5%85%A5%E9%98%BF%E9%87%8C%E4%BA%91%E7%89%A9%E8%81%94%E7%BD%91%E5%B9%B3%E5%8F%B0/</link>
       <pubDate>Sat, 21 Sep 2019 00:00:00 +0000</pubDate>
