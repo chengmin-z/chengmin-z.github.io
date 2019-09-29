@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>IoT on cmHubs</title>
+    <link>https://Zhangchengmin99.github.io/tags/iot/</link>
+    <description>Recent content in IoT on cmHubs</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>[ A student iOS developer in BUPT 👨🏻‍💻 ]</copyright>
+    <lastBuildDate>Sat, 21 Sep 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://Zhangchengmin99.github.io/tags/iot/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>使用nodemcu（基于官方SDK）接入阿里云物联网平台</title>
+      <link>https://Zhangchengmin99.github.io/2019/09/%E4%BD%BF%E7%94%A8nodemcu%E5%9F%BA%E4%BA%8E%E5%AE%98%E6%96%B9sdk%E6%8E%A5%E5%85%A5%E9%98%BF%E9%87%8C%E4%BA%91%E7%89%A9%E8%81%94%E7%BD%91%E5%B9%B3%E5%8F%B0/</link>
+      <pubDate>Sat, 21 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://Zhangchengmin99.github.io/2019/09/%E4%BD%BF%E7%94%A8nodemcu%E5%9F%BA%E4%BA%8E%E5%AE%98%E6%96%B9sdk%E6%8E%A5%E5%85%A5%E9%98%BF%E9%87%8C%E4%BA%91%E7%89%A9%E8%81%94%E7%BD%91%E5%B9%B3%E5%8F%B0/</guid>
+      <description>&lt;h4 id=&#34;引言&#34;&gt;引言&lt;/h4&gt;
+
+&lt;p&gt;作为物联网开发者，ESP8266应该一点都不陌生了。只需十几块钱淘宝一个小开发板，就可以连上Wi-Fi接入互联网，尽情享受从手机端或Web端控制设备的乐趣。ESP8266接入Wi-Fi是没问题，但是用户端不能直接设计成与ESP8266通信，还是需要一个中心服务器作为用户端和设备端的代理。一种方案是自己搭建设计这么一个中心服务器，只是费时费力；另一种方案，就是直接使用大厂提供的物联网平台服务，使设计方案PaaS化。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

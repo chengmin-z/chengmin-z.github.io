@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<meta property="og:title" content="iOS开发中容易忽略的UIKit概念" />
+<meta property="og:description" content="前言 UIKit的概念
+
+UIKit（用户界面工具包）是为移动应用程序定义图形界面元素的框架。从文本字符串到按钮和开关，用户在屏幕上操纵以与应用程序交互的所有标准元素均由此框架中的类定义。它的主要重点是用户界面，但它也提供了应用程序需要的基本类，并与系统的其余部分连接。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://Zhangchengmin99.github.io/2019/09/ios%E5%BC%80%E5%8F%91%E4%B8%AD%E5%AE%B9%E6%98%93%E5%BF%BD%E7%95%A5%E7%9A%84uikit%E6%A6%82%E5%BF%B5/" />
+<meta property="article:published_time" content="2019-09-29T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-09-29T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="iOS开发中容易忽略的UIKit概念"/>
+<meta name="twitter:description" content="前言 UIKit的概念
+
+UIKit（用户界面工具包）是为移动应用程序定义图形界面元素的框架。从文本字符串到按钮和开关，用户在屏幕上操纵以与应用程序交互的所有标准元素均由此框架中的类定义。它的主要重点是用户界面，但它也提供了应用程序需要的基本类，并与系统的其余部分连接。"/>
+
+
+
+    <link rel="canonical" href="https://Zhangchengmin99.github.io/2019/09/ios%E5%BC%80%E5%8F%91%E4%B8%AD%E5%AE%B9%E6%98%93%E5%BF%BD%E7%95%A5%E7%9A%84uikit%E6%A6%82%E5%BF%B5/">
+
+    <title>
+      
+        iOS开发中容易忽略的UIKit概念 | cmHubs
+      
+    </title>
+
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="https://Zhangchengmin99.github.io/css/style.css" rel="stylesheet">
+
+    
+
+    
+
+    
+  </head>
+  <body>
+    
+      
+
+<header class="blog-header">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">
+            <img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g75u7zx3o0j30tf0tf0u0.jpg" width="30" height="30" class="d-inline-block align-top"
+    alt="">
+cmHubs
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+            <ul class="navbar-nav">
+                
+                
+                <li class="nav-item ">
+                    
+                        <a class="nav-link" href="/post/">Home</a>
+                    
+                </li>
+                
+                <li class="nav-item ">
+                    
+                        <a class="nav-link" href="/about/">About</a>
+                    
+                </li>
+                
+                <li class="nav-item ">
+                    
+                        <a class="nav-link" href="/contact/">Contact</a>
+                    
+                </li>
+                
+            </ul>
+            
+        </div>
+    </nav>
+</header>
+
+    
+
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-lg-8 blog-main">
+
+          
+
+<header>
+    <h2 class="blog-post-title">
+    <a class="text-dark" href="/2019/09/ios%E5%BC%80%E5%8F%91%E4%B8%AD%E5%AE%B9%E6%98%93%E5%BF%BD%E7%95%A5%E7%9A%84uikit%E6%A6%82%E5%BF%B5/">iOS开发中容易忽略的UIKit概念</a>
+</h2>
+
+    
+
+
+<div class="blog-post-date text-secondary">
+    
+        <time datetime="2019-09-29">Sep 29, 2019</time>
+    
+    
+        by <span rel="author">Chengmin</span>
+    
+</div>
+
+    
+<div class="blog-post-tags text-secondary">
+    <strong>Tags:</strong>
+    
+        <a class="badge badge-primary" href="/tags/ios">iOS</a>
+    
+        <a class="badge badge-primary" href="/tags/uikit">UIKit</a>
+    
+</div>
+
+    
+<div class="blog-post-categories text-secondary">
+    <strong>Categories:</strong>
+    
+        <a class="badge badge-primary" href="/categories/development">Development👨🏻‍💻</a>
+    
+</div>
+
+    <hr>
+</header>
+<article class="blog-post">
+    <h4 id="前言-uikit的概念">前言 UIKit的概念</h4>
+
+<p>UIKit（用户界面工具包）是为移动应用程序定义图形界面元素的框架。从文本字符串到按钮和开关，用户在屏幕上操纵以与应用程序交互的所有标准元素均由此框架中的类定义。它的主要重点是用户界面，但它也提供了应用程序需要的基本类，并与系统的其余部分连接。</p>
+
+<p>该应用程序的生态系统是一个非常复杂的元素网格，它们之间进行双向通信。为了检查和响应来自这些系统（包括操作系统）的消息，应用程序必须不断地在循环中调用自身，同时要实现其自己的目的。通过将系统划分为多个部分来简化这些复杂的任务，这些部分将解决每一个难题。</p>
+
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g7gqtg87waj30bz05u3yf.jpg" alt="" /><br />
+<em>图4-1：应用程序的系统架构</em></p>
+
+<p>该应用必须从设备和屏幕上读取信息，为窗口及其内容生成图形，还必须保持循环运行以不断检查由这些系统中的任何系统产生的事件，例如设备通知旋转已发生例如，屏幕上的一个按钮报告已被点击，或者系统报告该应用程序由于来电而被暂停，仅举几例。这是一个极其复杂的过程，需要对所涉及的技术有深入的了解。为了减轻开发人员的工作并使他们专注于对他们的应用真正重要的事情，UIKit包括几个类，这些类代表了该系统的每个部分，包括UIApplication，UIDevice，UIScreen和UIWindow。</p>
+
+<h4 id="一-uiapplication">一 UIApplication</h4>
+
+<p>构建应用程序后，编译器会包含一段基本的代码，负责执行第一步，以启动设备控制并将其控制权转移到我们的应用程序。 此代码的任务之一是创建UIApplication类的对象。 该对象生成一个循环来处理事件，准备应用程序以使其正常工作，并在一切准备就绪时将控件转移到我们自己的代码中。 UIApplication类包含一个type属性，以提供对该对象的访问。</p>
+
+<ul>
+<li><p>shared<br />
+此类型属性返回为我们的应用创建的UIApplication类的实例。
+一旦获得对该对象的引用，就可以访问其属性和方法。以下是最常用的。</p></li>
+
+<li><p>delegate<br />
+此属性返回对分配为UIApplication对象的委托的对象的引用。稍后我们将看到，将一个委托对象分配给UIApplication对象以与我们的代码进行通信。</p></li>
+
+<li><p>windows<br />
+此属性返回一个数组，其中包含对为应用程序创建的窗口的引用。如果设备未连接到外部屏幕，则此阵列仅包含一个元素，该元素引用分配给设备主屏幕的窗口。</p></li>
+
+<li><p>keyWindow<br />
+此属性返回对活动窗口的引用。它的值是UIWindow类型的可选（它返回一个UIWindow对象，如果没有找到窗口，则返回nil）。</p></li>
+
+<li><p>applicationState<br />
+此属性返回应用程序的当前状态。它是UIApplication类中包含的名为State的枚举。可用的值是活动的（应用程序处于活动状态），非活动的（应用程序正在运行但未处于活动状态）和后台（应用程序在后台运行）。</p></li>
+</ul>
+
+<p>一旦执行应用程序，就会在后台为我们创建UIApplication对象，但是我们可以读取shared属性以获得对当前对象的引用。</p>
+
+<h5 id="示例-1-获取uiapplication对象">示例 1 获取UIApplication对象</h5>
+
+<pre><code class="language-swift">import UIKit
+let app = UIApplication.shared
+var state = app.applicationState
+switch state {
+case .active:
+print(“The application is active”)
+case .inactive:
+print(“The application is inactive”)
+case .background:
+print(“The application is in the background”)
+}
+</code></pre>
+
+<p>在上述实例中，对UIApplication对象的引用存储在app变量中。 通过此变量，我们检查应用程序的状态并打印相应的消息。</p>
+
+<h4 id="二-uidevice">二 UIDevice</h4>
+
+<p>定义UIDevice类，以从运行应用程序的设备获取信息。 该类包括用于获取对表示当前设备的对象的引用的type属性，以及用于配置对象并返回数据的实例属性。</p>
+
+<ul>
+<li>current<br />
+此type属性返回UIDevice类的实例，该实例表示应用程序当前正在运行的设备。</li>
+<li>systemName<br />
+此属性返回一个字符串，其中包含设备中运行的操作系统的名称（例如“ iPhone OS”）。</li>
+<li>systemVersion<br />
+该属性返回一个字符串，其中包含设备中运行的操作系统的版本（例如“ 12.0”）。</li>
+<li>userInterfaceIdiom<br />
+此属性返回运行应用程序的设备的类型。返回的值是UIUserInterfaceIdiom类型的枚举，未指定值，电话，平板电脑，电视和carPlay。</li>
+<li>orientation<br />
+此属性返回一个值，该值确定设备的当前方向。它是类型为UIDeviceOrientation的枚举，其值为unknown，portrait，portraitUpsideDown，landscapeLeft，landscapeRight，faceUp和faceDown。该属性要求启用加速度计以提供准确的信息。</li>
+<li>beginGeneratingDeviceOrientationNotifications()<br />
+此方法启用加速度计并开始将传递通知以传达方向变化的过程。</li>
+<li>endGeneratingDeviceOrientationNotifications()<br />
+此方法告诉系统不再需要加速度计，并停止发送通知。</li>
+</ul>
+
+<p>此类的实现很简单。 我们先获得一个代表当前设备的对象实例，然后读取其属性。 以下示例检查应用程序是否在iPhone上运行。</p>
+
+<h5 id="示例-1-从设备获取信息">示例 1 从设备获取信息</h5>
+
+<pre><code class="language-swift">import UIKit
+let current = UIDevice.current
+let device = current.userInterfaceIdiom
+if device == .phone { print(“This is an iPhone”)
+} else {
+print(“This is not an iPhone”)
+}
+</code></pre>
+
+<h4 id="三-uiscreen">三 UIScreen</h4>
+
+<p>UIScreen对象使我们能够获取描述主屏幕以及连接到设备的外部屏幕的信息。 该类提供了两个类型属性来获取这些对象，并提供一些实例属性来返回有关屏幕的信息。
+* main<br />
+此类型属性返回一个UIScreen对象来管理主屏幕。
+* bounds<br />
+此属性返回一个CGRect值，其中屏幕尺寸以磅为单位。 值根据设备的方向而变化。
+* nativeBounds
+此属性返回CGRect值，其中屏幕尺寸以像素表示。 始终考虑纵向方向返回值。
+* scale<br />
+此属性返回一个CGFloat值，表示屏幕的缩放比例。 这是一个在屏幕上的点和实际像素之间转换的值，我们将在接下来的举例中会看到。
+* brightness<br />
+此属性设置或返回CGFloat值，该值确定屏幕的亮度。 取值范围是0.0到1.0。</p>
+
+<h5 id="points-的概念">points 的概念</h5>
+
+<p>设备的屏幕由数百个称为像素的点的网格组成，按点和行排列。每个像素的颜色由像素内包含三个值（四个包含透明度）。<br />
+这些值代表红色，绿色和蓝色的组合。通过组合网格上的像素和颜色，屏幕可以显示任何类型的图形，包括按钮，文本，图片等。像素数量从一个设备到另一个设备都不同。在预见到这种情况时，Apple采用了点（有时称为逻辑像素）的概念。目标是拥有一个独立于设备和屏幕上像素密度的度量单位。一个点占据一个或多个像素的平方，但是开发人员不需要知道多少，它全部由系统管理。<br />
+目前，Apple移动设备中的点可能代表最多三个像素的正方形，具体取决于设备和技术。这是目前每个可用设备的点数和相应像素的列表。</p>
+
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g7grb4rohtj30nn0etjsb.jpg" alt="" /></p>
+
+<p>点和像素之间的差异表示比例。 iPhone 3及更高版本的iPhone的比例为1（1点代表1像素），而iPhone 4、5、6、7和8的iPhone的比例为2（1点代表2像素的平方）。 某些iPhone和iPad共享具有相同数量点的网格，而与比例无关，但是随着iPhone Plus和更大屏幕的引入，比例扩大到3（1点代表3像素）。 这使开发人员可以创建适用于每种设备的图形界面，而不管其屏幕上有多少像素。</p>
+
+<h5 id="示例-1-从设备获取信息-1">示例 1 从设备获取信息</h5>
+
+<p>UIScreen类中包含的bound，nativeBounds和scale属性返回与运行应用程序的设备的屏幕相对应的值。 bound和nativeBounds属性包含CGRect结构，而scale是CGFloat值。</p>
+
+<pre><code class="language-swift">import UIKit
+let screen = UIScreen.main
+let pointsWidth = screen.bounds.size.width
+let pointsHeight = screen.bounds.size.height 
+print(“Width: \(pointsWidth) x Height: \(pointsHeight)”)
+let pixelsWidth = screen.nativeBounds.size.width
+let pixelsHeight = screen.nativeBounds.size.height 
+print(“Width: \(pixelsWidth) x Height: \(pixelsHeight)”)
+print(“Scale: \(screen.scale)”)
+</code></pre>
+
+<h4 id="四-uiwindow">四 UIWindow</h4>
+
+<p>每个应用程序都会生成窗口，以可视方式与其用户进行交流。 桌面应用程序包含多个窗口，但是移动设备由于其屏幕尺寸有限，因此只有一个窗口。 该窗口就像一个虚拟的屏幕大小的空间，在其中放置了应用程序的可视元素。 UIKit包含UIWindow类，用于创建管理应用程序窗口的对象。 通常，该对象会在应用程序执行后立即自动创建，但是我们可以通过代码读取UIApplication对象的窗口或键窗口属性来访问它。<br />
+由于移动设备的特殊特性，一旦创建了窗口，它就永远不会改变。 如果必须修改图形或界面，则该窗口的内容将被替换，但该窗口将保持不变。 因此，我们几乎没有与此对象进行交互。 以下是其最常用的属性。</p>
+
+<ul>
+<li>screen<br />
+此属性返回代表设备屏幕的UIScreen对象。 这是UIScreen类的main属性返回的同一对象。</li>
+<li>rootViewController<br />
+此属性返回对控制应用程序初始视图的对象的引用。</li>
+</ul>
+
+<h5 id="示例-1-获取uiwindow对象">示例 1 获取UIWindow对象</h5>
+
+<p>本示例获取对为我们的应用程序创建的UIWindow对象的引用，然后读取其screen属性以获取对分配给该应用程序的UIScreen对象的引用，并读取其bounds属性以在控制台上打印屏幕的大小。 keywindow属性返回一个可选属性，因此我们必须使用“可选链接”和“可选绑定”来访问对象的属性。</p>
+
+<pre><code class="language-swift">import UIKit
+let app = UIApplication.shared
+let window = app.keyWindow
+if let bounds = window?.screen.bounds {
+print(“Size: \(bounds.size.width) x \(bounds.size.height)”)
+}
+</code></pre>
+
+<p>rootViewController属性存储对包含该接口初始视图并负责管理该视图的对象的引用。 这些对象称为视图控制器。</p>
+
+<hr />
+
+<blockquote>
+<p>接下来将详细介绍UIView的各种属性与方法，请详见UIView，UIKit中的关键组件介绍。</p>
+</blockquote>
+
+    
+
+    
+
+    <h4>See also</h4>
+    <ul>
+        
+            <li><a href="/2019/09/ios%E4%B8%AD%E7%9A%84%E9%87%8D%E8%A6%81%E5%9B%BE%E5%BD%A2%E6%A6%82%E5%BF%B5core-graphics/">iOS中的重要图形概念Core Graphics</a></li>
+        
+    </ul>
+
+
+</article>
+
+
+
+        </div>
+
+        <aside class="col-12 col-lg-3 ml-auto blog-sidebar">
+    
+        
+
+
+<section>
+    <h4>Recent Posts</h4>
+    <ol class="list-unstyled">
+        
+        <li>
+            <a href="/post/">Home</a>
+        </li>
+        
+        <li>
+            <a href="/2019/09/ios%E5%BC%80%E5%8F%91%E4%B8%AD%E5%AE%B9%E6%98%93%E5%BF%BD%E7%95%A5%E7%9A%84uikit%E6%A6%82%E5%BF%B5/">iOS开发中容易忽略的UIKit概念</a>
+        </li>
+        
+        <li>
+            <a href="/2019/09/ios%E4%B8%AD%E7%9A%84%E9%87%8D%E8%A6%81%E5%9B%BE%E5%BD%A2%E6%A6%82%E5%BF%B5core-graphics/">iOS中的重要图形概念Core Graphics</a>
+        </li>
+        
+        <li>
+            <a href="/2019/09/flutter%E4%B8%80mac%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">Flutter（一）MAC环境搭建</a>
+        </li>
+        
+        <li>
+            <a href="/2019/09/%E4%BD%BF%E7%94%A8nodemcu%E5%9F%BA%E4%BA%8E%E5%AE%98%E6%96%B9sdk%E6%8E%A5%E5%85%A5%E9%98%BF%E9%87%8C%E4%BA%91%E7%89%A9%E8%81%94%E7%BD%91%E5%B9%B3%E5%8F%B0/">使用nodemcu（基于官方SDK）接入阿里云物联网平台</a>
+        </li>
+        
+    </ol>
+</section>
+
+    
+    
+        <section>
+    
+        
+        <h4>Categories</h4>
+        <p>
+            
+            <a class="badge badge-primary" href="/categories/development">development</a>
+            
+        </p>
+        
+    
+        
+        <h4>Tags</h4>
+        <p>
+            
+            <a class="badge badge-primary" href="/tags/core-graphics">core-graphics</a>
+            
+            <a class="badge badge-primary" href="/tags/flutter">flutter</a>
+            
+            <a class="badge badge-primary" href="/tags/ios">ios</a>
+            
+            <a class="badge badge-primary" href="/tags/iot">iot</a>
+            
+            <a class="badge badge-primary" href="/tags/nodemcu">nodemcu</a>
+            
+            <a class="badge badge-primary" href="/tags/uikit">uikit</a>
+            
+        </p>
+        
+    
+</section>
+    
+</aside>
+
+      </div>
+    </div>
+    
+
+    
+      
+
+
+
+
+
+
+
+<footer class="blog-footer w-100">
+    <nav class="navbar navbar-light bg-light">
+        <p class="w-100 text-center">[ A student iOS developer in BUPT 👨🏻‍💻 ]</p>
+        <p class="w-100 text-center"><a href="#">Back to top</a></p>
+    </nav>
+</footer>
+
+    
+
+    
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </body>
+</html>

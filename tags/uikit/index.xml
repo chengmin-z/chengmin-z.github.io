@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>UIKit on cmHubs</title>
+    <link>https://Zhangchengmin99.github.io/tags/uikit/</link>
+    <description>Recent content in UIKit on cmHubs</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>[ A student iOS developer in BUPT 👨🏻‍💻 ]</copyright>
+    <lastBuildDate>Sun, 29 Sep 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://Zhangchengmin99.github.io/tags/uikit/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>iOS开发中容易忽略的UIKit概念</title>
+      <link>https://Zhangchengmin99.github.io/2019/09/ios%E5%BC%80%E5%8F%91%E4%B8%AD%E5%AE%B9%E6%98%93%E5%BF%BD%E7%95%A5%E7%9A%84uikit%E6%A6%82%E5%BF%B5/</link>
+      <pubDate>Sun, 29 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://Zhangchengmin99.github.io/2019/09/ios%E5%BC%80%E5%8F%91%E4%B8%AD%E5%AE%B9%E6%98%93%E5%BF%BD%E7%95%A5%E7%9A%84uikit%E6%A6%82%E5%BF%B5/</guid>
+      <description>&lt;h4 id=&#34;前言-uikit的概念&#34;&gt;前言 UIKit的概念&lt;/h4&gt;
+
+&lt;p&gt;UIKit（用户界面工具包）是为移动应用程序定义图形界面元素的框架。从文本字符串到按钮和开关，用户在屏幕上操纵以与应用程序交互的所有标准元素均由此框架中的类定义。它的主要重点是用户界面，但它也提供了应用程序需要的基本类，并与系统的其余部分连接。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
