@@ -7,10 +7,43 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>[ A student iOS developer in BUPT 👨🏻‍💻 ]</copyright>
-    <lastBuildDate>Sun, 29 Sep 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 02 Oct 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://Zhangchengmin99.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>UIView专题介绍</title>
+      <link>https://Zhangchengmin99.github.io/2019/10/uiview%E4%B8%93%E9%A2%98%E4%BB%8B%E7%BB%8D/</link>
+      <pubDate>Wed, 02 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://Zhangchengmin99.github.io/2019/10/uiview%E4%B8%93%E9%A2%98%E4%BB%8B%E7%BB%8D/</guid>
+      <description>引言 窗口是显示图形的空间，但它本身不会产生任何可见的内容。用户界面是通过类似视图的容器在窗口内部构建的。这些视图是自定义大小的矩形区域，旨在在屏幕上显示图形。一些视图仅用作容器，而其他视图则经过改进以提供图形工具（例如按钮和开关）以及图形内容（例如图像和文本）。这些视图是按层次结构组织的，一个内部又另一个内部，以窗口大小的视图作为层次结构的根（通常称为主视图或容器视图）。
+无论视图的目的（是容器还是呈现内容），它们都是从UIView类的对象创建的。这是一个基本类，只能创建和管理视图所占据的矩形区域，但是可以定义该类的子类以添加功能并呈现我们想要的任何类型的内容。虽然对象是直接创建的UIView类的功能非常有限，它们具有用于配置和绘制视图的大量属性和方法。以下是可用的常用的初始化程序，属性和方法。
+一 UIView基本函数属性与方法  UIView(frame: CGRect)
+此初始化程序在frame属性所确定的位置和大小中创建一个UIView对象。
+ frame
+此属性设置或返回CGRect值，该值确定视图所占据的矩形区域的位置和大小。位置值是根据视图容器（窗口或其他视图）的坐标确定的。 bounds
+此属性设置或返回CGRect值，该值确定视图在其自身框架内占据的矩形区域的位置和大小。位置值由视图的坐标系确定。 center
+此属性设置或返回CGPoint值，该值确定视图框架中心的坐标。 backgroundColor
+此属性设置或返回一个确定视图背景颜色的对象。该值是UIColor类的对象（接下来介绍）。 alpha
+此属性设置或返回CGFloat值，该值确定视图的alpha级别（透明级别）。该属性的值从0.0（透明）到1.0（不透明）。 isHidden
+此属性设置或返回一个布尔值，该值确定视图是可见的（false）还是隐藏的（true）。 isOpaque
+此属性设置或返回一个布尔值，该值确定视图是否不透明。 contentMode
+此属性设置或返回一个值，该值确定视图大小改变（通常与图像一起使用）时视图用于对其内容进行布局的模式。它是UIView类中包含的名为ContentMode的枚举。可用的值为scaleToFill, scaleAspectFit, scaleAspectFill, redraw, center, top, bottom, left, right, topLeft, topRight, bottomLeft, 和 bottomRight. clipsToBounds
+此属性设置或返回一个布尔值，该值确定视图的内容是否限于视图的边界。 isUserInteractionEnabled
+此属性设置或返回一个布尔值，该值确定视图是否响应用户的交互。（例如，轻按手指）。 isMultipleTouchEnabled
+此属性设置或返回一个布尔值，该值确定视图是否可以处理多个触摸事件。 isExclusiveTouch
+此属性设置或返回一个布尔值，该值确定视图是否将无法处理的触摸事件传递给其他视图。 superview
+此属性返回对UIVIew对象的引用，该对象是视图的容器。如果该视图不在另一个视图内，则返回的值为nil。 subviews
+此属性返回一个数组，其中包含对视图（子视图）内的UIView对象的引用。 tag
+此属性设置或返回标识视图的整数值。 viewWithTag(Int)
+此方法使用属性指定的标签搜索视图的子视图。返回的值是可选的，包含UIView对象；如果失败，则返回nil。  窗口位于屏幕内部，而视图位于窗口内部和彼此内部，从而生成一种层次结构（请参见下图）。为了确定容器中每个元素的位置，UIKit使用坐标系。下图说明了iPhone 8屏幕的坐标系。
+视图层次结构
+坐标系
+点的行和列从容器的左上角到右下角进行计数（值从左到右以及从上到下递增）。例如，屏幕左上角的第一个点位于位置0、0（第0列，第0行），而右下角的点位于位置375、667（667、375）在横向）。遵循标准约定，位置0、0的点为 称为原点，位置的值由字母x和y标识（x表示列，y表示行）。 在UIKit中，相同的坐标系应用于界面的每个元素，包括窗口和视图。窗口和主视图占据整个屏幕，因此它们具有相同的原点和大小。下面示例创建一个375点乘667点的视图，以表示iPhone 8窗口可能包含的主视图。
+例子 1: Creating a view import UIKit var mainframe = CGRect(x: 0, y: 0, width: 375, height: 667) let container = UIView(frame: mainframe)  UIView类的初始化程序采用一个称为CGRect类型的框架的参数来建立视图的位置和大小。代码创建的视图将位于窗口的坐标0、0处，大小为375 x 667点，覆盖iPhone 8的整个屏幕。</description>
+    </item>
     
     <item>
       <title>iOS开发中容易忽略的UIKit概念</title>
