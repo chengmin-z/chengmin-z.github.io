@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<meta property="og:title" content="UIView基础介绍" />
+<meta property="og:description" content="引言
+
+窗口是显示图形的空间，但它本身不会产生任何可见的内容。用户界面是通过类似视图的容器在窗口内部构建的。这些视图是自定义大小的矩形区域，旨在在屏幕上显示图形。一些视图仅用作容器，而其他视图则经过改进以提供图形工具（例如按钮和开关）以及图形内容（例如图像和文本）。这些视图是按层次结构组织的，一个内部又另一个内部，以窗口大小的视图作为层次结构的根（通常称为主视图或容器视图）。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://Zhangchengmin99.github.io/2019/10/uiview%E5%9F%BA%E7%A1%80%E4%BB%8B%E7%BB%8D/" />
+<meta property="article:published_time" content="2019-10-02T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-10-02T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="UIView基础介绍"/>
+<meta name="twitter:description" content="引言
+
+窗口是显示图形的空间，但它本身不会产生任何可见的内容。用户界面是通过类似视图的容器在窗口内部构建的。这些视图是自定义大小的矩形区域，旨在在屏幕上显示图形。一些视图仅用作容器，而其他视图则经过改进以提供图形工具（例如按钮和开关）以及图形内容（例如图像和文本）。这些视图是按层次结构组织的，一个内部又另一个内部，以窗口大小的视图作为层次结构的根（通常称为主视图或容器视图）。"/>
+
+
+
+    <link rel="canonical" href="https://Zhangchengmin99.github.io/2019/10/uiview%E5%9F%BA%E7%A1%80%E4%BB%8B%E7%BB%8D/">
+
+    <title>
+      
+        UIView基础介绍 | cmHubs
+      
+    </title>
+
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="https://Zhangchengmin99.github.io/css/style.css" rel="stylesheet">
+
+    
+
+    
+
+    
+  </head>
+  <body>
+    
+      
+
+<header class="blog-header">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">
+            <img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g75u7zx3o0j30tf0tf0u0.jpg" width="30" height="30" class="d-inline-block align-top"
+    alt="">
+cmHubs
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+            <ul class="navbar-nav">
+                
+                
+                <li class="nav-item ">
+                    
+                        <a class="nav-link" href="/post/">Home</a>
+                    
+                </li>
+                
+                <li class="nav-item ">
+                    
+                        <a class="nav-link" href="/about/">About</a>
+                    
+                </li>
+                
+                <li class="nav-item ">
+                    
+                        <a class="nav-link" href="/contact/">Contact</a>
+                    
+                </li>
+                
+            </ul>
+            
+        </div>
+    </nav>
+</header>
+
+    
+
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-lg-8 blog-main">
+
+          
+
+<header>
+    <h2 class="blog-post-title">
+    <a class="text-dark" href="/2019/10/uiview%E5%9F%BA%E7%A1%80%E4%BB%8B%E7%BB%8D/">UIView基础介绍</a>
+</h2>
+
+    
+
+
+<div class="blog-post-date text-secondary">
+    
+        <time datetime="2019-10-02">Oct 2, 2019</time>
+    
+    
+        by <span rel="author">Chengmin</span>
+    
+</div>
+
+    
+<div class="blog-post-tags text-secondary">
+    <strong>Tags:</strong>
+    
+        <a class="badge badge-primary" href="/tags/ios">iOS</a>
+    
+        <a class="badge badge-primary" href="/tags/uikit">UIKit</a>
+    
+</div>
+
+    
+<div class="blog-post-categories text-secondary">
+    <strong>Categories:</strong>
+    
+        <a class="badge badge-primary" href="/categories/development">Development👨🏻‍💻</a>
+    
+</div>
+
+    <hr>
+</header>
+<article class="blog-post">
+    <h4 id="引言">引言</h4>
+
+<p>窗口是显示图形的空间，但它本身不会产生任何可见的内容。用户界面是通过类似视图的容器在窗口内部构建的。这些视图是自定义大小的矩形区域，旨在在屏幕上显示图形。一些视图仅用作容器，而其他视图则经过改进以提供图形工具（例如按钮和开关）以及图形内容（例如图像和文本）。这些视图是按层次结构组织的，一个内部又另一个内部，以窗口大小的视图作为层次结构的根（通常称为主视图或容器视图）。</p>
+
+<p>无论视图的目的（是容器还是呈现内容），它们都是从UIView类的对象创建的。这是一个基本类，只能创建和管理视图所占据的矩形区域，但是可以定义该类的子类以添加功能并呈现我们想要的任何类型的内容。虽然对象是直接创建的UIView类的功能非常有限，它们具有用于配置和绘制视图的大量属性和方法。以下是可用的常用的初始化程序，属性和方法。</p>
+
+<h4 id="一-uiview基本函数属性与方法">一 UIView基本函数属性与方法</h4>
+
+<ul>
+<li>UIView(frame: CGRect)<br />
+此初始化程序在frame属性所确定的位置和大小中创建一个UIView对象。<br /></li>
+<li>frame<br />
+此属性设置或返回CGRect值，该值确定视图所占据的矩形区域的位置和大小。位置值是根据视图容器（窗口或其他视图）的坐标确定的。</li>
+<li>bounds<br />
+此属性设置或返回CGRect值，该值确定视图在其自身框架内占据的矩形区域的位置和大小。位置值由视图的坐标系确定。</li>
+<li>center<br />
+此属性设置或返回CGPoint值，该值确定视图框架中心的坐标。</li>
+<li>backgroundColor<br />
+此属性设置或返回一个确定视图背景颜色的对象。该值是UIColor类的对象（接下来介绍）。</li>
+<li>alpha<br />
+此属性设置或返回CGFloat值，该值确定视图的alpha级别（透明级别）。该属性的值从0.0（透明）到1.0（不透明）。</li>
+<li>isHidden<br />
+此属性设置或返回一个布尔值，该值确定视图是可见的（false）还是隐藏的（true）。</li>
+<li>isOpaque<br />
+此属性设置或返回一个布尔值，该值确定视图是否不透明。</li>
+<li>contentMode<br />
+此属性设置或返回一个值，该值确定视图大小改变（通常与图像一起使用）时视图用于对其内容进行布局的模式。它是UIView类中包含的名为ContentMode的枚举。可用的值为scaleToFill, scaleAspectFit, scaleAspectFill, redraw, center, top, bottom, left, right, topLeft, topRight, bottomLeft, 和 bottomRight.</li>
+<li>clipsToBounds<br />
+此属性设置或返回一个布尔值，该值确定视图的内容是否限于视图的边界。</li>
+<li>isUserInteractionEnabled<br />
+此属性设置或返回一个布尔值，该值确定视图是否响应用户的交互。（例如，轻按手指）。</li>
+<li>isMultipleTouchEnabled<br />
+此属性设置或返回一个布尔值，该值确定视图是否可以处理多个触摸事件。</li>
+<li>isExclusiveTouch<br />
+此属性设置或返回一个布尔值，该值确定视图是否将无法处理的触摸事件传递给其他视图。</li>
+<li>superview<br />
+此属性返回对UIVIew对象的引用，该对象是视图的容器。如果该视图不在另一个视图内，则返回的值为nil。</li>
+<li>subviews<br />
+此属性返回一个数组，其中包含对视图（子视图）内的UIView对象的引用。</li>
+<li>tag<br />
+此属性设置或返回标识视图的整数值。</li>
+<li>viewWithTag(Int)<br />
+此方法使用属性指定的标签搜索视图的子视图。返回的值是可选的，包含UIView对象；如果失败，则返回nil。</li>
+</ul>
+
+<p>窗口位于屏幕内部，而视图位于窗口内部和彼此内部，从而生成一种层次结构（请参见下图）。为了确定容器中每个元素的位置，UIKit使用坐标系。下图说明了iPhone 8屏幕的坐标系。</p>
+
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g7jn2zxkxqj30mu08q3yt.jpg" alt="" />
+<em>视图层次结构</em><br />
+<img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g7jphopb2yj30jm098q3z.jpg" alt="" /><br />
+<em>坐标系</em></p>
+
+<p>点的行和列从容器的左上角到右下角进行计数（值从左到右以及从上到下递增）。例如，屏幕左上角的第一个点位于位置0、0（第0列，第0行），而右下角的点位于位置375、667（667、375）在横向）。遵循标准约定，位置0、0的点为
+ 
+称为原点，位置的值由字母x和y标识（x表示列，y表示行）。
+在UIKit中，相同的坐标系应用于界面的每个元素，包括窗口和视图。窗口和主视图占据整个屏幕，因此它们具有相同的原点和大小。下面示例创建一个375点乘667点的视图，以表示iPhone 8窗口可能包含的主视图。</p>
+
+<h5 id="例子-1-creating-a-view">例子 1: Creating a view</h5>
+
+<pre><code class="language-swift">import UIKit
+var mainframe = CGRect(x: 0, y: 0, width: 375, height: 667)
+let container = UIView(frame: mainframe)
+</code></pre>
+
+<p>UIView类的初始化程序采用一个称为CGRect类型的框架的参数来建立视图的位置和大小。代码创建的视图将位于窗口的坐标0、0处，大小为375 x 667点，覆盖iPhone 8的整个屏幕。</p>
+
+<h4 id="二-uiview父子视图的相关概念与函数">二 UIView父子视图的相关概念与函数</h4>
+
+<p>通过将视图添加到充当容器的父视图中来构建用户界面，并创层次结构。容器视图称父视图superview，而内部视图称为子视图subview。将视图添加到父视图后，该对象将存储在父视图的subviews属性中。这是一个包含视图数组（UIView类的对象或其子类的对象）的属性。要添加和管理此数组内的视图，UIView类提供以下方法。</p>
+
+<ul>
+<li>addSubview(UIView)<br />
+此方法在subviews数组的末尾添加一个视图。<br /></li>
+<li>insertSubview(UIView,at: Int)
+此方法将一个视图插入到at属性指示的索引处的subviews数组中。</li>
+<li>insertSubview(UIView,upperSubview:UIView)<br />
+此方法将视图插入到由upperSubview属性指示的子视图上方的subviews数组中。</li>
+<li>insertSubview(UIView，belowSubview：UIView)<br />
+此方法将一个视图插入到由belowSubview属性指示的子视图下方的subviews数组中。</li>
+<li>exchangeSubview(at: Int,withSubviewAt: Int)<br />
+此方法交换子视图在子视图数组中的位置，该子视图在属性指示的索引处。</li>
+<li>BringSubviewToFront(UIView)<br />
+此方法将toFront属性指定的子视图移动到子视图数组的末尾（最前面）。</li>
+<li>sendSubviewToBack(UIView)
+此方法将view属性指定的子视图移动到subviews数组的开头（向后）。</li>
+<li>removeFromSuperview()<br />
+在子视图上调用此方法以将其从其父视图中移除。</li>
+</ul>
+
+<p>子视图根据其在子视图数组中的位置显示在屏幕上。首先绘制索引较低的子视图，因此索引较高的视图显示在顶部。这就是为什么最常用于将视图添加到另一个视图的方法是addSubview()。此方法将视图添加到subviews数组的末尾，从而有效地将视图绘制在顶部。</p>
+
+<h5 id="例子-2-adding-subviews">例子 2: Adding subviews</h5>
+
+<pre><code class="language-swift">import UIKit
+let container = UIView(frame: CGRect(x: 0, y: 0, width: 375, height: 667)) container.backgroundColor = UIColor.red
+let subview1 = UIView(frame: CGRect(x: 20, y: 20, width: 335, height: 300)) subview1.backgroundColor = UIColor.lightGray
+let subview2 = UIView(frame: CGRect(x: 20, y: 347, width: 335, height: 300))
+subview2.backgroundColor = UIColor.lightGray
+container.addSubview(subview1) container.addSubview(subview2)
+</code></pre>
+
+<p>创建容器视图之后，例子2的代码创建了另外两个视图，并使用addSubview（）方法将它们添加为子视图。容器的subviews属性现在具有两个元素：subview1和subview2视图。这些子视图具有不同的颜色，在主视图上创建了两个较小的335 x 300点的矩形，如下图所示。</p>
+
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g7jqcby0qaj30m407qmxf.jpg" alt="" /></p>
+
+<p><em>playground上的视图</em></p>
+
+<p>每个子视图都将附加到其父视图，并根据其坐标系在屏幕上定位。当我们在UIView初始化程序中为每个视图设置x和y参数的值时，我们必须考虑其父视图的坐标，而不是的屏幕或其他容器视图。例如，子视图1在容器视图内的位置为20、20，但其自身的坐标系再次从其左上角的0、0开始。 subview2也是如此。添加到这些子视图的任何视图将具有根据其父视图的坐标而不是容器视图或窗口的坐标的位置。下图说明了这些视图及其坐标系。</p>
+
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g7jqcoy09ej30ig08s3yr.jpg" alt="" /></p>
+
+<p><em>子视图及其坐标</em></p>
+
+<p>这些值反映在代表每个视图的UIView对象的frame和bounds属性中。例如，subview1的frame属性的x和y值为20、20，但是subview1的bounds属性的x和y值为0，0，因为bounds属性引用了
+视图的内部框架及其自己的坐标系。</p>
+
+<h4 id="三-uisubclass">三 UISubclass</h4>
+
+<p>从UIView类创建的视图既可以用作容器和组织器，又可以显示任何内容。内容必须由UIView的子类生成。这些子类将覆盖某些UIView方法，并提供它们自己的属性和方法以在视图内绘制图形或响应用户。考虑到从头开始创建接口的每个元素是多么困难和耗时，UIKit提供了可立即使用的UIView子类来创建标准元素。从标签和按钮到图像和表格，UIView子类可以在屏幕上显示我们应用程序所需的一切。下图显示了带有UIView类及其最重要的子类的方案。</p>
+
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g7jqjid4ygj30kc0ag75b.jpg" alt="" />
+<em>UIView子类</em></p>
+
+<p>一些添加图形内容并处理基本用户交互的类（例如UILabel或UIImageView）直接从UIView继承，而需要更复杂功能的类（例如UIButton或UITableView）则从中间子类继承。上图描述的两个中间子类UIControl和UIScrollView为它们自己的子类提供了通用功能。 UIControl向UIView添加了响应用户交互和报告事件的功能，而UIScrollView添加了创建具有可滚动内容的视图的可能性。从这两个类创建的子类继承了它们的特征并添加了更多特定的功能。所有这些子类对于应用程序开发都非常有用。关于这些子类读者可以自行学习，在这里不做介绍。</p>
+
+    
+
+    
+
+    <h4>See also</h4>
+    <ul>
+        
+            <li><a href="/2019/09/ios%E5%BC%80%E5%8F%91%E4%B8%AD%E5%AE%B9%E6%98%93%E5%BF%BD%E7%95%A5%E7%9A%84uikit%E6%A6%82%E5%BF%B5/">iOS开发中容易忽略的UIKit概念</a></li>
+        
+            <li><a href="/2019/10/application-delegate%E5%92%8Cviewcontroller/">Application Delegate和ViewController</a></li>
+        
+            <li><a href="/2019/09/ios%E4%B8%AD%E7%9A%84%E9%87%8D%E8%A6%81%E5%9B%BE%E5%BD%A2%E6%A6%82%E5%BF%B5core-graphics/">iOS中的重要图形概念Core Graphics</a></li>
+        
+    </ul>
+
+
+</article>
+
+
+
+        </div>
+
+        <aside class="col-12 col-lg-3 ml-auto blog-sidebar">
+    
+        
+
+
+<section>
+    <h4>Recent Posts</h4>
+    <ol class="list-unstyled">
+        
+        <li>
+            <a href="/2019/10/application-delegate%E5%92%8Cviewcontroller/">Application Delegate和ViewController</a>
+        </li>
+        
+        <li>
+            <a href="/post/">Home</a>
+        </li>
+        
+        <li>
+            <a href="/2019/10/uiview%E5%9F%BA%E7%A1%80%E4%BB%8B%E7%BB%8D/">UIView基础介绍</a>
+        </li>
+        
+        <li>
+            <a href="/2019/09/ios%E5%BC%80%E5%8F%91%E4%B8%AD%E5%AE%B9%E6%98%93%E5%BF%BD%E7%95%A5%E7%9A%84uikit%E6%A6%82%E5%BF%B5/">iOS开发中容易忽略的UIKit概念</a>
+        </li>
+        
+        <li>
+            <a href="/2019/09/ios%E4%B8%AD%E7%9A%84%E9%87%8D%E8%A6%81%E5%9B%BE%E5%BD%A2%E6%A6%82%E5%BF%B5core-graphics/">iOS中的重要图形概念Core Graphics</a>
+        </li>
+        
+    </ol>
+</section>
+
+    
+    
+        <section>
+    
+        
+        <h4>Categories</h4>
+        <p>
+            
+            <a class="badge badge-primary" href="/categories/development">development</a>
+            
+        </p>
+        
+    
+        
+        <h4>Tags</h4>
+        <p>
+            
+            <a class="badge badge-primary" href="/tags/core-graphics">core-graphics</a>
+            
+            <a class="badge badge-primary" href="/tags/flutter">flutter</a>
+            
+            <a class="badge badge-primary" href="/tags/ios">ios</a>
+            
+            <a class="badge badge-primary" href="/tags/iot">iot</a>
+            
+            <a class="badge badge-primary" href="/tags/mvc">mvc</a>
+            
+            <a class="badge badge-primary" href="/tags/nodemcu">nodemcu</a>
+            
+            <a class="badge badge-primary" href="/tags/uikit">uikit</a>
+            
+            <a class="badge badge-primary" href="/tags/vc">vc</a>
+            
+        </p>
+        
+    
+</section>
+    
+</aside>
+
+      </div>
+    </div>
+    
+
+    
+      
+
+
+
+
+
+
+
+<footer class="blog-footer w-100">
+    <nav class="navbar navbar-light bg-light">
+        <p class="w-100 text-center">[ A student iOS developer in BUPT 👨🏻‍💻 ]</p>
+        <p class="w-100 text-center"><a href="#">Back to top</a></p>
+    </nav>
+</footer>
+
+    
+
+    
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </body>
+</html>

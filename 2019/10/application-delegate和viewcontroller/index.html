@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<meta property="og:title" content="Application Delegate和ViewController" />
+<meta property="og:description" content="引言 UIKit的概念
+
+MVC是很多人学习App开发学习的第一种设计模式，深入理解其的含义与组成部分与相互配合，对学习开发有着至关重要的最要。本文简要介绍MVC设计模式与ViewController的相关概念，并说明Application Delegate的相关使用。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://Zhangchengmin99.github.io/2019/10/application-delegate%E5%92%8Cviewcontroller/" />
+<meta property="article:published_time" content="2019-10-02T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-10-02T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Application Delegate和ViewController"/>
+<meta name="twitter:description" content="引言 UIKit的概念
+
+MVC是很多人学习App开发学习的第一种设计模式，深入理解其的含义与组成部分与相互配合，对学习开发有着至关重要的最要。本文简要介绍MVC设计模式与ViewController的相关概念，并说明Application Delegate的相关使用。"/>
+
+
+
+    <link rel="canonical" href="https://Zhangchengmin99.github.io/2019/10/application-delegate%E5%92%8Cviewcontroller/">
+
+    <title>
+      
+        Application Delegate和ViewController | cmHubs
+      
+    </title>
+
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="https://Zhangchengmin99.github.io/css/style.css" rel="stylesheet">
+
+    
+
+    
+
+    
+  </head>
+  <body>
+    
+      
+
+<header class="blog-header">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">
+            <img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g75u7zx3o0j30tf0tf0u0.jpg" width="30" height="30" class="d-inline-block align-top"
+    alt="">
+cmHubs
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+            <ul class="navbar-nav">
+                
+                
+                <li class="nav-item ">
+                    
+                        <a class="nav-link" href="/post/">Home</a>
+                    
+                </li>
+                
+                <li class="nav-item ">
+                    
+                        <a class="nav-link" href="/about/">About</a>
+                    
+                </li>
+                
+                <li class="nav-item ">
+                    
+                        <a class="nav-link" href="/contact/">Contact</a>
+                    
+                </li>
+                
+            </ul>
+            
+        </div>
+    </nav>
+</header>
+
+    
+
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-lg-8 blog-main">
+
+          
+
+<header>
+    <h2 class="blog-post-title">
+    <a class="text-dark" href="/2019/10/application-delegate%E5%92%8Cviewcontroller/">Application Delegate和ViewController</a>
+</h2>
+
+    
+
+
+<div class="blog-post-date text-secondary">
+    
+        <time datetime="2019-10-02">Oct 2, 2019</time>
+    
+    
+        by <span rel="author">Chengmin</span>
+    
+</div>
+
+    
+<div class="blog-post-tags text-secondary">
+    <strong>Tags:</strong>
+    
+        <a class="badge badge-primary" href="/tags/ios">iOS</a>
+    
+        <a class="badge badge-primary" href="/tags/mvc">MVC</a>
+    
+        <a class="badge badge-primary" href="/tags/vc">VC</a>
+    
+</div>
+
+    
+<div class="blog-post-categories text-secondary">
+    <strong>Categories:</strong>
+    
+        <a class="badge badge-primary" href="/categories/development">Development👨🏻‍💻</a>
+    
+</div>
+
+    <hr>
+</header>
+<article class="blog-post">
+    <h4 id="引言-uikit的概念">引言 UIKit的概念</h4>
+
+<p>MVC是很多人学习App开发学习的第一种设计模式，深入理解其的含义与组成部分与相互配合，对学习开发有着至关重要的最要。本文简要介绍MVC设计模式与ViewController的相关概念，并说明Application Delegate的相关使用。</p>
+
+<h4 id="一-mvc设计模式">一 MVC设计模式</h4>
+
+<p>Xcode提出了一种架构范例，将应用程序分为三个相互联系的部分，即模型，视图和控制器（简称为MVC）。代码的每个部分执行特定的任务，并且仅将严格必要的信息传达给其他部分。下图说明了其中涉及的元素。</p>
+
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g7jxxn9wraj30ds07wmxg.jpg" alt="" /></p>
+
+<p><em>MVC架构</em></p>
+
+<p>模型是应用程序必须处理的数据，视图是用户界面，由窗口及其视图组成，控制器是负责读取和处理数据以及更新和接收来自视图的输入的对象。管理数据的对象和视图未相互连接，它们将信息发送到控制器，并且控制器的代码决定如何处理它。这样可以重复使用。我们可以使用相同的代码来控制不同的视图，或者完全替换用户界面，而无需在程序的其余部分中更改一行代码。只要他们知道如何处理从其他对象接收的信息并作为响应返回正确的值，每个部分就保持独立。
+ </p>
+
+<p>这种结构是从几个对象创建的。该接口是从之前介绍的UIView对象创建的，这些对象连接到控制器对象（接口中的每个主视图一个），并且控制器对象连接到管理应用程序数据的对象。除了这些对象外，还有一个AppDelegate对象，UIApplication对象使用该对象与我们的代码进行通信。</p>
+
+<p>应用程序循环和窗口是直接从的UIApplication和UIWindow类创建的，而其余对象则是由模板提供的文件和我们自己的代码创建的。下图显示了“导航器区域”，以及由Singe View Application模板生成的文件列表。</p>
+
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g7jxxmb8moj306w05qjrg.jpg" alt="" /><br />
+<em>模板的基本文件</em></p>
+
+<p>基础知识：Xcode将文件分组组织。组不是真实目录。我们应用程序的所有文件都存储在同一目录中，但是它们以组的形式组织，以帮助我们在导航器区域中找到它们。如果看不到文件，请单击导航器区域顶部的工具栏的第一个按钮（如图5-10所示），或转到屏幕顶部的“查看”菜单，选择“导航器”选项，然后单击“确定”。在Show Project Navigator上。</p>
+
+<p>一个应用程序至少需要三个文件。有一个文件定义了UIApplication对象的委托，该委托将在应用程序循环和我们的代码之间建立通信（AppDelegate.swift），该文件定义了将控制初始主视图及其内容的对象（ViewController.swift） ）以及定义对象的文件，这些对象将创建视图并代表界面的每个屏幕（Main.storyboard）。</p>
+
+<h4 id="二-application-delegate">二 Application Delegate</h4>
+
+<p>AppDelegate.swift。该文件定义了一个名为AppDelegate的类，以创建一个将成为UIApplication对象的委托的对象。创建之后，将AppDelegate对象分配给UIApplication对象的委托属性，并成为该对象与我们的代码之间的连接。</p>
+
+<p>模板为此文件生成的代码包含一个称为window的属性和一些空方法。该属性只是对为我们的应用程序创建的UIWindow对象的引用，这些方法是此类遵循的UIApplicationDelegate协议定义的一些方法。</p>
+
+<p>与应用程序相关的状态不同。在某个时刻，该应用程序可能正在前台运行，活动，不活动或在后台运行。例如，当用户点击应用程序的图标时，该应用程序即被加载并变为活动状态，但是如果用户稍后按下“主页”按钮以打开其他应用程序，则该应用程序的状态将变为“背景”。每次应用程序状态更改时，UIApplication对象都会在AppDelegate对象上调用一个方法，以使我们知道发生了什么。</p>
+
+<p>以下是由UIApplicationDelegate协议定义的一些方法。</p>
+
+<ul>
+<li>application(UIApplication, didFinishLaunchingWithOptions: Dictionary)<br />
+这是第一个要执行的方法。调用它是为了让我们知道基本对象已被实例化，并且该应用已准备就绪。我们可以在此方法中编写准备应用程序所需的所有代码，例如声明初始值，创建或打开数据库，检查当前设置等。</li>
+<li>applicationWillResignActive(UIApplication)<br />
+当应用程序不活动时通常由于传入呼叫或消息而调用此方法。</li>
+<li>applicationDidEnterBackground(UIApplication)<br />
+关闭应用程序（移至后台）时调用此方法。</li>
+<li>applicationWillEnterForeground(UIApplication)<br />
+在应用再次激活之前调用此方法。</li>
+<li>applicationDidBecomeActive(UIApplication)<br />
+在启动应用程序以及从非活动状态恢复时调用此方法。</li>
+<li>applicationWillTerminate(UIApplication)
+在终止应用程序之前调用此方法。当系统决定终止应用程序时，通常会发生此状态，因为它需要其他应用程序的内存或应用已被用户终止。<br /></li>
+</ul>
+
+<p>UIApplicationDelegate协议中的所有方法都是可选的。 这意味着我们只实现应用程序所需的方法就可以。 例如，某些简单的应用程序仅实现application(UIApplication, didFinishLaunchingWithOptions: Dictionary)方法来初始化应用程序，如以下示例所示。</p>
+
+<h5 id="示例-1-defining-our-own-appdelegate-swift-file">示例 1 Defining our own AppDelegate.swift file</h5>
+
+<pre><code class="language-swift">import UIKit
+@UIApplicationMain
+class AppDelegate: UIResponder, UIApplicationDelegate {
+var window: UIWindow?
+var basicSalary: Double?
+func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -&gt; Bool {
+basicSalary = 30000.0
+return true }
+}
+</code></pre>
+
+<p>AppDelegate类的主要目的是使我们有机会在每次应用程序状态更改时做出反应，可以通过UIApplication对象的委托属性从代码的每个部分访问应用程序的委托，因此这是常见的做法。 使用此对象声明代码的不同部分所需的值，并初始化数据容器（例如数据库或文件）。</p>
+
+<p>为了说明此过程，在上述的示例中，我们声明了一个称为basicSalary的属性。 系统首先创建一个AppDelegate对象的实例，包括其属性，一旦应用程序准备好工作，UIApplication对象就会调用application（UIApplication，didFinishLaunchingWithOptions :)方法，以让我们执行初始化应用程序所需的任务 （在这种情况下，我们只需将值30000.0分配给属性)</p>
+
+<h4 id="三-view-controllers">三 View Controllers</h4>
+
+<p>Storyboard中的每个主视图负责在屏幕上显示其内容并适应新情况。为了控制每个视图并执行它们所需的任何标准功能，UIKit框架包含UIViewController类。<br />
+这是具有属性和方法的基本类，该属性和方法可管理单个视图及其内容，并响应其状态更改。尽管它提供了控制特定主视图所需的一切，但是我们不能直接使用从此类创建的对象。<br />
+相反，我们为Storyboard中的每个主视图定义了UIViewController的子类，并添加了自己的属性和方法来执行特定于该视图和应用程序的任务。<br />
+大多数模板都遵循这种模式，并且始终包含带有UIViewController类的子类的文件来控制它们提供的视图。</p>
+
+<p>例如，由“单一视图应用程序”模板创建的ViewController.swift文件声明了一个名为ViewController的类，该类继承自UIViewController类，并负责控制故事板中模板所包含的单个主视图。初始文件通常是空的，但它具有两个父类的重写方法：viewDidLoad()和didReceiveMemoryWarning()。<br />
+这些是UIViewController类的方法，将执行这些方法以报告视图条件的变化。如果要编写自己的响应，则必须在子类中覆盖这些方法。除了这两种方法外，该类还包含其他一些报告每个状态的方法。</p>
+
+<ul>
+<li>viewDidLoad()<br />
+在主视图及其内容加载到内存后调用此方法。这是在对象上调用的第一个方法，用于指示主视图已准备好在屏幕上显示。</li>
+<li>viewWillAppear()<br />
+在viewDidLoad()方法之后，屏幕上显示主视图之前调用此方法。</li>
+<li>viewDidAppear()<br />
+在屏幕上显示主视图后调用此方法。</li>
+<li>viewWillDisappear()<br />
+在从屏幕移除主视图之前调用此方法。</li>
+<li>viewDidDisappear()<br />
+从屏幕上删除主视图后，将调用此方法。</li>
+<li>didReceiveMemoryWarning()<br />
+当应用程序从系统收到内存警告时，将调用此方法。它用于释放内存并避免我们的应用被终止。</li>
+</ul>
+
+<p>通常，除了viewDidLoad()之外，我们不需要其他方法来设置视图，而didReceiveMemoryWarning()可以用来处理内存问题。这就是为什么这些是模板声明的唯一方法。 以下示例修改了Single View Application模板提供的ViewController类，以读取我们在例子1中添加到UIApplication委托的属性，并在加载由该对象控制的主视图后立即在控制台上打印其值。</p>
+
+<h5 id="示例-2-adding-our-own-code-to-the-viewcontroller-swift-file">示例 2 Adding our own code to the ViewController.swift file</h5>
+
+<pre><code class="language-swift">import UIKit
+class ViewController: UIViewController {
+override func viewDidLoad() { super.viewDidLoad()
+let app = UIApplication.shared
+let mydelegate = app.delegate as! AppDelegate
+if let salary = mydelegate.basicSalary { print(“Basic Salary is \(salary)”)
+} }
+}
+</code></pre>
+
+<p>我们在例子2的viewDidLoad()方法中做的第一件事是在父类中调用相同的方法。当某个方法被覆盖时，原始方法将不再执行。一些类，例如UIViewController类，包括执行应用程序正常运行所需的必要任务的方法。如果我们不调用，那么这些任务就永远不会执行。</p>
+
+<p>在超类中调用该方法之后，我们可以包含我们自己的代码。在此示例中，我们获得了对UIApplication对象的引用以读取其委托的属性。<br />
+首先，我们通过读取类的共享属性来获取引用。接下来，我们读取对象的委托属性，并将其分配给mydelegate常数（这是从AppDelegate.swift文件中声明的类创建的对象）。</p>
+
+<p>注意，我们必须使用as!将对象转换为AppDelegate，因为AppDelegate对象是UIResponder类（UIKit中的基本类）的子类，并且proxy属性返回此类型的值。最后，我们使用可选绑定读取委托的basicSalary属性，并将其值打印在控制台上（“ Basic Salary is 30000.0”）。</p>
+
+<p>执行此应用程序后，系统将创建所有基本对象，包括UIApplication对象及其委托，然后调用AppDelegate对象的application(UIApplication，didFinishLaunchingWithOptions :)方法。在此方法中，我们定义并初始化basicSalary属性（详见例子1）。当此方法的执行结束时，系统将查找必须首先显示的主视图，并调用其视图控制器的viewDidLoad()方法。在此方法中，我们获取在委托对象中定义的basicSalary属性的值，并将其打印在控制台上。</p>
+
+<ul>
+<li>重要说明：<br />
+Storyboard中定义的主视图符合用户达到目标可能遵循的路径（例如，访问信息，查找图片等）。路径的起点是通过将控制初始主视图的视图控制器对象分配给名为rootViewController的UIWindow对象的属性来确定的。<br />
+这可以通过编程方式完成，但是你也可以从Storyboard中进行。<br />
+<br /></li>
+</ul>
+
+<p>UIViewController对象不仅管理主视图，而且还管理其内容。该类包括view属性，用于存储对由对象控制的主视图的引用。从情节提要中创建与视图控制器关联的主视图后，将引用分配给其视图属性。使用此属性，我们可以管理视图的内容，添加子视图等。以下示例将UILabel视图添加到模板创建的主视图中。</p>
+
+<h5 id="示例-3-adding-a-subview-to-the-main-view-from-the-viewcontroller-object">示例 3 Adding a subview to the main view from the ViewController object</h5>
+
+<pre><code class="language-swift">import UIKit
+class ViewController: UIViewController { override func viewDidLoad() {
+super.viewDidLoad()
+let app = UIApplication.shared
+let mydelegate = app.delegate as! AppDelegate if let salary = mydelegate.basicSalary {
+let title = UILabel(frame:CGRect(x:20, y:20, width:300, height:50)) 
+title.text = “Basic Salary is \(salary)”
+view.addSubview(title)
+} }
+}
+</code></pre>
+
+<p>这个新版本的ViewController类创建了一个UILabel视图，该视图包含一个字符串，该字符串包括在应用程序的委托中定义的basicSalary属性的值。 接下来，通过调用标签的addSubview()方法将标签添加到主视图。 请记住，每个视图控制器的view属性都有一个对Storyboard中主视图的引用，因此我们可以从此属性向该视图添加所需的任何内容，并以此方式修改用户界面。</p>
+
+<ul>
+<li>重要说明：<br />
+在将视图加载到内存中之后以及在屏幕上显示视图之前，都会调用viewDidLoad()方法。 这意味着在用户能够看到视图之前，将执行此方法内定义的所有代码。<br />
+如果代码需要花费一些时间才能完成，则用户可能会觉得应用程序崩溃了。 为避免这种情况，有时最好也实现viewDidAppear（）方法并将一些初始化代码移至该方法。 该方法在主视图之后调用，并且其内容显示在屏幕上，因此，从用户的角度来看，没有延迟或中断。</li>
+</ul>
+
+    
+
+    
+
+    <h4>See also</h4>
+    <ul>
+        
+            <li><a href="/2019/10/uiview%E5%9F%BA%E7%A1%80%E4%BB%8B%E7%BB%8D/">UIView基础介绍</a></li>
+        
+            <li><a href="/2019/09/ios%E5%BC%80%E5%8F%91%E4%B8%AD%E5%AE%B9%E6%98%93%E5%BF%BD%E7%95%A5%E7%9A%84uikit%E6%A6%82%E5%BF%B5/">iOS开发中容易忽略的UIKit概念</a></li>
+        
+            <li><a href="/2019/09/ios%E4%B8%AD%E7%9A%84%E9%87%8D%E8%A6%81%E5%9B%BE%E5%BD%A2%E6%A6%82%E5%BF%B5core-graphics/">iOS中的重要图形概念Core Graphics</a></li>
+        
+    </ul>
+
+
+</article>
+
+
+
+        </div>
+
+        <aside class="col-12 col-lg-3 ml-auto blog-sidebar">
+    
+        
+
+
+<section>
+    <h4>Recent Posts</h4>
+    <ol class="list-unstyled">
+        
+        <li>
+            <a href="/2019/10/application-delegate%E5%92%8Cviewcontroller/">Application Delegate和ViewController</a>
+        </li>
+        
+        <li>
+            <a href="/post/">Home</a>
+        </li>
+        
+        <li>
+            <a href="/2019/10/uiview%E5%9F%BA%E7%A1%80%E4%BB%8B%E7%BB%8D/">UIView基础介绍</a>
+        </li>
+        
+        <li>
+            <a href="/2019/09/ios%E5%BC%80%E5%8F%91%E4%B8%AD%E5%AE%B9%E6%98%93%E5%BF%BD%E7%95%A5%E7%9A%84uikit%E6%A6%82%E5%BF%B5/">iOS开发中容易忽略的UIKit概念</a>
+        </li>
+        
+        <li>
+            <a href="/2019/09/ios%E4%B8%AD%E7%9A%84%E9%87%8D%E8%A6%81%E5%9B%BE%E5%BD%A2%E6%A6%82%E5%BF%B5core-graphics/">iOS中的重要图形概念Core Graphics</a>
+        </li>
+        
+    </ol>
+</section>
+
+    
+    
+        <section>
+    
+        
+        <h4>Categories</h4>
+        <p>
+            
+            <a class="badge badge-primary" href="/categories/development">development</a>
+            
+        </p>
+        
+    
+        
+        <h4>Tags</h4>
+        <p>
+            
+            <a class="badge badge-primary" href="/tags/core-graphics">core-graphics</a>
+            
+            <a class="badge badge-primary" href="/tags/flutter">flutter</a>
+            
+            <a class="badge badge-primary" href="/tags/ios">ios</a>
+            
+            <a class="badge badge-primary" href="/tags/iot">iot</a>
+            
+            <a class="badge badge-primary" href="/tags/mvc">mvc</a>
+            
+            <a class="badge badge-primary" href="/tags/nodemcu">nodemcu</a>
+            
+            <a class="badge badge-primary" href="/tags/uikit">uikit</a>
+            
+            <a class="badge badge-primary" href="/tags/vc">vc</a>
+            
+        </p>
+        
+    
+</section>
+    
+</aside>
+
+      </div>
+    </div>
+    
+
+    
+      
+
+
+
+
+
+
+
+<footer class="blog-footer w-100">
+    <nav class="navbar navbar-light bg-light">
+        <p class="w-100 text-center">[ A student iOS developer in BUPT 👨🏻‍💻 ]</p>
+        <p class="w-100 text-center"><a href="#">Back to top</a></p>
+    </nav>
+</footer>
+
+    
+
+    
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </body>
+</html>

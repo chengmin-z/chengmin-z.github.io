@@ -13,11 +13,11 @@
     
     
     <item>
-      <title>UIView专题介绍</title>
-      <link>https://Zhangchengmin99.github.io/2019/10/uiview%E4%B8%93%E9%A2%98%E4%BB%8B%E7%BB%8D/</link>
+      <title>UIView基础介绍</title>
+      <link>https://Zhangchengmin99.github.io/2019/10/uiview%E5%9F%BA%E7%A1%80%E4%BB%8B%E7%BB%8D/</link>
       <pubDate>Wed, 02 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://Zhangchengmin99.github.io/2019/10/uiview%E4%B8%93%E9%A2%98%E4%BB%8B%E7%BB%8D/</guid>
+      <guid>https://Zhangchengmin99.github.io/2019/10/uiview%E5%9F%BA%E7%A1%80%E4%BB%8B%E7%BB%8D/</guid>
       <description>&lt;h4 id=&#34;引言&#34;&gt;引言&lt;/h4&gt;
 
 &lt;p&gt;窗口是显示图形的空间，但它本身不会产生任何可见的内容。用户界面是通过类似视图的容器在窗口内部构建的。这些视图是自定义大小的矩形区域，旨在在屏幕上显示图形。一些视图仅用作容器，而其他视图则经过改进以提供图形工具（例如按钮和开关）以及图形内容（例如图像和文本）。这些视图是按层次结构组织的，一个内部又另一个内部，以窗口大小的视图作为层次结构的根（通常称为主视图或容器视图）。&lt;/p&gt;</description>
@@ -29,7 +29,7 @@
       <pubDate>Sun, 29 Sep 2019 00:00:00 +0000</pubDate>
       
       <guid>https://Zhangchengmin99.github.io/2019/09/ios%E5%BC%80%E5%8F%91%E4%B8%AD%E5%AE%B9%E6%98%93%E5%BF%BD%E7%95%A5%E7%9A%84uikit%E6%A6%82%E5%BF%B5/</guid>
-      <description>&lt;h4 id=&#34;前言-uikit的概念&#34;&gt;前言 UIKit的概念&lt;/h4&gt;
+      <description>&lt;h4 id=&#34;引言-uikit的概念&#34;&gt;引言 UIKit的概念&lt;/h4&gt;
 
 &lt;p&gt;UIKit（用户界面工具包）是为移动应用程序定义图形界面元素的框架。从文本字符串到按钮和开关，用户在屏幕上操纵以与应用程序交互的所有标准元素均由此框架中的类定义。它的主要重点是用户界面，但它也提供了应用程序需要的基本类，并与系统的其余部分连接。&lt;/p&gt;</description>
     </item>
