@@ -1,0 +1,539 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<meta property="og:title" content="Core Data基本简介（一）—— Data Model与Core Data Stack" />
+<meta property="og:description" content="前言 什么是Core Data？ Core Data 是一个对象图管理器，它定义和管理自己的对象和连接。 我们可以确定这些对象的组成以及它们之间的关系，还可以根据需要存储尽可能多的对象。 该系统负责对对象进行编码和解码，保持一致性以及以有效方式将对象图存储在文件中。
+一 Data Model Core Data的对象图的结构是通过数据模型定义的。 这与前几章中创建的MVC模式的数据模型无关，“Core Data”模型是对图形将包含的对象类型（称为实体）及其连接（称为关系）的定义。可以通过代码创建模型，Xcode提供了实用的编辑器，我们可以使用它来定义图的结构。模型存储在文件中，然后编译文件并将其包含在为我们的应用程序创建的Core Data系统中。Xcode提供了创建此文件的模板。
+（图1）
+1-1 创建实体与属性 该文件可以使用我们想要的任何名称创建，但必须具有扩展名xcdatamodel。 创建后，它将与我们一起包含在我们的项目中其余文件。 单击它会显示Xcode编辑器，如下图所示。
+（图2）
+该模型包含三个主要组件：实体，属性和关系。 实体是对象将包含的内容的描述，属性是对象属性的描述，而关系是我们将被允许在对象之间建立的连接。 第一步是将实体添加到模型。 实体是通过编辑器下图底部的“添加实体”按钮创建的。 当我们按下此按钮时，Xcode将创建一个通用名称为“Entity”的实体。
+（图3）
+我们可以通过双击名称（图3，编号1）或编辑“数据模型检查器”面板中的字段（图3，编号2）来更改新创建的实体的名称。 实体定义将要成为对象图一部分的对象的组成，因此下一步是声明这些对象将要管理的值的类型。为此，实体包括属性。要添加属性，我们必须选择实体，然后按“属性”区域下的&#43;按钮（图3，数字3）或按编辑器底部的“添加属性”按钮（图2，数字2）。该属性添加有通用名称“attribute”和数据类型为Undefined。同样，我们可以通过双击属性或在“数据模型检查器”面板中编辑“名称”字段来更改属性的名称。在我们的示例中，我们将实体Books命名为第一个属性标题（图4，编号1）。
+（图4）
+ 重要信息：实体的名称必须以大写字母开头，属性和关系的名称必须以小写字母开头。  每个属性都必须与一种数据类型相关联，以便对象知道它们可以管理哪种类型的值（图4，编号2）。点击属性的类型，我们可以打开一个菜单以选择正确的数据类型。
+而Transformable用于预定义和自定义对象，这些对象包括它们自己的NSCoder方法以对数据进行编码和解码。
+Binary Data和Transformable选项经常使用用来存储图像，但是Transformable更为方便，因为它负责将UIImage对象归档并将其转换为Data值，而使用Binary Data选项则必须自己完成。
+核心数据是为Objective-C设计的，因此它适用于对象，而不适用于原始值或结构。所有数字，包括整数，浮点数和布尔值，都存储为NSNumber值，因此我们必须将它们转换为此类的对象，反之亦然以进行处理。 一个实体可以包含我们的对象所需数量的属性。例如，我们可能会添加更多属性来补充这本书的信息。
+（图5）
+我们可能还包括了作者姓名的另一个属性，但这是我们必须开始考虑对象图的结构以及如何存储信息的时候。如果我们在Books实体中包括作者姓名的String类型属性，则每当用户插入一本新书时，都必须输入作者的姓名。这很容易出错，很费时间，并且当有同一位作者的几本书可供使用时，无法确保它们都具有相同的确切名称（一本书可能具有作者的中间名，而其他本书只是第一本书的中间名，例如）。接下来的图6显示了示例，其中有一个名为Authors的新实体，其中包含一个名为name的属性。
+（图6）
+实体是对象的蓝图，类似于类，因此我们使用它们来定义要存储的对象的特征。例如，当我们想在示例中存储一本新书时，我们将基于Books实体创建一个新对象。该对象将具有四个与其标题，年份，封面和缩略图的值相对应的属性。
+1-2 创建关系 当我们要存储作者的信息时，也会发生同样的情况。我们基于Authors实体创建一个新对象，并将作者的名称分配给其name属性。最后，我们在存储空间中将有两个对象，一个用于书本，另一个用于作者。但是，如果我们以后想要检索这些对象，则需要一种方法来知道哪个Books对象与哪个Authors对象有关。我们必须连接这些对象，因此当我们查找Books对象时，我们还可以获得代表其作者的相应Authors对象，否则我们将无法在其中显示作者的姓名与书的信息。
+要创建此连接，Data Model 必须包括关系。关系就像一个对象的属性，其中包含对另一个对象的引用。他们可以引用一个对象或一组对象。例如，在Books实体中，我们可以创建一个仅包含对Authors实体的一个对象的引用的关系，因为每本书只能有一位作者（在本例中，我们假设我们的应用程序仅存储编写的书籍由一位作者）。
+相反，在Authors实体中，我们需要建立一个包含对多个Books对象的引用的关系，因为一个作者可能写了几本书，而不仅仅是一本书。核心数据根据它们可能引用的对象数量来调用这些关系。名称是一对一和一对多，它们是在“属性”区域下面的“关系”区域中按&#43;按钮创建的。图7显示了一个为我们的示例的Books实体创建的关系，称为author（我们将其称为author，因为它将用于检索书籍的作者）。
+（图7）
+关系仅需要两个值：其名称（属性的名称）和目的地（其引用的对象的类型），但是它需要设置一些参数。 我们必须告诉模型该关系是否将是可选的，定义其类型（一对一或一对多），并确定如果删除源对象（删除规则），目标对象将发生什么情况。 选择关系后，所有这些选项在Data Model Inspector面板中都可用，如图8所示。
+（图8）
+默认情况下，该关系设置为“可选”，这意味着源可以连接到目标对象，也可以不连接（对象可以是作者或空），关系的类型设置为“一对一”（一本书只能有一位作者），“删除规则”设置为“无效”。
+以下是此规则可用的所有值。
+ Deny：
+如果目标上至少有一个对象，则不会删除源（如果已将Authors对象分配给Books对象，则不会删除该书）。 Nullify：
+删除对象之间的连接，但不删除目标位置的对象（如果删除了Books对象，则与该书关联的Authors对象将失去连接但不会被删除）。 Cascade：
+删除源时，将删除目标位置的对象（如果删除了其中一本书籍，则将删除Authors对象）。 No Action：" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://Zhangchengmin99.github.io/2019/10/core-data%E5%9F%BA%E6%9C%AC%E7%AE%80%E4%BB%8B%E4%B8%80-data-model%E4%B8%8Ecore-data-stack/" />
+<meta property="article:published_time" content="2019-10-03T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-10-03T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Core Data基本简介（一）—— Data Model与Core Data Stack"/>
+<meta name="twitter:description" content="前言 什么是Core Data？ Core Data 是一个对象图管理器，它定义和管理自己的对象和连接。 我们可以确定这些对象的组成以及它们之间的关系，还可以根据需要存储尽可能多的对象。 该系统负责对对象进行编码和解码，保持一致性以及以有效方式将对象图存储在文件中。
+一 Data Model Core Data的对象图的结构是通过数据模型定义的。 这与前几章中创建的MVC模式的数据模型无关，“Core Data”模型是对图形将包含的对象类型（称为实体）及其连接（称为关系）的定义。可以通过代码创建模型，Xcode提供了实用的编辑器，我们可以使用它来定义图的结构。模型存储在文件中，然后编译文件并将其包含在为我们的应用程序创建的Core Data系统中。Xcode提供了创建此文件的模板。
+（图1）
+1-1 创建实体与属性 该文件可以使用我们想要的任何名称创建，但必须具有扩展名xcdatamodel。 创建后，它将与我们一起包含在我们的项目中其余文件。 单击它会显示Xcode编辑器，如下图所示。
+（图2）
+该模型包含三个主要组件：实体，属性和关系。 实体是对象将包含的内容的描述，属性是对象属性的描述，而关系是我们将被允许在对象之间建立的连接。 第一步是将实体添加到模型。 实体是通过编辑器下图底部的“添加实体”按钮创建的。 当我们按下此按钮时，Xcode将创建一个通用名称为“Entity”的实体。
+（图3）
+我们可以通过双击名称（图3，编号1）或编辑“数据模型检查器”面板中的字段（图3，编号2）来更改新创建的实体的名称。 实体定义将要成为对象图一部分的对象的组成，因此下一步是声明这些对象将要管理的值的类型。为此，实体包括属性。要添加属性，我们必须选择实体，然后按“属性”区域下的&#43;按钮（图3，数字3）或按编辑器底部的“添加属性”按钮（图2，数字2）。该属性添加有通用名称“attribute”和数据类型为Undefined。同样，我们可以通过双击属性或在“数据模型检查器”面板中编辑“名称”字段来更改属性的名称。在我们的示例中，我们将实体Books命名为第一个属性标题（图4，编号1）。
+（图4）
+ 重要信息：实体的名称必须以大写字母开头，属性和关系的名称必须以小写字母开头。  每个属性都必须与一种数据类型相关联，以便对象知道它们可以管理哪种类型的值（图4，编号2）。点击属性的类型，我们可以打开一个菜单以选择正确的数据类型。
+而Transformable用于预定义和自定义对象，这些对象包括它们自己的NSCoder方法以对数据进行编码和解码。
+Binary Data和Transformable选项经常使用用来存储图像，但是Transformable更为方便，因为它负责将UIImage对象归档并将其转换为Data值，而使用Binary Data选项则必须自己完成。
+核心数据是为Objective-C设计的，因此它适用于对象，而不适用于原始值或结构。所有数字，包括整数，浮点数和布尔值，都存储为NSNumber值，因此我们必须将它们转换为此类的对象，反之亦然以进行处理。 一个实体可以包含我们的对象所需数量的属性。例如，我们可能会添加更多属性来补充这本书的信息。
+（图5）
+我们可能还包括了作者姓名的另一个属性，但这是我们必须开始考虑对象图的结构以及如何存储信息的时候。如果我们在Books实体中包括作者姓名的String类型属性，则每当用户插入一本新书时，都必须输入作者的姓名。这很容易出错，很费时间，并且当有同一位作者的几本书可供使用时，无法确保它们都具有相同的确切名称（一本书可能具有作者的中间名，而其他本书只是第一本书的中间名，例如）。接下来的图6显示了示例，其中有一个名为Authors的新实体，其中包含一个名为name的属性。
+（图6）
+实体是对象的蓝图，类似于类，因此我们使用它们来定义要存储的对象的特征。例如，当我们想在示例中存储一本新书时，我们将基于Books实体创建一个新对象。该对象将具有四个与其标题，年份，封面和缩略图的值相对应的属性。
+1-2 创建关系 当我们要存储作者的信息时，也会发生同样的情况。我们基于Authors实体创建一个新对象，并将作者的名称分配给其name属性。最后，我们在存储空间中将有两个对象，一个用于书本，另一个用于作者。但是，如果我们以后想要检索这些对象，则需要一种方法来知道哪个Books对象与哪个Authors对象有关。我们必须连接这些对象，因此当我们查找Books对象时，我们还可以获得代表其作者的相应Authors对象，否则我们将无法在其中显示作者的姓名与书的信息。
+要创建此连接，Data Model 必须包括关系。关系就像一个对象的属性，其中包含对另一个对象的引用。他们可以引用一个对象或一组对象。例如，在Books实体中，我们可以创建一个仅包含对Authors实体的一个对象的引用的关系，因为每本书只能有一位作者（在本例中，我们假设我们的应用程序仅存储编写的书籍由一位作者）。
+相反，在Authors实体中，我们需要建立一个包含对多个Books对象的引用的关系，因为一个作者可能写了几本书，而不仅仅是一本书。核心数据根据它们可能引用的对象数量来调用这些关系。名称是一对一和一对多，它们是在“属性”区域下面的“关系”区域中按&#43;按钮创建的。图7显示了一个为我们的示例的Books实体创建的关系，称为author（我们将其称为author，因为它将用于检索书籍的作者）。
+（图7）
+关系仅需要两个值：其名称（属性的名称）和目的地（其引用的对象的类型），但是它需要设置一些参数。 我们必须告诉模型该关系是否将是可选的，定义其类型（一对一或一对多），并确定如果删除源对象（删除规则），目标对象将发生什么情况。 选择关系后，所有这些选项在Data Model Inspector面板中都可用，如图8所示。
+（图8）
+默认情况下，该关系设置为“可选”，这意味着源可以连接到目标对象，也可以不连接（对象可以是作者或空），关系的类型设置为“一对一”（一本书只能有一位作者），“删除规则”设置为“无效”。
+以下是此规则可用的所有值。
+ Deny：
+如果目标上至少有一个对象，则不会删除源（如果已将Authors对象分配给Books对象，则不会删除该书）。 Nullify：
+删除对象之间的连接，但不删除目标位置的对象（如果删除了Books对象，则与该书关联的Authors对象将失去连接但不会被删除）。 Cascade：
+删除源时，将删除目标位置的对象（如果删除了其中一本书籍，则将删除Authors对象）。 No Action："/>
+
+
+
+    <link rel="canonical" href="https://Zhangchengmin99.github.io/2019/10/core-data%E5%9F%BA%E6%9C%AC%E7%AE%80%E4%BB%8B%E4%B8%80-data-model%E4%B8%8Ecore-data-stack/">
+
+    <title>
+      
+        Core Data基本简介（一）—— Data Model与Core Data Stack | cmHubs
+      
+    </title>
+
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="https://Zhangchengmin99.github.io/css/style.css" rel="stylesheet">
+
+    
+
+    
+
+    
+  </head>
+  <body>
+    
+      
+
+<header class="blog-header">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">
+            <img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g75u7zx3o0j30tf0tf0u0.jpg" width="30" height="30" class="d-inline-block align-top"
+    alt="">
+cmHubs
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+            <ul class="navbar-nav">
+                
+                
+                <li class="nav-item ">
+                    
+                        <a class="nav-link" href="/post/">Home</a>
+                    
+                </li>
+                
+                <li class="nav-item ">
+                    
+                        <a class="nav-link" href="/about/">About</a>
+                    
+                </li>
+                
+                <li class="nav-item ">
+                    
+                        <a class="nav-link" href="/contact/">Contact</a>
+                    
+                </li>
+                
+            </ul>
+            
+        </div>
+    </nav>
+</header>
+
+    
+
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-lg-8 blog-main">
+
+          
+
+<header>
+    <h2 class="blog-post-title">
+    <a class="text-dark" href="/2019/10/core-data%E5%9F%BA%E6%9C%AC%E7%AE%80%E4%BB%8B%E4%B8%80-data-model%E4%B8%8Ecore-data-stack/">Core Data基本简介（一）—— Data Model与Core Data Stack</a>
+</h2>
+
+    
+
+
+<div class="blog-post-date text-secondary">
+    
+        <time datetime="2019-10-03">Oct 3, 2019</time>
+    
+    
+        by <span rel="author">Chengmin</span>
+    
+</div>
+
+    
+<div class="blog-post-tags text-secondary">
+    <strong>Tags:</strong>
+    
+        <a class="badge badge-primary" href="/tags/ios">iOS</a>
+    
+        <a class="badge badge-primary" href="/tags/core-data">Core Data</a>
+    
+        <a class="badge badge-primary" href="/tags/storage">Storage</a>
+    
+</div>
+
+    
+<div class="blog-post-categories text-secondary">
+    <strong>Categories:</strong>
+    
+        <a class="badge badge-primary" href="/categories/development">Development👨🏻‍💻</a>
+    
+</div>
+
+    <hr>
+</header>
+<article class="blog-post">
+    
+
+<h4 id="前言-什么是core-data">前言 什么是Core Data？</h4>
+
+<p>Core Data 是一个对象图管理器，它定义和管理自己的对象和连接。 我们可以确定这些对象的组成以及它们之间的关系，还可以根据需要存储尽可能多的对象。 该系统负责对对象进行编码和解码，保持一致性以及以有效方式将对象图存储在文件中。</p>
+
+<h4 id="一-data-model">一 Data Model</h4>
+
+<p>Core Data的对象图的结构是通过数据模型定义的。 这与前几章中创建的MVC模式的数据模型无关，“Core Data”模型是对图形将包含的对象类型（称为实体）及其连接（称为关系）的定义。可以通过代码创建模型，Xcode提供了实用的编辑器，我们可以使用它来定义图的结构。模型存储在文件中，然后编译文件并将其包含在为我们的应用程序创建的Core Data系统中。Xcode提供了创建此文件的模板。</p>
+
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g7kxr26fb8j30ks06adg0.jpg" alt="" /><br />
+<em>（图1）</em></p>
+
+<h5 id="1-1-创建实体与属性">1-1 创建实体与属性</h5>
+
+<p>该文件可以使用我们想要的任何名称创建，但必须具有扩展名xcdatamodel。 创建后，它将与我们一起包含在我们的项目中其余文件。 单击它会显示Xcode编辑器，如下图所示。</p>
+
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g7kxud4v0gj30ne08eglz.jpg" alt="" /><br />
+<em>（图2）</em></p>
+
+<p>该模型包含三个主要组件：实体，属性和关系。 实体是对象将包含的内容的描述，属性是对象属性的描述，而关系是我们将被允许在对象之间建立的连接。 第一步是将实体添加到模型。 实体是通过编辑器下图底部的“添加实体”按钮创建的。 当我们按下此按钮时，Xcode将创建一个通用名称为“Entity”的实体。</p>
+
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g7ky2phxfmj30oa04sq39.jpg" alt="" /><br />
+<em>（图3）</em></p>
+
+<p>我们可以通过双击名称（图3，编号1）或编辑“数据模型检查器”面板中的字段（图3，编号2）来更改新创建的实体的名称。
+实体定义将要成为对象图一部分的对象的组成，因此下一步是声明这些对象将要管理的值的类型。为此，实体包括属性。要添加属性，我们必须选择实体，然后按“属性”区域下的+按钮（图3，数字3）或按编辑器底部的“添加属性”按钮（图2，数字2）。该属性添加有通用名称“attribute”和数据类型为Undefined。同样，我们可以通过双击属性或在“数据模型检查器”面板中编辑“名称”字段来更改属性的名称。在我们的示例中，我们将实体Books命名为第一个属性标题（图4，编号1）。</p>
+
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g7ky907nwmj30oq068mxg.jpg" alt="" /><br />
+<em>（图4）</em></p>
+
+<ul>
+<li>重要信息：实体的名称必须以大写字母开头，属性和关系的名称必须以小写字母开头。</li>
+</ul>
+
+<p>每个属性都必须与一种数据类型相关联，以便对象知道它们可以管理哪种类型的值（图4，编号2）。点击属性的类型，我们可以打开一个菜单以选择正确的数据类型。</p>
+
+<p>而Transformable用于预定义和自定义对象，这些对象包括它们自己的NSCoder方法以对数据进行编码和解码。</p>
+
+<p>Binary Data和Transformable选项经常使用用来存储图像，但是Transformable更为方便，因为它负责将UIImage对象归档并将其转换为Data值，而使用Binary Data选项则必须自己完成。</p>
+
+<p>核心数据是为Objective-C设计的，因此它适用于对象，而不适用于原始值或结构。所有数字，包括整数，浮点数和布尔值，都存储为NSNumber值，因此我们必须将它们转换为此类的对象，反之亦然以进行处理。
+一个实体可以包含我们的对象所需数量的属性。例如，我们可能会添加更多属性来补充这本书的信息。</p>
+
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g7kyl4r853j30yg08c3zm.jpg" alt="" /><br />
+<em>（图5）</em></p>
+
+<p>我们可能还包括了作者姓名的另一个属性，但这是我们必须开始考虑对象图的结构以及如何存储信息的时候。如果我们在Books实体中包括作者姓名的String类型属性，则每当用户插入一本新书时，都必须输入作者的姓名。这很容易出错，很费时间，并且当有同一位作者的几本书可供使用时，无法确保它们都具有相同的确切名称（一本书可能具有作者的中间名，而其他本书只是第一本书的中间名，例如）。接下来的图6显示了示例，其中有一个名为Authors的新实体，其中包含一个名为name的属性。</p>
+
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g7kypi1t4zj30lg04y74f.jpg" alt="" /><br />
+<em>（图6）</em></p>
+
+<p>实体是对象的蓝图，类似于类，因此我们使用它们来定义要存储的对象的特征。例如，当我们想在示例中存储一本新书时，我们将基于Books实体创建一个新对象。该对象将具有四个与其标题，年份，封面和缩略图的值相对应的属性。</p>
+
+<h5 id="1-2-创建关系">1-2 创建关系</h5>
+
+<p>当我们要存储作者的信息时，也会发生同样的情况。我们基于Authors实体创建一个新对象，并将作者的名称分配给其name属性。最后，我们在存储空间中将有两个对象，一个用于书本，另一个用于作者。但是，如果我们以后想要检索这些对象，则需要一种方法来知道哪个Books对象与哪个Authors对象有关。我们必须连接这些对象，因此当我们查找Books对象时，我们还可以获得代表其作者的相应Authors对象，否则我们将无法在其中显示作者的姓名与书的信息。</p>
+
+<p>要创建此连接，Data Model 必须包括关系。关系就像一个对象的属性，其中包含对另一个对象的引用。他们可以引用一个对象或一组对象。例如，在Books实体中，我们可以创建一个仅包含对Authors实体的一个对象的引用的关系，因为每本书只能有一位作者（在本例中，我们假设我们的应用程序仅存储编写的书籍由一位作者）。</p>
+
+<p>相反，在Authors实体中，我们需要建立一个包含对多个Books对象的引用的关系，因为一个作者可能写了几本书，而不仅仅是一本书。核心数据根据它们可能引用的对象数量来调用这些关系。名称是一对一和一对多，它们是在“属性”区域下面的“关系”区域中按+按钮创建的。图7显示了一个为我们的示例的Books实体创建的关系，称为author（我们将其称为author，因为它将用于检索书籍的作者）。</p>
+
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g7kyv9dfisj30ga04qweh.jpg" alt="" /><br />
+<em>（图7）</em></p>
+
+<p>关系仅需要两个值：其名称（属性的名称）和目的地（其引用的对象的类型），但是它需要设置一些参数。 我们必须告诉模型该关系是否将是可选的，定义其类型（一对一或一对多），并确定如果删除源对象（删除规则），目标对象将发生什么情况。 选择关系后，所有这些选项在Data Model Inspector面板中都可用，如图8所示。</p>
+
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g7kz253s5nj308a050mxb.jpg" alt="" /><br />
+<em>（图8）</em></p>
+
+<p>默认情况下，该关系设置为“可选”，这意味着源可以连接到目标对象，也可以不连接（对象可以是作者或空），关系的类型设置为“一对一”（一本书只能有一位作者），“删除规则”设置为“无效”。<br />
+以下是此规则可用的所有值。</p>
+
+<ul>
+<li>Deny：<br />
+如果目标上至少有一个对象，则不会删除源（如果已将Authors对象分配给Books对象，则不会删除该书）。</li>
+<li>Nullify：<br />
+删除对象之间的连接，但不删除目标位置的对象（如果删除了Books对象，则与该书关联的Authors对象将失去连接但不会被删除）。</li>
+<li>Cascade：<br />
+删除源时，将删除目标位置的对象（如果删除了其中一本书籍，则将删除Authors对象）。</li>
+<li>No Action：<br />
+目标对象上的对象不会被删除或修改（即使源对象不再存在，连接也会保留）。</li>
+</ul>
+
+<p>为了找到正确的关系规则，我们必须根据所处理的信息进行思考。如果作者的一本被删除，删除作者是否正确？就我们而言，答案很简单。一个作者可以拥有多本书，因此删除一本书时我们不能删除该作者，因为可能有其他与该作者相关的书。</p>
+
+<p>因此，默认情况下，Nullify规则集是此关系的正确选择。但是，当我们创建相反的关系（将Authors实体连接到Books实体）时，情况可能会改变。我们需要第二种关系来搜索属于作者的书籍。图9显示了我们为Authors实体创建的称为书的关系。</p>
+
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g7kz8ge2ldj30h2052q2y.jpg" alt="" />
+<em>（图9）</em></p>
+
+<ul>
+<li>重要说明：关系必须始终是双向的。 如果我们设置从实体A到实体B的关系，则必须设置从实体B到A的相反关系。CoreData提供了另一种类型的关系，称为“获取的属性”，以仅连接一个实体方向。 您可以从模型编辑器中“关系”区域下方的区域添加“获取的属性”。</li>
+</ul>
+
+<p>图9中添加的新关系位于Authors实体中，因此每个Authors对象将具有一个名为book的属性，我们可以使用该属性来检索与作者连接的Books对象。因为一个作者可以有很多书，所以这种关系的设置将与前一本书的设置不同。现在，我们必须将关系的类型设置为“多对多”（对于很多书），并根据我们希望应用程序在删除作者时的响应方式来修改“删除规则”。</p>
+
+<p>如果我们不想保留未分配作者的书籍，则应选择“Cascade”选项，这样一来，当作者被删除时，他或她的所有书籍也将被删除。但是，如果我们不介意没有作者的书，则应将选项保留为Nullify。</p>
+
+<ul>
+<li>基础知识：删除规则是一种确保对象图中剩余的对象是我们的应用程序和用户需要的对象的方法。我们总是可以将规则设置为Nullify，并注意自己删除所有对象。<br />
+<br /></li>
+</ul>
+
+<p>关系的第三个值称为“逆”。一旦我们在双方之间设置了关系，强烈建议设置该值。它只是告诉模型相反关系的名称是什么。核心数据需要这样做以确保对象图的一致性。图10显示了两种关系的最终设置。</p>
+
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g7kzfykezpj30fc05st95.jpg" alt="" />
+<em>（图10）</em></p>
+
+<p>两种关系很容易遵循，但是将多个实体连接在一起的多个关系会使模型变成难以理解的混乱。 为了帮助我们识别模型的每个组件，Xcode提供了一种附加的可视化样式，该样式将实体显示为框，将关系显示为连接框的箭头。 该选项称为“编辑器样式”，位于屏幕底部（图2，编号3）。接下来的图11显示了当我们切换到这种样式时模型的外观（注意，一对多关系由双箭头表示）。</p>
+
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g7kzi1hxjmj30du064dg9.jpg" alt="" />
+<em>（图11）</em></p>
+
+<h4 id="二-core-data-stack">二 Core Data Stack</h4>
+
+<p>模型的创建只是定义Core Data的第一步。设置好所有实体及其属性和关系后，我们必须为应用程序初始化Core Data。 核心数据是由一组对象组成的，这些对象管理着所有过程，从对象的组织到文件上的存储。 有一个管理模型的对象，一个将数据存储在文件中的对象，以及一个介于此持久性存储和我们自己的代码之间的对象。该方案称为堆栈。 图12展示了一个通用的核心数据堆栈。</p>
+
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g7l09eqkt0j30ka07w0st.jpg" alt="" /><br />
+<em>（图12）</em></p>
+
+<p>我们应用程序中的代码与Context交互以管理其需要访问的对象及其值，Context要求Persistent Store读取Graph或将新对象添加到graph中，Persistent Store处理Object Graph并将其保存在文件。</p>
+
+<p>核心数据框架提供了一些类来创建表示堆栈各个部分的对象。 NSManagedObjectModel类管理模型，NSPersistentStore类管理持久性存储，NSPersistentStoreCoordinator类用于管理所有可用的持久性存储（Core Data堆栈可具有多个持久性存储），并且NSManagedObjectContext创建和管理上下文之间的中介 我们的应用程序和存储。</p>
+
+<p>尽管我们可以实例化这些对象并自己创建堆栈，但是该框架提供了NSPersistentContainer类，该类为我们处理了所有事情。 该类包括以下初始化程序以及访问堆栈中每个对象的属性。</p>
+
+<h5 id="2-1-nspersistentcontainer类介绍">2-1 NSPersistentContainer类介绍</h5>
+
+<ul>
+<li>NSPersistentContainer(name: String)<br />
+该初始化程序创建一个NSPersistentContainer对象，该对象定义了核心数据堆栈。 name属性是代表容器名称的字符串。 此值必须与Core Data模型的名称匹配（文件名，不带扩展名）。</li>
+<li>managedObjectModel<br />
+此属性设置或返回一个代表Core Data模型的NSManagedObjectModel对象。</li>
+<li>sistenceStoreCoordinator<br />
+此属性设置或返回NSPersistentStoreCoordinator对象，该对象管理所有可用的持久性存储。</li>
+<li>viewContext<br />
+此属性设置或返回负责管理堆栈上下文的NSManagedObjectContext对象，我们必须使用该上下文来访问和修改对象图。
+<br /></li>
+</ul>
+
+<p>要从我们的应用程序创建Core Data堆栈，我们必须初始化一个新的NSPersistentContainer对象，然后加载持久性存储（默认情况下为一个）。 由于存储可能需要一些时间来加载，因此该类为此提供了一种特定的方法。</p>
+
+<ul>
+<li>loadPersistentStores(completionHandler: Block)<br />
+此方法将加载持久性存储，并在过程结束时执行关闭。 该闭包接收两个属性，一个具有堆栈配置的NSPersistentStoreDescription对象，以及一个用于报告错误的可选NSError值。</li>
+</ul>
+
+<p>我们的应用程序与持久性存储中的数据之间的所有通信都是通过上下文完成的。 上下文是由容器从NSManagedObjectContext类创建的。 此类包括属性和方法，用于管理持久性存储中的上下文和对象。 以下是最常用的一些属性与方法。</p>
+
+<ul>
+<li>hasChanges<br />
+此属性返回一个布尔值，该布尔值指示上下文是否具有必须保存到持久性存储中的更改。</li>
+<li>save()<br />
+此方法将上下文中的更改保存到持久性存储。</li>
+<li>reset()<br />
+此方法将上下文重置为基本状态。 我们的应用程序引入上下文的所有对象和修改都将被忽略。</li>
+<li>delete(NSManagedObject)<br />
+此方法从持久性存储中删除对象。</li>
+<li>count(for: NSFetchRequest)<br />
+此方法返回在持久存储中找到的请求数。for属性是一个允许我们配置请求的对象。</li>
+</ul>
+
+<p>因为每个视图控制器都需要访问容器以获取对上下文的引用，才能在持久性存储中读取或存储对象，所以我们必须在可供其余代码访问的位置创建NSPersistentContainer类的实例。</p>
+
+<p>Apple建议在应用程序的委托中执行此操作，因为这样可以确保在应用程序启动后立即创建所有内容，并且可以在代码中的任何位置进行访问。 以下示例初始化堆栈并将容器的引用存储在称为容器的属性中。</p>
+
+<h5 id="2-2-listing-1-initializing-the-core-data-stack-in-the-app-s-delegate">2-2 Listing 1: Initializing the Core Data stack in the app’s delegate</h5>
+
+<pre><code class="language-swift">import UIKit
+
+import CoreData
+@UIApplicationMain
+class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    var window: UIWindow?
+    var container: NSPersistentContainer!
+    var context: NSManagedObjectContext!
+    
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -&gt; Bool {
+        container = NSPersistentContainer(name: &quot;books&quot;)
+        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+            if error == nil {
+                self.context = self.container.viewContext
+            } else {
+                print(&quot;Error&quot;)
+            }
+        })
+        return true 
+    }  
+}
+</code></pre>
+
+<p>我们在NSPersistentContainer初始化程序中使用的名称必须与用于创建模型文件的名称相同。清单22-1的代码假定我们已经将模型称为&rdquo;books&rdquo;，并使用该名称初始化了NSPersistentContainer对象。该对象创建堆栈，但不加载持久性存储，因此我们必须通过调用loadPersistentStores()方法来自己完成操作。</p>
+
+<p>完成后，该方法将执行关闭。在此关闭中，我们检查错误并将容器创建的NSManagedObjectContext对象分配给一个属性
+称为上下文。这样，我们在应用程序的委托中获得了两个属性，分别引用了容器和上下文，可以在代码中的任何地方使用它来访问Core Data堆栈。</p>
+
+<p>引用NSManagedObjectContext对象的属性是我们在应用的视图控制器中使用的属性，用于从存储中添加，获取和删除对象。我们已经研究过如何访问应用程序的委托属性<a href="https://www.cmhubs.com/2019/10/application-delegate和viewcontroller/" title="With a Title">Application Delegate和ViewController</a>，以下代码说明了一个可能的实现，该实现使用附加属性来获得方便的引用，我们可以从类中的其他方法中使用该引用。</p>
+
+<h5 id="listing-22-2-accessing-the-context-from-a-view-controller-import-uikit">Listing 22-2: Accessing the context from a view controller import UIKit</h5>
+
+<pre><code class="language-swift">import CoreData
+class ViewController: UIViewController {
+    var context: NSManagedObjectContext!
+    override func viewDidLoad() 
+    { 
+        super.viewDidLoad()
+        let app = UIApplication.shared
+        let appDelegate = app.delegate as! AppDelegate
+        context = appDelegate.context
+    }
+}
+</code></pre>
+
+<ul>
+<li>重要信息：首次启动该应用程序时，核心数据堆栈会基于当前模型创建一个持久性存储。 例如，如果以后修改模型，添加新实体或删除属性，则该应用程序将崩溃。 要使用新模型测试该应用程序，必须先将其卸载以清除旧的持久性存储。</li>
+</ul>
+
+<h4 id="三-下文预告">三 下文预告</h4>
+
+<p>在接下来的几篇文章中，还将继续介绍具体管理Core Data的方法以及自定义数据结构的存储使用方法。</p>
+
+
+    
+
+    
+
+    <h4>See also</h4>
+    <ul>
+        
+            <li><a href="/2019/10/application-delegate%E5%92%8Cviewcontroller/">Application Delegate和ViewController</a></li>
+        
+            <li><a href="/2019/10/uiview%E5%9F%BA%E7%A1%80%E4%BB%8B%E7%BB%8D/">UIView基础介绍</a></li>
+        
+            <li><a href="/2019/09/ios%E5%BC%80%E5%8F%91%E4%B8%AD%E5%AE%B9%E6%98%93%E5%BF%BD%E7%95%A5%E7%9A%84uikit%E6%A6%82%E5%BF%B5/">iOS开发中容易忽略的UIKit概念</a></li>
+        
+            <li><a href="/2019/09/ios%E4%B8%AD%E7%9A%84%E9%87%8D%E8%A6%81%E5%9B%BE%E5%BD%A2%E6%A6%82%E5%BF%B5core-graphics/">iOS中的重要图形概念Core Graphics</a></li>
+        
+    </ul>
+
+
+</article>
+
+
+
+        </div>
+
+        <aside class="col-12 col-lg-3 ml-auto blog-sidebar">
+    
+        
+
+
+<section>
+    <h4>Recent Posts</h4>
+    <ol class="list-unstyled">
+        
+        <li>
+            <a href="/2019/10/core-data%E5%9F%BA%E6%9C%AC%E7%AE%80%E4%BB%8B%E4%B8%80-data-model%E4%B8%8Ecore-data-stack/">Core Data基本简介（一）—— Data Model与Core Data Stack</a>
+        </li>
+        
+        <li>
+            <a href="/post/">Home</a>
+        </li>
+        
+        <li>
+            <a href="/2019/10/application-delegate%E5%92%8Cviewcontroller/">Application Delegate和ViewController</a>
+        </li>
+        
+        <li>
+            <a href="/2019/10/uiview%E5%9F%BA%E7%A1%80%E4%BB%8B%E7%BB%8D/">UIView基础介绍</a>
+        </li>
+        
+        <li>
+            <a href="/2019/09/ios%E5%BC%80%E5%8F%91%E4%B8%AD%E5%AE%B9%E6%98%93%E5%BF%BD%E7%95%A5%E7%9A%84uikit%E6%A6%82%E5%BF%B5/">iOS开发中容易忽略的UIKit概念</a>
+        </li>
+        
+    </ol>
+</section>
+
+    
+    
+        <section>
+    
+        
+        <h4>Categories</h4>
+        <p>
+            
+            <a class="badge badge-primary" href="/categories/development">development</a>
+            
+        </p>
+        
+    
+        
+        <h4>Tags</h4>
+        <p>
+            
+            <a class="badge badge-primary" href="/tags/core-data">core-data</a>
+            
+            <a class="badge badge-primary" href="/tags/core-graphics">core-graphics</a>
+            
+            <a class="badge badge-primary" href="/tags/flutter">flutter</a>
+            
+            <a class="badge badge-primary" href="/tags/ios">ios</a>
+            
+            <a class="badge badge-primary" href="/tags/iot">iot</a>
+            
+            <a class="badge badge-primary" href="/tags/mvc">mvc</a>
+            
+            <a class="badge badge-primary" href="/tags/nodemcu">nodemcu</a>
+            
+            <a class="badge badge-primary" href="/tags/storage">storage</a>
+            
+            <a class="badge badge-primary" href="/tags/uikit">uikit</a>
+            
+            <a class="badge badge-primary" href="/tags/vc">vc</a>
+            
+        </p>
+        
+    
+</section>
+    
+</aside>
+
+      </div>
+    </div>
+    
+
+    
+      
+
+
+
+
+
+
+
+<footer class="blog-footer w-100">
+    <nav class="navbar navbar-light bg-light">
+        <p class="w-100 text-center">[ A student iOS developer in BUPT 👨🏻‍💻 ]</p>
+        <p class="w-100 text-center"><a href="#">Back to top</a></p>
+    </nav>
+</footer>
+
+    
+
+    
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </body>
+</html>

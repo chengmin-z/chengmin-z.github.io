@@ -3,42 +3,57 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://Zhangchengmin99.github.io/categories/</loc>
+    <lastmod>2019-10-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://Zhangchengmin99.github.io/</loc>
+    <lastmod>2019-10-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://Zhangchengmin99.github.io/tags/core-data/</loc>
+    <lastmod>2019-10-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://Zhangchengmin99.github.io/2019/10/core-data%E5%9F%BA%E6%9C%AC%E7%AE%80%E4%BB%8B%E4%B8%80-data-model%E4%B8%8Ecore-data-stack/</loc>
+    <lastmod>2019-10-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://Zhangchengmin99.github.io/categories/development/</loc>
+    <lastmod>2019-10-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://Zhangchengmin99.github.io/post/</loc>
+    <lastmod>2019-10-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://Zhangchengmin99.github.io/tags/ios/</loc>
+    <lastmod>2019-10-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://Zhangchengmin99.github.io/tags/storage/</loc>
+    <lastmod>2019-10-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://Zhangchengmin99.github.io/tags/</loc>
+    <lastmod>2019-10-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://Zhangchengmin99.github.io/2019/10/application-delegate%E5%92%8Cviewcontroller/</loc>
     <lastmod>2019-10-02T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://Zhangchengmin99.github.io/categories/</loc>
-    <lastmod>2019-10-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://Zhangchengmin99.github.io/</loc>
-    <lastmod>2019-10-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://Zhangchengmin99.github.io/categories/development/</loc>
-    <lastmod>2019-10-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://Zhangchengmin99.github.io/post/</loc>
-    <lastmod>2019-10-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://Zhangchengmin99.github.io/tags/ios/</loc>
-    <lastmod>2019-10-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://Zhangchengmin99.github.io/tags/mvc/</loc>
-    <lastmod>2019-10-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://Zhangchengmin99.github.io/tags/</loc>
     <lastmod>2019-10-02T00:00:00+00:00</lastmod>
   </url>
   

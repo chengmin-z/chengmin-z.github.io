@@ -7,17 +7,35 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>[ A student iOS developer in BUPT 👨🏻‍💻 ]</copyright>
-    <lastBuildDate>Wed, 02 Oct 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 03 Oct 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://Zhangchengmin99.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>Core Data</title>
+      <link>https://Zhangchengmin99.github.io/tags/core-data/</link>
+      <pubDate>Thu, 03 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://Zhangchengmin99.github.io/tags/core-data/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>iOS</title>
       <link>https://Zhangchengmin99.github.io/tags/ios/</link>
-      <pubDate>Wed, 02 Oct 2019 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 03 Oct 2019 00:00:00 +0000</pubDate>
       
       <guid>https://Zhangchengmin99.github.io/tags/ios/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Storage</title>
+      <link>https://Zhangchengmin99.github.io/tags/storage/</link>
+      <pubDate>Thu, 03 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://Zhangchengmin99.github.io/tags/storage/</guid>
       <description></description>
     </item>
     
