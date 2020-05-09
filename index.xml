@@ -7,20 +7,10 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>[ A student iOS developer in BUPT 👨🏻‍💻 ]</copyright>
-    <lastBuildDate>Sat, 19 Oct 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 03 Oct 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://zhangchengmin99.github.io/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Flutter Blue的使用</title>
-      <link>https://zhangchengmin99.github.io/2019/10/flutter-blue%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
-      <pubDate>Sat, 19 Oct 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://zhangchengmin99.github.io/2019/10/flutter-blue%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
-      <description>引言 最近在做一个软硬件结合型产品，软件层面只做视图显示和简单的交互逻辑，关键的是要和底层硬件设备进行蓝牙通信。由于这款软件要求在安卓与iOS同时适配，所以考虑使用flutter开发，并采用FlutterBlue插件进行蓝牙通信逻辑的实现。
-FlutterBlue介绍 FlutterBlue是Flutter的蓝牙插件。FlutterBlue旨在从这两个平台（iOS和Android）中提供便利。使用FlutterBlue实例，可以扫描并连接到附近的设备BluetoothDevice。 连接到设备后，BluetoothDevice对象可以发现蓝牙服务（BluetoothService），蓝牙特征（BluetoothCharacteristic）和蓝牙描述符（BluetoothDescriptor）。然后，使用BluetoothDevice对象直接与特征和描述符进行交互。</description>
-    </item>
     
     <item>
       <title>Core Data基本简介（一）—— Data Model与Core Data Stack</title>
@@ -42,22 +32,6 @@ FlutterBlue介绍 FlutterBlue是Flutter的蓝牙插件。FlutterBlue旨在从这
       <description>&lt;h4 id=&#34;引言-uikit的概念&#34;&gt;引言 UIKit的概念&lt;/h4&gt;
 
 &lt;p&gt;MVC是很多人学习App开发学习的第一种设计模式，深入理解其的含义与组成部分与相互配合，对学习开发有着至关重要的最要。本文简要介绍MVC设计模式与ViewController的相关概念，并说明Application Delegate的相关使用。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>SwiftSoup框架介绍</title>
-      <link>https://zhangchengmin99.github.io/2019/10/swiftsoup%E6%A1%86%E6%9E%B6%E4%BB%8B%E7%BB%8D/</link>
-      <pubDate>Wed, 02 Oct 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://zhangchengmin99.github.io/2019/10/swiftsoup%E6%A1%86%E6%9E%B6%E4%BB%8B%E7%BB%8D/</guid>
-      <description>引言 SwiftSoup是一个纯跨平台的Swift库（macOS，iOS，tvOS，watchOS和Linux），用于处理实际的HTML。它提供了使用DOM，CSS和类似jQuery的最佳方法来提取和处理数据的非常方便的API。 SwiftSoup实现WHATWG HTML5规范，并将HTML解析为与现代浏览器相同的DOM。
-功能  从URL，文件或字符串中抓取并解析HTML
- 使用DOM遍历或CSS选择器查找和提取数据
- 处理HTML元素，属性和文本
- 根据安全的白名单清除用户提交的内容，以防止XSS攻击
- 输出整洁的HTML
-  一 安装 这里只介绍通过Cocoapods进行项目配置。安装Cocoapods后在项目文件夹内创建与配置Podfile后执行install pods命令。配置文件内容如下。
-platform :ios, &#39;13.0&#39; use_frameworks! target &#39;YOUYOU_Test&#39; do pod &#39;SwiftSoup&#39; end  二 功能尝试 1 解析HTML文档 do { let html = &amp;quot;&amp;lt;html&amp;gt;&amp;lt;head&amp;gt;&amp;lt;title&amp;gt;First parse&amp;lt;/title&amp;gt;&amp;lt;/head&amp;gt;&amp;quot; + &amp;quot;&amp;lt;body&amp;gt;&amp;lt;p&amp;gt;Parsed HTML into a doc.&amp;lt;/p&amp;gt;&amp;lt;/body&amp;gt;&amp;lt;/html&amp;gt;&amp;quot; let doc: Document = try SwiftSoup.parse(html) print( try doc.text() ) } catch Exception.Error(let type, let message) { print(message) } catch { print(&amp;quot;error&amp;quot;) }  输出为“First parse Parsed HTML into a doc.</description>
     </item>
     
     <item>
