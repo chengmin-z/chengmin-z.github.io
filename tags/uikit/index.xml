@@ -2,22 +2,38 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>UIKit on cmHubs</title>
-    <link>https://Zhangchengmin99.github.io/tags/uikit/</link>
+    <link>https://zhangchengmin99.github.io/tags/uikit/</link>
     <description>Recent content in UIKit on cmHubs</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>[ A student iOS developer in BUPT 👨🏻‍💻 ]</copyright>
     <lastBuildDate>Wed, 02 Oct 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://Zhangchengmin99.github.io/tags/uikit/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://zhangchengmin99.github.io/tags/uikit/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>UIView基础介绍</title>
-      <link>https://Zhangchengmin99.github.io/2019/10/uiview%E5%9F%BA%E7%A1%80%E4%BB%8B%E7%BB%8D/</link>
+      <title>SwiftSoup框架介绍</title>
+      <link>https://zhangchengmin99.github.io/2019/10/swiftsoup%E6%A1%86%E6%9E%B6%E4%BB%8B%E7%BB%8D/</link>
       <pubDate>Wed, 02 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://Zhangchengmin99.github.io/2019/10/uiview%E5%9F%BA%E7%A1%80%E4%BB%8B%E7%BB%8D/</guid>
+      <guid>https://zhangchengmin99.github.io/2019/10/swiftsoup%E6%A1%86%E6%9E%B6%E4%BB%8B%E7%BB%8D/</guid>
+      <description>引言 SwiftSoup是一个纯跨平台的Swift库（macOS，iOS，tvOS，watchOS和Linux），用于处理实际的HTML。它提供了使用DOM，CSS和类似jQuery的最佳方法来提取和处理数据的非常方便的API。 SwiftSoup实现WHATWG HTML5规范，并将HTML解析为与现代浏览器相同的DOM。
+功能  从URL，文件或字符串中抓取并解析HTML
+ 使用DOM遍历或CSS选择器查找和提取数据
+ 处理HTML元素，属性和文本
+ 根据安全的白名单清除用户提交的内容，以防止XSS攻击
+ 输出整洁的HTML
+  一 安装 这里只介绍通过Cocoapods进行项目配置。安装Cocoapods后在项目文件夹内创建与配置Podfile后执行install pods命令。配置文件内容如下。
+platform :ios, &#39;13.0&#39; use_frameworks! target &#39;YOUYOU_Test&#39; do pod &#39;SwiftSoup&#39; end  二 功能尝试 1 解析HTML文档 do { let html = &amp;quot;&amp;lt;html&amp;gt;&amp;lt;head&amp;gt;&amp;lt;title&amp;gt;First parse&amp;lt;/title&amp;gt;&amp;lt;/head&amp;gt;&amp;quot; + &amp;quot;&amp;lt;body&amp;gt;&amp;lt;p&amp;gt;Parsed HTML into a doc.&amp;lt;/p&amp;gt;&amp;lt;/body&amp;gt;&amp;lt;/html&amp;gt;&amp;quot; let doc: Document = try SwiftSoup.parse(html) print( try doc.text() ) } catch Exception.Error(let type, let message) { print(message) } catch { print(&amp;quot;error&amp;quot;) }  输出为“First parse Parsed HTML into a doc.</description>
+    </item>
+    
+    <item>
+      <title>UIView基础介绍</title>
+      <link>https://zhangchengmin99.github.io/2019/10/uiview%E5%9F%BA%E7%A1%80%E4%BB%8B%E7%BB%8D/</link>
+      <pubDate>Wed, 02 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://zhangchengmin99.github.io/2019/10/uiview%E5%9F%BA%E7%A1%80%E4%BB%8B%E7%BB%8D/</guid>
       <description>&lt;h4 id=&#34;引言&#34;&gt;引言&lt;/h4&gt;
 
 &lt;p&gt;窗口是显示图形的空间，但它本身不会产生任何可见的内容。用户界面是通过类似视图的容器在窗口内部构建的。这些视图是自定义大小的矩形区域，旨在在屏幕上显示图形。一些视图仅用作容器，而其他视图则经过改进以提供图形工具（例如按钮和开关）以及图形内容（例如图像和文本）。这些视图是按层次结构组织的，一个内部又另一个内部，以窗口大小的视图作为层次结构的根（通常称为主视图或容器视图）。&lt;/p&gt;</description>
@@ -25,10 +41,10 @@
     
     <item>
       <title>iOS开发中容易忽略的UIKit概念</title>
-      <link>https://Zhangchengmin99.github.io/2019/09/ios%E5%BC%80%E5%8F%91%E4%B8%AD%E5%AE%B9%E6%98%93%E5%BF%BD%E7%95%A5%E7%9A%84uikit%E6%A6%82%E5%BF%B5/</link>
+      <link>https://zhangchengmin99.github.io/2019/09/ios%E5%BC%80%E5%8F%91%E4%B8%AD%E5%AE%B9%E6%98%93%E5%BF%BD%E7%95%A5%E7%9A%84uikit%E6%A6%82%E5%BF%B5/</link>
       <pubDate>Sun, 29 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://Zhangchengmin99.github.io/2019/09/ios%E5%BC%80%E5%8F%91%E4%B8%AD%E5%AE%B9%E6%98%93%E5%BF%BD%E7%95%A5%E7%9A%84uikit%E6%A6%82%E5%BF%B5/</guid>
+      <guid>https://zhangchengmin99.github.io/2019/09/ios%E5%BC%80%E5%8F%91%E4%B8%AD%E5%AE%B9%E6%98%93%E5%BF%BD%E7%95%A5%E7%9A%84uikit%E6%A6%82%E5%BF%B5/</guid>
       <description>&lt;h4 id=&#34;引言-uikit的概念&#34;&gt;引言 UIKit的概念&lt;/h4&gt;
 
 &lt;p&gt;UIKit（用户界面工具包）是为移动应用程序定义图形界面元素的框架。从文本字符串到按钮和开关，用户在屏幕上操纵以与应用程序交互的所有标准元素均由此框架中的类定义。它的主要重点是用户界面，但它也提供了应用程序需要的基本类，并与系统的其余部分连接。&lt;/p&gt;</description>

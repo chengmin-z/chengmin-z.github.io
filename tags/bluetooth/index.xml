@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>flutter on cmHubs</title>
-    <link>https://zhangchengmin99.github.io/tags/flutter/</link>
-    <description>Recent content in flutter on cmHubs</description>
+    <title>bluetooth on cmHubs</title>
+    <link>https://zhangchengmin99.github.io/tags/bluetooth/</link>
+    <description>Recent content in bluetooth on cmHubs</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>[ A student iOS developer in BUPT 👨🏻‍💻 ]</copyright>
     <lastBuildDate>Sat, 19 Oct 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://zhangchengmin99.github.io/tags/flutter/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://zhangchengmin99.github.io/tags/bluetooth/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -20,21 +20,6 @@
       <guid>https://zhangchengmin99.github.io/2019/10/flutter-blue%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
       <description>引言 最近在做一个软硬件结合型产品，软件层面只做视图显示和简单的交互逻辑，关键的是要和底层硬件设备进行蓝牙通信。由于这款软件要求在安卓与iOS同时适配，所以考虑使用flutter开发，并采用FlutterBlue插件进行蓝牙通信逻辑的实现。
 FlutterBlue介绍 FlutterBlue是Flutter的蓝牙插件。FlutterBlue旨在从这两个平台（iOS和Android）中提供便利。使用FlutterBlue实例，可以扫描并连接到附近的设备BluetoothDevice。 连接到设备后，BluetoothDevice对象可以发现蓝牙服务（BluetoothService），蓝牙特征（BluetoothCharacteristic）和蓝牙描述符（BluetoothDescriptor）。然后，使用BluetoothDevice对象直接与特征和描述符进行交互。</description>
-    </item>
-    
-    <item>
-      <title>Flutter（一）MAC环境搭建</title>
-      <link>https://zhangchengmin99.github.io/2019/09/flutter%E4%B8%80mac%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</link>
-      <pubDate>Sun, 22 Sep 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://zhangchengmin99.github.io/2019/09/flutter%E4%B8%80mac%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</guid>
-      <description>&lt;p&gt;flutter中文网 &lt;a href=&#34;https://flutterchina.club&#34;&gt;https://flutterchina.club&lt;/a&gt;&lt;/p&gt;
-
-&lt;h4 id=&#34;第一步-根据中文网的介绍我们首先配置环境变量&#34;&gt;第一步：根据中文网的介绍我们首先配置环境变量&lt;/h4&gt;
-
-&lt;p&gt;MacBook-Pro:~ TommyHan$ export PUB_HOSTED_URL=&lt;a href=&#34;https://pub.flutter-io.cn&#34;&gt;https://pub.flutter-io.cn&lt;/a&gt;&lt;br /&gt;
-MacBook-Pro:~ TommyHan$ export FLUTTER_STORAGE_BASE_URL=&lt;a href=&#34;https://storage.flutter-io.cn&#34;&gt;https://storage.flutter-io.cn&lt;/a&gt;&lt;br /&gt;
-注意： 此镜像为临时镜像，并不能保证一直可用，读者可以参考详情请参考 Using Flutter in China 以获得有关镜像服务器的最新动态。&lt;/p&gt;</description>
     </item>
     
   </channel>
