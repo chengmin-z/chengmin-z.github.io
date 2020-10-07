@@ -149,19 +149,18 @@ cmHubs
 <li>认证和证书（authentication and credentials）</li>
 <li>cookie 存储（cookie storage）</li>
 <li>请求配置（configuration management）</li>
-
-<li><p>缓存管理（cache management）
-<img src="https://img-blog.csdnimg.cn/20200601114038135.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzI3MDEyMg==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" /></p>
+<li>缓存管理（cache management）
+<img src="https://img-blog.csdnimg.cn/20200601114038135.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzI3MDEyMg==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" /></li>
+</ul>
 
 <h4 id="2-url-loading-能力">2 URL Loading 能力</h4>
 
-<p>URL Loading System 最常用的类就是根据 URL 请求数据的URLSession。URLSession有一个shared基本请求的单例会话（没有配置对象）。它可以作为一个很好的起点。您可以通过调用共享类方法来使用会话。对于其他类型的会话，您可以URLSession使用以下三种配置之一创建一个。URLSession 的 API 支持三种类型的 session：</p></li>
+<p>URL Loading System 最常用的类就是根据 URL 请求数据的URLSession。URLSession有一个shared基本请求的单例会话（没有配置对象）。它可以作为一个很好的起点。您可以通过调用共享类方法来使用会话。对于其他类型的会话，您可以URLSession使用以下三种配置之一创建一个。URLSession 的 API 支持三种类型的 session：</p>
 
-<li><p>Default sessions：其行为跟 Foundation 中提供的其他 URL 加载方式类似，支持磁盘缓存，并且会把凭证（credentials）保存到 keychain 中。</p></li>
-
-<li><p>Ephemeral sessions：不会存储任何数据到磁盘上，所有的缓存、凭证都只会随着 session 保存在内存中，而且一旦这个 session 被清除了，这些缓存同时也会被清除。</p></li>
-
-<li><p>Background sessions：跟 default sessions 的行为基本类似，提供数据上传与下载能力，但是还支持后台驻留进程的数据传输，也就是说，当 app 被挂起时，还可以在后台继续传输数据。</p></li>
+<ul>
+<li>Default sessions：其行为跟 Foundation 中提供的其他 URL 加载方式类似，支持磁盘缓存，并且会把凭证（credentials）保存到 keychain 中。</li>
+<li>Ephemeral sessions：不会存储任何数据到磁盘上，所有的缓存、凭证都只会随着 session 保存在内存中，而且一旦这个 session 被清除了，这些缓存同时也会被清除。</li>
+<li>Background sessions：跟 default sessions 的行为基本类似，提供数据上传与下载能力，但是还支持后台驻留进程的数据传输，也就是说，当 app 被挂起时，还可以在后台继续传输数据。</li>
 </ul>
 
 <p>在会话中，您创建的任务可以有选择地将数据上载到服务器，然后以磁盘上的文件或NSData内存中的一个或多个对象的形式从服务器检索数据。该URLSessionAPI提供了四种类型的任务：</p>
@@ -436,6 +435,8 @@ task.resume()
             
             <a class="badge badge-primary" href="/tags/flutter">flutter</a>
             
+            <a class="badge badge-primary" href="/tags/http">http</a>
+            
             <a class="badge badge-primary" href="/tags/ios">ios</a>
             
             <a class="badge badge-primary" href="/tags/iot">iot</a>
@@ -447,6 +448,8 @@ task.resume()
             <a class="badge badge-primary" href="/tags/nodemcu">nodemcu</a>
             
             <a class="badge badge-primary" href="/tags/storage">storage</a>
+            
+            <a class="badge badge-primary" href="/tags/tcp/ip">tcp/ip</a>
             
             <a class="badge badge-primary" href="/tags/uikit">uikit</a>
             
