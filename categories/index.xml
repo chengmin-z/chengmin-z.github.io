@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on cmHubs</title>
-    <link>https://example.com/categories/</link>
+    <link>https://zhangchengmin99.github.io/categories/</link>
     <description>Recent content in Categories on cmHubs</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>[ A student iOS developer in BUPT 👨🏻‍💻 ]</copyright>
     <lastBuildDate>Wed, 07 Oct 2020 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://example.com/categories/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://zhangchengmin99.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>development</title>
-      <link>https://example.com/categories/development/</link>
+      <link>https://zhangchengmin99.github.io/categories/development/</link>
       <pubDate>Wed, 07 Oct 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/categories/development/</guid>
+      <guid>https://zhangchengmin99.github.io/categories/development/</guid>
       <description></description>
     </item>
     

@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>MVC on cmHubs</title>
-    <link>https://example.com/tags/mvc/</link>
+    <link>https://zhangchengmin99.github.io/tags/mvc/</link>
     <description>Recent content in MVC on cmHubs</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>[ A student iOS developer in BUPT 👨🏻‍💻 ]</copyright>
     <lastBuildDate>Wed, 02 Oct 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://example.com/tags/mvc/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://zhangchengmin99.github.io/tags/mvc/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Application Delegate和ViewController</title>
-      <link>https://example.com/2019/10/application-delegate%E5%92%8Cviewcontroller/</link>
+      <link>https://zhangchengmin99.github.io/2019/10/application-delegate%E5%92%8Cviewcontroller/</link>
       <pubDate>Wed, 02 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/2019/10/application-delegate%E5%92%8Cviewcontroller/</guid>
+      <guid>https://zhangchengmin99.github.io/2019/10/application-delegate%E5%92%8Cviewcontroller/</guid>
       <description>&lt;h4 id=&#34;引言-uikit的概念&#34;&gt;引言 UIKit的概念&lt;/h4&gt;
 
 &lt;p&gt;MVC是很多人学习App开发学习的第一种设计模式，深入理解其的含义与组成部分与相互配合，对学习开发有着至关重要的最要。本文简要介绍MVC设计模式与ViewController的相关概念，并说明Application Delegate的相关使用。&lt;/p&gt;</description>
