@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Storage on cmHubs</title>
-    <link>https://zhangchengmin99.github.io/tags/storage/</link>
+    <link>https://example.com/tags/storage/</link>
     <description>Recent content in Storage on cmHubs</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>[ A student iOS developer in BUPT 👨🏻‍💻 ]</copyright>
     <lastBuildDate>Thu, 03 Oct 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://zhangchengmin99.github.io/tags/storage/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://example.com/tags/storage/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Core Data基本简介（一）—— Data Model与Core Data Stack</title>
-      <link>https://zhangchengmin99.github.io/2019/10/core-data%E5%9F%BA%E6%9C%AC%E7%AE%80%E4%BB%8B%E4%B8%80-data-model%E4%B8%8Ecore-data-stack/</link>
+      <link>https://example.com/2019/10/core-data%E5%9F%BA%E6%9C%AC%E7%AE%80%E4%BB%8B%E4%B8%80-data-model%E4%B8%8Ecore-data-stack/</link>
       <pubDate>Thu, 03 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://zhangchengmin99.github.io/2019/10/core-data%E5%9F%BA%E6%9C%AC%E7%AE%80%E4%BB%8B%E4%B8%80-data-model%E4%B8%8Ecore-data-stack/</guid>
+      <guid>https://example.com/2019/10/core-data%E5%9F%BA%E6%9C%AC%E7%AE%80%E4%BB%8B%E4%B8%80-data-model%E4%B8%8Ecore-data-stack/</guid>
       <description>&lt;h4 id=&#34;引言-什么是core-data&#34;&gt;引言 什么是Core Data？&lt;/h4&gt;
 
 &lt;p&gt;Core Data 是一个对象图管理器，它定义和管理自己的对象和连接。 我们可以确定这些对象的组成以及它们之间的关系，还可以根据需要存储尽可能多的对象。 该系统负责对对象进行编码和解码，保持一致性以及以有效方式将对象图存储在文件中。&lt;/p&gt;</description>
