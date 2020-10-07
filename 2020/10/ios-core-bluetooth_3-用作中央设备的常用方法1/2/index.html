@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<meta property="og:title" content="iOS Core Bluetooth_3 用作中央设备的常用方法（1/2）" />
+<meta property="og:description" content="写在前面
+
+在蓝牙低功耗通信中发挥核心作用的设备执行许多常见任务，例如，发现并连接到可用的外围设备，以及探索外围设备所提供的数据并与之交互。实现外围角色的设备还执行许多常见的其他任务，例如发布和广告服务，以及响应来自连接的中心的读取，写入和订阅请求。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhangchengmin99.github.io/2020/10/ios-core-bluetooth_3-%E7%94%A8%E4%BD%9C%E4%B8%AD%E5%A4%AE%E8%AE%BE%E5%A4%87%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%951/2/" />
+<meta property="article:published_time" content="2020-10-07T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-10-07T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="iOS Core Bluetooth_3 用作中央设备的常用方法（1/2）"/>
+<meta name="twitter:description" content="写在前面
+
+在蓝牙低功耗通信中发挥核心作用的设备执行许多常见任务，例如，发现并连接到可用的外围设备，以及探索外围设备所提供的数据并与之交互。实现外围角色的设备还执行许多常见的其他任务，例如发布和广告服务，以及响应来自连接的中心的读取，写入和订阅请求。"/>
+
+
+
+    <link rel="canonical" href="https://zhangchengmin99.github.io/2020/10/ios-core-bluetooth_3-%E7%94%A8%E4%BD%9C%E4%B8%AD%E5%A4%AE%E8%AE%BE%E5%A4%87%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%951/2/">
+
+    <title>
+      
+        iOS Core Bluetooth_3 用作中央设备的常用方法（1/2） | cmHubs
+      
+    </title>
+
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="https://zhangchengmin99.github.io/css/style.css" rel="stylesheet">
+
+    
+
+    
+
+    
+  </head>
+  <body>
+    
+      
+
+<header class="blog-header">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">
+            <img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g75u7zx3o0j30tf0tf0u0.jpg" width="30" height="30" class="d-inline-block align-top"
+    alt="">
+cmHubs
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+            <ul class="navbar-nav">
+                
+                
+                <li class="nav-item ">
+                    
+                        <a class="nav-link" href="/post/">Home</a>
+                    
+                </li>
+                
+                <li class="nav-item ">
+                    
+                        <a class="nav-link" href="/about/">About</a>
+                    
+                </li>
+                
+                <li class="nav-item ">
+                    
+                        <a class="nav-link" href="/contact/">Contact</a>
+                    
+                </li>
+                
+            </ul>
+            
+        </div>
+    </nav>
+</header>
+
+    
+
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-lg-8 blog-main">
+
+          
+
+<header>
+    <h2 class="blog-post-title">
+    <a class="text-dark" href="/2020/10/ios-core-bluetooth_3-%E7%94%A8%E4%BD%9C%E4%B8%AD%E5%A4%AE%E8%AE%BE%E5%A4%87%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%951/2/">iOS Core Bluetooth_3 用作中央设备的常用方法（1/2）</a>
+</h2>
+
+    
+
+
+<div class="blog-post-date text-secondary">
+    
+        <time datetime="2020-10-07">Oct 7, 2020</time>
+    
+    
+        by <span rel="author">Chengmin</span>
+    
+</div>
+
+    
+<div class="blog-post-tags text-secondary">
+    <strong>Tags:</strong>
+    
+        <a class="badge badge-primary" href="/tags/apple-developer">Apple Developer</a>
+    
+        <a class="badge badge-primary" href="/tags/ios">iOS</a>
+    
+        <a class="badge badge-primary" href="/tags/bluetooth">bluetooth</a>
+    
+</div>
+
+    
+<div class="blog-post-categories text-secondary">
+    <strong>Categories:</strong>
+    
+        <a class="badge badge-primary" href="/categories/development">development</a>
+    
+</div>
+
+    <hr>
+</header>
+<article class="blog-post">
+    <h4 id="写在前面">写在前面</h4>
+
+<p>在蓝牙低功耗通信中发挥核心作用的设备执行许多常见任务，例如，发现并连接到可用的外围设备，以及探索外围设备所提供的数据并与之交互。实现外围角色的设备还执行许多常见的其他任务，例如发布和广告服务，以及响应来自连接的中心的读取，写入和订阅请求。</p>
+
+<p>在本章中，您将从中央学习如何使用Core Bluetooth框架执行最常见的Bluetooth低能耗任务。以下基于代码的示例将帮助您开发应用程序，以在本地设备上实现核心角色。具体来说，您将学习如何：</p>
+
+<ul>
+<li>实例化中央管理器对象</li>
+<li>发现并连接到正在广播的外围设备</li>
+<li>在连接到外围设备后浏览其数据</li>
+<li>发送读写请求到外围服务的特征值</li>
+<li>订阅特征值以在更新时被通知</li>
+</ul>
+
+<p>在本文中找到的代码示例是简单抽象的。您可能需要进行适当的更改以将其合并到您的真实应用中。</p>
+
+<h4 id="1-实例化中央设备管理器">1 实例化中央设备管理器</h4>
+
+<p>由于CBCentralManager对象是本地中央设备的核心蓝牙面向对象的表示形式，因此您可以在执行任何蓝牙低能耗事务之前分配和初始化中央管理器实例。您可以通过调用中央管理器的initWithDelegate:queue:options:方法来初始化中央管理器，代码如下：</p>
+
+<pre><code class="language-swift">var centralManager = CBCentralManager(delegate: self, queue: nil, options: [CBCentralManagerOptionShowPowerAlertKey: true])
+</code></pre>
+
+<blockquote>
+<p>注意：在此示例中，self被设置为接收任何外围角色事件的委托。当您将调度队列指定为时nil，外围设备管理器使用主队列调度外围设备角色事件。</p>
+</blockquote>
+
+<p>创建外围设备管理器时，外围设备管理器将调用peripheralManagerDidUpdateState:其代理对象的方法。您必须实现此代理方法，以确保支持低功耗蓝牙并可以在本地外围设备上使用。通常可以在用extension来实现，实现代码如下：（完整版本）</p>
+
+<pre><code class="language-swift">internal func centralManagerDidUpdateState(_ central: CBCentralManager) {
+
+        switch central.state {
+        case .poweredOn:
+            // ... so start working with the peripheral
+            os_log(&quot;CBManager is powered on&quot;)
+            retrievePeripheral()
+        case .poweredOff:
+            os_log(&quot;CBManager is not powered on&quot;)
+            // In a real app, you'd deal with all the states accordingly
+            return
+        case .resetting:
+            os_log(&quot;CBManager is resetting&quot;)
+            // In a real app, you'd deal with all the states accordingly
+            return
+        case .unauthorized:
+            // In a real app, you'd deal with all the states accordingly
+            if #available(iOS 13.0, *) {
+                switch central.authorization {
+                case .denied:
+                    os_log(&quot;You are not authorized to use Bluetooth&quot;)
+                case .restricted:
+                    os_log(&quot;Bluetooth is restricted&quot;)
+                default:
+                    os_log(&quot;Unexpected authorization&quot;)
+                }
+            } else {
+                // Fallback on earlier versions
+            }
+            return
+        case .unknown:
+            os_log(&quot;CBManager state is unknown&quot;)
+            // In a real app, you'd deal with all the states accordingly
+            return
+        case .unsupported:
+            os_log(&quot;Bluetooth is not supported on this device&quot;)
+            // In a real app, you'd deal with all the states accordingly
+            return
+        @unknown default:
+            os_log(&quot;A previously unknown central manager state occurred&quot;)
+            // In a real app, you'd deal with yet unknown cases that might occur in the future
+            return
+            
+        }
+    }
+</code></pre>
+
+<h4 id="2-发现正在广播的外围设备">2 发现正在广播的外围设备</h4>
+
+<p>实例化后，中央管理器的第一项任务是发现外围设备。外围设备通过广播来告知其存在。您的应用通过调用中央管理器的scanForPeripheralsWithServices:options:方法来发现附近正在做广告的外围设备：</p>
+
+<pre><code class="language-swift">centralManager.scanForPeripherals(withServices: [TransferService.serviceUUID],
+                                               options: [CBCentralManagerScanOptionAllowDuplicatesKey: true])
+</code></pre>
+
+<blockquote>
+<p>注意：如果nil为第一个参数指定，则中央管理器将返回所有发现的外围设备，而不管其支持的服务如何。在真实应用中，通常需要指定一个CBUUID对象数组，每个对象代表外围设备正在广播的服务的通用唯一标识符（UUID）。当您指定服务UUID的数组时，中央管理器仅返回广播这些服务的外围设备，从而使您仅扫描到您可能希望扫描的设备。CBUUID的声明方法在后文中涉及。</p>
+</blockquote>
+
+<p>中央管理器每次发现外围设备时，都会调用centralManager:didDiscoverPeripheral:advertisementData:RSSI:其代理对象的方法。新发现的外围设备作为CBPeripheral对象返回。如果您打算连接到发现的外围设备，请对其进行强引用，以使系统不会取消分配它。以下示例显示了一个使用类属性来维护对发现的外围设备的引用的方案，仍通常在extension中进行实现：</p>
+
+<pre><code class="language-swift">func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String: Any], rssi RSSI: NSNumber) {
+        
+        // Reject if the signal strength is too low to attempt data transfer.
+        // Change the minimum RSSI value depending on your app’s use case.
+        guard RSSI.intValue &gt;= -50
+        else {
+                os_log(&quot;Discovered perhiperal not in expected range, at %d&quot;, RSSI.intValue)
+                return
+        }
+        
+        os_log(&quot;Discovered %s at %d&quot;, String(describing: peripheral.name), RSSI.intValue)
+        
+        // Device is in range - have we already seen it?
+        if discoveredPeripheral != peripheral {
+            
+            // Save a local copy of the peripheral, so CoreBluetooth doesn't get rid of it.
+            discoveredPeripheral = peripheral
+            
+            // And finally, connect to the peripheral.
+            os_log(&quot;Connecting to perhiperal %@&quot;, peripheral)
+            centralManager.connect(peripheral, options: nil)
+        }
+    }
+</code></pre>
+
+<p>如果您希望连接到多个设备，则可以保留一个Array发现的外围设备。无论如何，一旦找到了要连接的所有外围设备，就停止扫描其他设备以节省电量，代码如下：</p>
+
+<pre><code class="language-swift">centralManager.stopScan()
+</code></pre>
+
+<h4 id="3-扫描后连接发现的外围设备">3 扫描后连接发现的外围设备</h4>
+
+<p>在发现您感兴趣的外围设备广告服务之后，您可以通过调用中央管理器的connectPeripheral:options:方法来请求与外围设备的连接。代码如下：</p>
+
+<pre><code class="language-swift">centralManager.connect(peripheral, options: nil)
+</code></pre>
+
+<p>如果连接请求成功，则中央管理器将调用centralManager:didConnectPeripheral:其代理对象的方法。在开始与外围设备进行交互之前，请设置其代理以确保该委托收到适当的回调，通常也使用extension进行实现，代码如下：</p>
+
+<pre><code class="language-swift"> func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral){
+        // 设置代理
+        peripheral.delegate = self
+        // 开始发现服务
+        peripheral.discoverServices(nil)
+        // 保存当前连接设备
+        self.peripheral = peripheral
+        // 这里可以发通知出去告诉设备连接界面连接成功
+    }
+</code></pre>
+
+<p>如果连接失败，也需要调用对应的 central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error? 代理方法进行回调，实现如下：</p>
+
+<pre><code class="language-swift">func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
+        os_log(&quot;Failed to connect to %@. %s&quot;, peripheral, String(describing: error))
+        cleanup()
+    }
+</code></pre>
+
+<p>其他发现服务与特征，读取，订阅与编写特征值的方法将在下文中实现。</p>
+
+    
+
+    
+
+    <h4>See also</h4>
+    <ul>
+        
+            <li><a href="/2020/10/ios-core-bluetooth_3-%E7%94%A8%E4%BD%9C%E4%B8%AD%E5%A4%AE%E8%AE%BE%E5%A4%87%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%952/2/">iOS Core Bluetooth_3 用作中央设备的常用方法（2/2）</a></li>
+        
+            <li><a href="/2020/10/ios-%E5%AE%9E%E4%B9%A0%E9%9D%A2%E8%AF%95%E5%B8%B8%E9%97%AE%E9%97%AE%E9%A2%98/">iOS 实习面试常问问题</a></li>
+        
+            <li><a href="/2020/10/apple-developer-program-%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5%E4%BB%8B%E7%BB%8D/">Apple Developer Program 相关概念介绍</a></li>
+        
+            <li><a href="/2020/10/ios-url-loading-system-%E7%AE%80%E4%BB%8B/">iOS URL Loading System 简介</a></li>
+        
+            <li><a href="/2019/10/core-data%E5%9F%BA%E6%9C%AC%E7%AE%80%E4%BB%8B%E4%B8%80-data-model%E4%B8%8Ecore-data-stack/">Core Data基本简介（一）—— Data Model与Core Data Stack</a></li>
+        
+    </ul>
+
+
+</article>
+
+
+
+        </div>
+
+        <aside class="col-12 col-lg-3 ml-auto blog-sidebar">
+    
+        
+
+
+<section>
+    <h4>Recent Posts</h4>
+    <ol class="list-unstyled">
+        
+        <li>
+            <a href="/2020/10/apple-developer-program-%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5%E4%BB%8B%E7%BB%8D/">Apple Developer Program 相关概念介绍</a>
+        </li>
+        
+        <li>
+            <a href="/post/">Home</a>
+        </li>
+        
+        <li>
+            <a href="/2020/10/ios-core-bluetooth_3-%E7%94%A8%E4%BD%9C%E4%B8%AD%E5%A4%AE%E8%AE%BE%E5%A4%87%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%951/2/">iOS Core Bluetooth_3 用作中央设备的常用方法（1/2）</a>
+        </li>
+        
+        <li>
+            <a href="/2020/10/ios-core-bluetooth_3-%E7%94%A8%E4%BD%9C%E4%B8%AD%E5%A4%AE%E8%AE%BE%E5%A4%87%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%952/2/">iOS Core Bluetooth_3 用作中央设备的常用方法（2/2）</a>
+        </li>
+        
+        <li>
+            <a href="/2020/10/ios-url-loading-system-%E7%AE%80%E4%BB%8B/">iOS URL Loading System 简介</a>
+        </li>
+        
+    </ol>
+</section>
+
+    
+    
+        <section>
+    
+        
+        <h4>Categories</h4>
+        <p>
+            
+            <a class="badge badge-primary" href="/categories/development">development</a>
+            
+        </p>
+        
+    
+        
+        <h4>Tags</h4>
+        <p>
+            
+            <a class="badge badge-primary" href="/tags/apple-developer">apple-developer</a>
+            
+            <a class="badge badge-primary" href="/tags/bluetooth">bluetooth</a>
+            
+            <a class="badge badge-primary" href="/tags/core-data">core-data</a>
+            
+            <a class="badge badge-primary" href="/tags/core-graphics">core-graphics</a>
+            
+            <a class="badge badge-primary" href="/tags/flutter">flutter</a>
+            
+            <a class="badge badge-primary" href="/tags/ios">ios</a>
+            
+            <a class="badge badge-primary" href="/tags/iot">iot</a>
+            
+            <a class="badge badge-primary" href="/tags/loading">loading</a>
+            
+            <a class="badge badge-primary" href="/tags/mvc">mvc</a>
+            
+            <a class="badge badge-primary" href="/tags/nodemcu">nodemcu</a>
+            
+            <a class="badge badge-primary" href="/tags/storage">storage</a>
+            
+            <a class="badge badge-primary" href="/tags/uikit">uikit</a>
+            
+            <a class="badge badge-primary" href="/tags/vc">vc</a>
+            
+        </p>
+        
+    
+</section>
+    
+</aside>
+
+      </div>
+    </div>
+    
+
+    
+      
+
+
+
+
+
+
+
+<footer class="blog-footer w-100">
+    <nav class="navbar navbar-light bg-light">
+        <p class="w-100 text-center">[ A student iOS developer in BUPT 👨🏻‍💻 ]</p>
+        <p class="w-100 text-center"><a href="#">Back to top</a></p>
+    </nav>
+</footer>
+
+    
+
+    
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </body>
+</html>

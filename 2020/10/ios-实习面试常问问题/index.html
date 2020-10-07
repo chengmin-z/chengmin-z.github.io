@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<meta property="og:title" content="iOS 实习面试常问问题" />
+<meta property="og:description" content="1 说明UITableViewCell的重用机制
+
+答：UITableView的每一行就是一个UITableViewCell，绝大多数的Cell构图都一样，只是内容不同而已。所以，可以将同一类型的Cell标记上相同的Identifier，然后用reuseIdentifier进行构建，配合不同的内容进行批量使用。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhangchengmin99.github.io/2020/10/ios-%E5%AE%9E%E4%B9%A0%E9%9D%A2%E8%AF%95%E5%B8%B8%E9%97%AE%E9%97%AE%E9%A2%98/" />
+<meta property="article:published_time" content="2020-10-07T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-10-07T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="iOS 实习面试常问问题"/>
+<meta name="twitter:description" content="1 说明UITableViewCell的重用机制
+
+答：UITableView的每一行就是一个UITableViewCell，绝大多数的Cell构图都一样，只是内容不同而已。所以，可以将同一类型的Cell标记上相同的Identifier，然后用reuseIdentifier进行构建，配合不同的内容进行批量使用。"/>
+
+
+
+    <link rel="canonical" href="https://zhangchengmin99.github.io/2020/10/ios-%E5%AE%9E%E4%B9%A0%E9%9D%A2%E8%AF%95%E5%B8%B8%E9%97%AE%E9%97%AE%E9%A2%98/">
+
+    <title>
+      
+        iOS 实习面试常问问题 | cmHubs
+      
+    </title>
+
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="https://zhangchengmin99.github.io/css/style.css" rel="stylesheet">
+
+    
+
+    
+
+    
+  </head>
+  <body>
+    
+      
+
+<header class="blog-header">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">
+            <img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g75u7zx3o0j30tf0tf0u0.jpg" width="30" height="30" class="d-inline-block align-top"
+    alt="">
+cmHubs
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+            <ul class="navbar-nav">
+                
+                
+                <li class="nav-item ">
+                    
+                        <a class="nav-link" href="/post/">Home</a>
+                    
+                </li>
+                
+                <li class="nav-item ">
+                    
+                        <a class="nav-link" href="/about/">About</a>
+                    
+                </li>
+                
+                <li class="nav-item ">
+                    
+                        <a class="nav-link" href="/contact/">Contact</a>
+                    
+                </li>
+                
+            </ul>
+            
+        </div>
+    </nav>
+</header>
+
+    
+
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-lg-8 blog-main">
+
+          
+
+<header>
+    <h2 class="blog-post-title">
+    <a class="text-dark" href="/2020/10/ios-%E5%AE%9E%E4%B9%A0%E9%9D%A2%E8%AF%95%E5%B8%B8%E9%97%AE%E9%97%AE%E9%A2%98/">iOS 实习面试常问问题</a>
+</h2>
+
+    
+
+
+<div class="blog-post-date text-secondary">
+    
+        <time datetime="2020-10-07">Oct 7, 2020</time>
+    
+    
+        by <span rel="author">Chengmin</span>
+    
+</div>
+
+    
+<div class="blog-post-tags text-secondary">
+    <strong>Tags:</strong>
+    
+        <a class="badge badge-primary" href="/tags/apple-developer">Apple Developer</a>
+    
+        <a class="badge badge-primary" href="/tags/ios">iOS</a>
+    
+</div>
+
+    
+<div class="blog-post-categories text-secondary">
+    <strong>Categories:</strong>
+    
+        <a class="badge badge-primary" href="/categories/development">development</a>
+    
+</div>
+
+    <hr>
+</header>
+<article class="blog-post">
+    <h4 id="1-说明uitableviewcell的重用机制">1 说明UITableViewCell的重用机制</h4>
+
+<p>答：UITableView的每一行就是一个UITableViewCell，绝大多数的Cell构图都一样，只是内容不同而已。所以，可以将同一类型的Cell标记上相同的Identifier，然后用reuseIdentifier进行构建，配合不同的内容进行批量使用。</p>
+
+<p>当用户滑动列表时，如果reuseIdentifier不是nil，则UITableView自动调用已经生成好的UITableViewCell来展示内容。这样的复用，避免了因重新生成UITableViewCell造成的资源浪费与主线程卡顿。</p>
+
+<h4 id="2-说明比较协议uitableviewdatasource和uitableviewdelegate">2 说明比较协议UITableViewDataSource和UITableViewDelegate</h4>
+
+<p>答：一般在UIViewController上进行UITableView配置时，都会使用这两个协议。
+- UITableViewDataSource用于掌控UITableView的实际数据，例如有多少section多少个row，每行用哪种UITableViewCell，其中numOfRows和cellForRowAtIndexPath这两个方法必须被实现。
+- UITableViewDelegate用于处理UITableView的UI和交互，例如设置：UITableView的header和footer，点击和拖动，删除等动作的响应，其所有方法都是可选的，都有默认实现。</p>
+
+<h4 id="3-若果一个列表的滑动很慢-则应如何优化">3 若果一个列表的滑动很慢，则应如何优化</h4>
+
+<p>答：遇到此问题主要从UI和数据两个方向进行分析，可能的原因有：
+- 列表的渲染时间过长导致卡顿，可能是某些的UI控件过于复杂，或图层过多
+- 界面渲染的延后，因为大量的操作或耗时的计算阻塞了主进程
+- 数据源的问题，网络请求过慢，或者因为需要更新的数据过多，主线程没有处理完成</p>
+
+<p>针对上面的问题可做以下的优化：</p>
+
+<ul>
+<li>针对第一个问题：检查Cell的复用情况，对于复杂视图的加载可以采用惰性加载的方式来推迟创建时间。尽量减少视图的层级也可以解决此类问题。可以使用的框架有Facebook的ComponentKit。</li>
+<li>针对第二个问题：使用GCD多线程操作将复杂操作放到后端线程，并进行缓存。</li>
+<li>针对第三个问题：可以将网络数据缓存并存储在手机端，将取得的部分数据根据优先级进行顺序渲染，还可以通过优化后端服务器的方法。</li>
+</ul>
+
+<p>另外针对界面的渲染和优化，Facebook和Pinterest维护的ASDK是目前功能最全，效果最好的第三方方案。</p>
+
+<h4 id="4-http中的get和post的区别">4 HTTP中的GET和POST的区别</h4>
+
+<ul>
+<li>从方向上看：GET是从服务端获取信息的，POST是向服务端发送信息的。</li>
+<li>从类型上看：GET处理动态和静态内容，POST只处理动态内容。</li>
+<li>从参数位置上看：GET请求的参数在URL之中，POST的参数位于body之中从这个角度看，POST比GET更安全和隐秘。</li>
+<li>GET可以被缓存，可以被存储在浏览器的浏览历史中，其内容在理论上有长度限制。而POST在这三个方面恰恰相反。</li>
+</ul>
+
+<h4 id="5-说明比较urlsessiontask-urlsessiondatatask-urlsessionuploadtask-urlsessiondownloadtask">5 说明比较URLSessionTask、URLSessionDataTask、URLSessionUploadTask、URLSessionDownloadTask</h4>
+
+<ul>
+<li>URLSessionTask：是一个抽象类，通过实现它，可以实例化任意的网络传输任务，诸如请求、上传、下载任务，他的取消（cancel）、继续（resume）、暂停（suspend）有默认实现。</li>
+<li>URLSessionDataTask：负责HTTP GET请求，它是URLSessionTask的具体实现，一般用于从服务器获取数据，并放在内存之中。</li>
+<li>URLSessionUploadTask：负责POST/PUT请求，继承了URLSessionDataTask类，一般用于上传数据。</li>
+<li>URLSessionDownloadTask：负责下载数据，它是URLSessionTask的具体实现，一般将下载的数据保存到一个临时的文件中。</li>
+</ul>
+
+<h4 id="6-什么是completion-handler">6 什么是Completion Handler</h4>
+
+<p>一般用于处理API请求之后返回的数据。
+当URLSessionTask结束之后，无论是成功还是报错，Completion Handler都会接受3个参数，Data，URLResponse和Error。注意这三个参数都是可选类型。这是一个经典的逃逸闭包，它总是在API请求之后才执行，也就是说方法已经返回才会涉及Completion Handler。</p>
+
+<h4 id="7-uiview和calayer的区别">7 UIView和CALayer的区别</h4>
+
+<ul>
+<li>UIView和CALayer都是UI的操作对象。两者都是NSObject的子类，发生在UIView的基本操作本质上，也发生在CALayer上。</li>
+<li>UIView是CALayer用于交互的对象，UIView是UIResponder的子类，其中提供了含多CALayer所没有的在交互上的接口，主要负责处理用户交互触发的各种操作。</li>
+<li>CALayer在图像和动画渲染上性能更好。这是因为UIView有冗余的交互接口，而且相较于CALayer还有层级之分。CALayer在无须处理交互时进行渲染，可以大量节省时间。</li>
+</ul>
+
+<h4 id="8-uiviewcontroller的生命周期">8 UIViewController的生命周期</h4>
+
+<p>当一个视图控制器被创建，并在屏幕上显示的时候。 代码的执行顺序
+1、 alloc：创建对象，分配空间
+2、init (initWithNibName)  ：初始化对象，初始化数据
+3、loadView ：从nib载入视图 ，通常这一步不需要去干涉。除非你没有使用xib文件创建视图
+4、viewDidLoad ：载入完成，可以进行自定义数据以及动态创建其他控件
+5、viewWillAppear ：视图将出现在屏幕之前，马上这个视图就会被展现在屏幕上了
+6、viewDidAppear ：视图已在屏幕上渲染完成</p>
+
+<p>当一个视图被移除屏幕并且销毁的时候的执行顺序，这个顺序差不多和上面的相反
+1、viewWillDisappear ：视图将被从屏幕上移除之前执行
+2、viewDidDisappear ：视图已经被从屏幕上移除，用户看不到这个视图了
+3、dealloc ：视图被销毁，此处需要对你在init和viewDidLoad中创建的对象进行释放</p>
+
+<p>当我们创建一个UIViewController类的对象时，通常系统会生成几个默认的方法，这些方法大多与视图的调用有关，但是在视图调用时，这些方法的调用顺序如何，需要整理下。常上述方法包括如下几种，这些方法都是UIViewController类的方法：</p>
+
+<ul>
+<li><p>(void)viewDidLoad；</p></li>
+
+<li><p>(void)viewDidUnload；</p></li>
+
+<li><p>(void)viewWillAppear:(BOOL)animated；</p></li>
+
+<li><p>(void)viewDidAppear:(BOOL)animated；</p></li>
+
+<li><p>(void)viewWillDisappear:(BOOL)animated；</p></li>
+
+<li><p>(void)viewDidDisappear:(BOOL)animated；</p></li>
+</ul>
+
+<h4 id="9-class和struct的区别">9 Class和Struct的区别</h4>
+
+<p>在Swift中，class是引用类型，struct是值类型，值类型在传递和赋值的时候进行复制，而引用类型只会会使用引用对象的一个“指向”。
+在内存中，引用类型，诸如类，是在堆上操作和存储的。而值类型，例如结构体是在栈上进行操作和存储的，堆上的操作更加耗时，因此Apple官方更加推荐使用结构体。</p>
+
+<p>class拥有的特性：
+- 可以继承父类的属性和方法
+- 可以进行类型转换
+- 用deinit来释放资源
+- 可以多次被引用</p>
+
+<p>struct的优势：
+- 结构较小，适用于复制操作，相对被多次引用的class实例，struct更加安全
+- 无须担心内存泄漏和多线程冲突</p>
+
+<h4 id="10-swift中什么是optional可选类型">10 swift中什么是Optional可选类型</h4>
+
+<p>在Swift中，可选类型是为了表达当一个变量的值为空的情况，当一个变量的值为空时，它就是nil。在Swift中无论是引用类型还是值类型，都可以是可选类型。下面举一个例子：</p>
+
+<pre><code class="language-swift">// 值类型为Float，value值默认37.0
+var value: Float? = 37.0
+// 值类型为String，key值默认值为nil
+var key: String? = nil
+// 引用类型为UIImage，image默认值为nil
+let image: UIImage?
+</code></pre>
+
+<h4 id="11-说明比较关键字open-public-internal-file-private和private">11 说明比较关键字Open，Public，Internal，File-private和Private</h4>
+
+<p>（访问控制权限关键字）
+Swift有五个级别的访问控制权限，从高到低依次为：Open，Public，Internal，FilePrivate和Private
+他们遵循的原则是：高级别的变量不允许被定义在低级别的变量的成员变量。反之，低级别的变量可以定义在较高级别的变量之中。
+- Open： 具有最高的访问权限。其修饰的类和方法可以在任意的Module中进行访问和重写。
+- Public： 权限仅仅次于Open。与Open的区别在于，他修饰的对象可以在任意的Module中访问，却不能被重写。
+- Internal：是默认的访问权限。它表示只可以在当前的定义的Module中进行访问和重写。他可以被一个Module中的多个文件访问，但不能被其他Module访问。
+- File-private：修饰的对象只能在当前文件中使用。
+- Private：最低级别的访问权限，他修饰的对象只能在其作用域内进行使用。</p>
+
+<h4 id="12-说明比较内存语义strong-weak和unowned">12 说明比较内存语义Strong，Weak和Unowned</h4>
+
+<p>Swift的内存管理与OC是一样的都是ARC（Automatic Reference Counting）其基本原理是：一个对象在没有任何强引用指向它时，所占用的内存会被内存回收，反之只要有任何一个强引用指向该对象，它就会一直在内存之中。
+- Strong 代表强引用，是默认属性，当一个对象被声明为Strong时，表示父层级对其有一个强引用的指向，此时该对象的引用计数+1
+- Weak 表示弱引用，当一个对象被声明为Weak时，表示父层级对其没有指向，该对象的引用计数不会+1，在该对象被释放后，弱引用随之消失，继续访问该对象会得到nil但不会崩溃。
+- Unowned与弱引用的本质基本一致，唯一与之不同的是当对象被释放后，依然有一个无效的引用指向对象，他不是Optional，也不指向nil，继续访问该对象会崩溃。</p>
+
+<p><strong>补充：</strong>
+引用Weak和Unowned主要是为了解决Strong所带来的循环引用的问题，简单来说当两个对象互相有一个强引用指向对方，就会导致两个对象在内存中无法释放的情况。
+Weak和Unowned的使用场景有如下区别：
+- 当访问对象可能已经被释放时，则使用weak，例如delegate的修饰。
+- 当访问对象不可能被释放时，则使用unowned，例如对self的引用。
+- 实际上为了安全，很多公司规定在任何时候都使用Weak进行修饰。</p>
+
+<h4 id="13-什么是block-它和delegate的区别是什么">13 什么是block？它和Delegate的区别是什么？</h4>
+
+<p>iOS开发中，block和代理都是回调的方式，block是一段封装好的代码。而代理的声明一般与实现分开，例如UITableViewDelegate，就是代理声明在UITableView中，实现在某个UIViewController中。
+- block和代理的首先区别在于，block集中代码块，而代理分散代码块。所以block更适合用于轻便简单的回调，如网络传输。而代理用于公共接口比较多的情况。
+- 两者的另一个区别在于block的运行成本高，block出栈时，需要将使用的数据从栈中复制到堆内存。当然如果是对象要加计数，使用完或者block置为nil时才能消除。delegate只是保存了一个对象指针，直接回调没有额外的消耗。
+- 且block容易造成循环引用，需要使用weak关键字修饰其变量为弱引用。</p>
+
+<h4 id="14-app启动时间过长-该怎么优化">14 App启动时间过长，该怎么优化？</h4>
+
+<p>App启动时间过长，可能有多个原因导致，从理论上来说主要是由main()函数之前的加载时间t1，和main()之后的加载时间t2，所造成的。
+关于t1，需要分析App的启动日志，具体方式是在Xcode中添加DYLD_PRINT_STATISTICS环境变量，并将其设置为1，这样就可以得到启动日志。
+然后就可以知道App在启动的三个方面——动态加载库，重定位/绑定以及对象初始化所花费的时间。所以针对的有以下优化手段：
+- 减少动态库的数量，动态库的加载时间减少，Apple推荐不要多于6个动态库
+- 减少Objective-C的类数量，这样会加快动态链接，重定位/绑定的时间会减少
+- 使用initialize的方法替代load的方法，或者尽量将load的方法中的代码进行延后调用，对象初始化的时间将会减少。</p>
+
+<p>关于t2，其主要是构建第一个界面并完成渲染的时间，所以t2需要在具体的界面布局和渲染代码中进行打点观察，诸如 viewDidLoad() 和 viewWillAppear() 这两个函数值得关注。</p>
+
+<h4 id="15-storyboard-xib和纯代码构建的ui相比-有哪些优点和缺点">15 storyboard/xib和纯代码构建的UI相比，有哪些优点和缺点？</h4>
+
+<p>storyboard/xib开发的优点和缺点都十分明显。
+其优点是：
+- 简单直接：直接通过拖拽和点选的方式进行配置UI，界面所见即所得。
+- 跳转关系清楚：在storyboard中可以清楚的区分View Controller界面之间的跳转关系。而在代码中实现prepare(for segue:UIStoryBoardSegue, sender: Any?)，可以统一管理界面跳转和数据管理。</p>
+
+<p>其缺点是：
+- 复用性：纯代码可复用，xib比较难复用，有相同或相似界面，基本是复制一份过来修改，复用问题不大
+- 版本管理：代码的版本管理比较清晰成熟，大家也用得比较顺。xib因为其为xml格式文件，可读性比较差，多人同时修改同一个xib文件时会引起冲突，并且难以合并。所以，做好一个或一系列相关界面使用一个xib,避免多人同时修改一个xib引起冲突
+- 性能：纯代码的界面加载速度、运行速度是最快的，xib会稍微拉低性能，消耗更多内存，但这对多数普通界面来说，没有太大影响。需要极致的性能和速度的界面，才使用纯代码。不管是纯代码还是xib,autolayout都不宜使用过多，超过60个，会引起卡顿。</p>
+
+    
+
+    
+
+    <h4>See also</h4>
+    <ul>
+        
+            <li><a href="/2020/10/ios-core-bluetooth_3-%E7%94%A8%E4%BD%9C%E4%B8%AD%E5%A4%AE%E8%AE%BE%E5%A4%87%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%951/2/">iOS Core Bluetooth_3 用作中央设备的常用方法（1/2）</a></li>
+        
+            <li><a href="/2020/10/ios-core-bluetooth_3-%E7%94%A8%E4%BD%9C%E4%B8%AD%E5%A4%AE%E8%AE%BE%E5%A4%87%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%952/2/">iOS Core Bluetooth_3 用作中央设备的常用方法（2/2）</a></li>
+        
+            <li><a href="/2020/10/apple-developer-program-%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5%E4%BB%8B%E7%BB%8D/">Apple Developer Program 相关概念介绍</a></li>
+        
+            <li><a href="/2020/10/ios-url-loading-system-%E7%AE%80%E4%BB%8B/">iOS URL Loading System 简介</a></li>
+        
+            <li><a href="/2019/10/core-data%E5%9F%BA%E6%9C%AC%E7%AE%80%E4%BB%8B%E4%B8%80-data-model%E4%B8%8Ecore-data-stack/">Core Data基本简介（一）—— Data Model与Core Data Stack</a></li>
+        
+    </ul>
+
+
+</article>
+
+
+
+        </div>
+
+        <aside class="col-12 col-lg-3 ml-auto blog-sidebar">
+    
+        
+
+
+<section>
+    <h4>Recent Posts</h4>
+    <ol class="list-unstyled">
+        
+        <li>
+            <a href="/2020/10/apple-developer-program-%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5%E4%BB%8B%E7%BB%8D/">Apple Developer Program 相关概念介绍</a>
+        </li>
+        
+        <li>
+            <a href="/post/">Home</a>
+        </li>
+        
+        <li>
+            <a href="/2020/10/ios-core-bluetooth_3-%E7%94%A8%E4%BD%9C%E4%B8%AD%E5%A4%AE%E8%AE%BE%E5%A4%87%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%951/2/">iOS Core Bluetooth_3 用作中央设备的常用方法（1/2）</a>
+        </li>
+        
+        <li>
+            <a href="/2020/10/ios-core-bluetooth_3-%E7%94%A8%E4%BD%9C%E4%B8%AD%E5%A4%AE%E8%AE%BE%E5%A4%87%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%952/2/">iOS Core Bluetooth_3 用作中央设备的常用方法（2/2）</a>
+        </li>
+        
+        <li>
+            <a href="/2020/10/ios-url-loading-system-%E7%AE%80%E4%BB%8B/">iOS URL Loading System 简介</a>
+        </li>
+        
+    </ol>
+</section>
+
+    
+    
+        <section>
+    
+        
+        <h4>Categories</h4>
+        <p>
+            
+            <a class="badge badge-primary" href="/categories/development">development</a>
+            
+        </p>
+        
+    
+        
+        <h4>Tags</h4>
+        <p>
+            
+            <a class="badge badge-primary" href="/tags/apple-developer">apple-developer</a>
+            
+            <a class="badge badge-primary" href="/tags/bluetooth">bluetooth</a>
+            
+            <a class="badge badge-primary" href="/tags/core-data">core-data</a>
+            
+            <a class="badge badge-primary" href="/tags/core-graphics">core-graphics</a>
+            
+            <a class="badge badge-primary" href="/tags/flutter">flutter</a>
+            
+            <a class="badge badge-primary" href="/tags/ios">ios</a>
+            
+            <a class="badge badge-primary" href="/tags/iot">iot</a>
+            
+            <a class="badge badge-primary" href="/tags/loading">loading</a>
+            
+            <a class="badge badge-primary" href="/tags/mvc">mvc</a>
+            
+            <a class="badge badge-primary" href="/tags/nodemcu">nodemcu</a>
+            
+            <a class="badge badge-primary" href="/tags/storage">storage</a>
+            
+            <a class="badge badge-primary" href="/tags/uikit">uikit</a>
+            
+            <a class="badge badge-primary" href="/tags/vc">vc</a>
+            
+        </p>
+        
+    
+</section>
+    
+</aside>
+
+      </div>
+    </div>
+    
+
+    
+      
+
+
+
+
+
+
+
+<footer class="blog-footer w-100">
+    <nav class="navbar navbar-light bg-light">
+        <p class="w-100 text-center">[ A student iOS developer in BUPT 👨🏻‍💻 ]</p>
+        <p class="w-100 text-center"><a href="#">Back to top</a></p>
+    </nav>
+</footer>
+
+    
+
+    
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </body>
+</html>

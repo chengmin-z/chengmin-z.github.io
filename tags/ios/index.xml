@@ -7,10 +7,54 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>[ A student iOS developer in BUPT 👨🏻‍💻 ]</copyright>
-    <lastBuildDate>Thu, 03 Oct 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 07 Oct 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://zhangchengmin99.github.io/tags/ios/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>iOS Core Bluetooth_3 用作中央设备的常用方法（1/2）</title>
+      <link>https://zhangchengmin99.github.io/2020/10/ios-core-bluetooth_3-%E7%94%A8%E4%BD%9C%E4%B8%AD%E5%A4%AE%E8%AE%BE%E5%A4%87%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%951/2/</link>
+      <pubDate>Wed, 07 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://zhangchengmin99.github.io/2020/10/ios-core-bluetooth_3-%E7%94%A8%E4%BD%9C%E4%B8%AD%E5%A4%AE%E8%AE%BE%E5%A4%87%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%951/2/</guid>
+      <description>&lt;h4 id=&#34;写在前面&#34;&gt;写在前面&lt;/h4&gt;
+
+&lt;p&gt;在蓝牙低功耗通信中发挥核心作用的设备执行许多常见任务，例如，发现并连接到可用的外围设备，以及探索外围设备所提供的数据并与之交互。实现外围角色的设备还执行许多常见的其他任务，例如发布和广告服务，以及响应来自连接的中心的读取，写入和订阅请求。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>iOS Core Bluetooth_3 用作中央设备的常用方法（2/2）</title>
+      <link>https://zhangchengmin99.github.io/2020/10/ios-core-bluetooth_3-%E7%94%A8%E4%BD%9C%E4%B8%AD%E5%A4%AE%E8%AE%BE%E5%A4%87%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%952/2/</link>
+      <pubDate>Wed, 07 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://zhangchengmin99.github.io/2020/10/ios-core-bluetooth_3-%E7%94%A8%E4%BD%9C%E4%B8%AD%E5%A4%AE%E8%AE%BE%E5%A4%87%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%952/2/</guid>
+      <description>&lt;h4 id=&#34;写在前面&#34;&gt;写在前面&lt;/h4&gt;
+
+&lt;p&gt;在上一节中主要介绍了CoreBluetooth中中央设备的实例化、扫描与连接。这一节继续介绍，在连接设备后的查询服务与特征字段，读取、写入、订阅等操作。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>iOS URL Loading System 简介</title>
+      <link>https://zhangchengmin99.github.io/2020/10/ios-url-loading-system-%E7%AE%80%E4%BB%8B/</link>
+      <pubDate>Wed, 07 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://zhangchengmin99.github.io/2020/10/ios-url-loading-system-%E7%AE%80%E4%BB%8B/</guid>
+      <description>&lt;h4 id=&#34;1-总览&#34;&gt;1 总览&lt;/h4&gt;
+
+&lt;p&gt;URL Loading System 提供获取资源的能力通过URLs，使用标准https协议或者是开发者自定义的协议。使用标准Internet协议与URL交互并与服务器通信。且加载执行的过程是异步的，保证了应用界面响应与处理加载数据的同时执行。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>iOS 实习面试常问问题</title>
+      <link>https://zhangchengmin99.github.io/2020/10/ios-%E5%AE%9E%E4%B9%A0%E9%9D%A2%E8%AF%95%E5%B8%B8%E9%97%AE%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Wed, 07 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://zhangchengmin99.github.io/2020/10/ios-%E5%AE%9E%E4%B9%A0%E9%9D%A2%E8%AF%95%E5%B8%B8%E9%97%AE%E9%97%AE%E9%A2%98/</guid>
+      <description>&lt;h4 id=&#34;1-说明uitableviewcell的重用机制&#34;&gt;1 说明UITableViewCell的重用机制&lt;/h4&gt;
+
+&lt;p&gt;答：UITableView的每一行就是一个UITableViewCell，绝大多数的Cell构图都一样，只是内容不同而已。所以，可以将同一类型的Cell标记上相同的Identifier，然后用reuseIdentifier进行构建，配合不同的内容进行批量使用。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Core Data基本简介（一）—— Data Model与Core Data Stack</title>

@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<meta property="og:title" content="iOS Core Bluetooth_3 用作中央设备的常用方法（2/2）" />
+<meta property="og:description" content="写在前面
+
+在上一节中主要介绍了CoreBluetooth中中央设备的实例化、扫描与连接。这一节继续介绍，在连接设备后的查询服务与特征字段，读取、写入、订阅等操作。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhangchengmin99.github.io/2020/10/ios-core-bluetooth_3-%E7%94%A8%E4%BD%9C%E4%B8%AD%E5%A4%AE%E8%AE%BE%E5%A4%87%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%952/2/" />
+<meta property="article:published_time" content="2020-10-07T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-10-07T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="iOS Core Bluetooth_3 用作中央设备的常用方法（2/2）"/>
+<meta name="twitter:description" content="写在前面
+
+在上一节中主要介绍了CoreBluetooth中中央设备的实例化、扫描与连接。这一节继续介绍，在连接设备后的查询服务与特征字段，读取、写入、订阅等操作。"/>
+
+
+
+    <link rel="canonical" href="https://zhangchengmin99.github.io/2020/10/ios-core-bluetooth_3-%E7%94%A8%E4%BD%9C%E4%B8%AD%E5%A4%AE%E8%AE%BE%E5%A4%87%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%952/2/">
+
+    <title>
+      
+        iOS Core Bluetooth_3 用作中央设备的常用方法（2/2） | cmHubs
+      
+    </title>
+
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="https://zhangchengmin99.github.io/css/style.css" rel="stylesheet">
+
+    
+
+    
+
+    
+  </head>
+  <body>
+    
+      
+
+<header class="blog-header">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">
+            <img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g75u7zx3o0j30tf0tf0u0.jpg" width="30" height="30" class="d-inline-block align-top"
+    alt="">
+cmHubs
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+            <ul class="navbar-nav">
+                
+                
+                <li class="nav-item ">
+                    
+                        <a class="nav-link" href="/post/">Home</a>
+                    
+                </li>
+                
+                <li class="nav-item ">
+                    
+                        <a class="nav-link" href="/about/">About</a>
+                    
+                </li>
+                
+                <li class="nav-item ">
+                    
+                        <a class="nav-link" href="/contact/">Contact</a>
+                    
+                </li>
+                
+            </ul>
+            
+        </div>
+    </nav>
+</header>
+
+    
+
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-lg-8 blog-main">
+
+          
+
+<header>
+    <h2 class="blog-post-title">
+    <a class="text-dark" href="/2020/10/ios-core-bluetooth_3-%E7%94%A8%E4%BD%9C%E4%B8%AD%E5%A4%AE%E8%AE%BE%E5%A4%87%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%952/2/">iOS Core Bluetooth_3 用作中央设备的常用方法（2/2）</a>
+</h2>
+
+    
+
+
+<div class="blog-post-date text-secondary">
+    
+        <time datetime="2020-10-07">Oct 7, 2020</time>
+    
+    
+        by <span rel="author">Chengmin</span>
+    
+</div>
+
+    
+<div class="blog-post-tags text-secondary">
+    <strong>Tags:</strong>
+    
+        <a class="badge badge-primary" href="/tags/apple-developer">Apple Developer</a>
+    
+        <a class="badge badge-primary" href="/tags/ios">iOS</a>
+    
+        <a class="badge badge-primary" href="/tags/bluetooth">bluetooth</a>
+    
+</div>
+
+    
+<div class="blog-post-categories text-secondary">
+    <strong>Categories:</strong>
+    
+        <a class="badge badge-primary" href="/categories/development">development</a>
+    
+</div>
+
+    <hr>
+</header>
+<article class="blog-post">
+    <h4 id="写在前面">写在前面</h4>
+
+<p>在上一节中主要介绍了CoreBluetooth中中央设备的实例化、扫描与连接。这一节继续介绍，在连接设备后的查询服务与特征字段，读取、写入、订阅等操作。</p>
+
+<ul>
+<li>实例化中央管理器对象</li>
+<li>发现并连接到正在广播的外围设备</li>
+<li>在连接到外围设备后浏览其数据</li>
+<li>发送读写请求到外围服务的特征值</li>
+<li>订阅特征值以在更新时被通知</li>
+</ul>
+
+<p>在本文中找到的代码示例是简单抽象的。您可能需要进行适当的更改以将其合并到您的真实应用中。</p>
+
+<h4 id="1-发现您所连接的外围设备的服务">1 发现您所连接的外围设备的服务</h4>
+
+<p>建立与外围设备的连接后，您可以浏览其数据。与外围设备进行数据交互的第一步是发现其可用的服务。由于外围设备可以广播的数据量受到大小限制，因此您可能会发现外围设备提供的服务多于其广播的内容（在其广播包中）。您可以通过调用（进行连接后的）外围设备的discoverServices:方法来发现外围设备提供的所有服务，如下所示：</p>
+
+<pre><code class="language-swift">peripheral.discoverServices([TransferService.serviceUUID])
+</code></pre>
+
+<blockquote>
+<p>注意： 在实际应用中，通常不传入nil参数，因为这样做会返回外围设备上所有可用的服务。由于外围设备可能包含比您所需要的更多的服务，因此发现所有这些外围设备可能会浪费电池寿命并不必要的浪费时间。取而代之的是，通常指定您已经知道有兴趣发现的服务的UUID，如本例中：[TransferService.serviceUUID]</p>
+</blockquote>
+
+<p>发现指定的服务后，外围设备（CBPeripheral您连接到的对象）将调用peripheral:didDiscoverServices:其代理方法。核心蓝牙创建一个CBService对象数组保存每个在外围设备上发现的服务并遍历指定字段。如下所示，您可以实现此代理方法来访问发现的服务数组（通常通过extension实现）：</p>
+
+<pre><code class="language-swift">func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
+      if let error = error {
+        os_log(&quot;Error discovering services: %s&quot;, error.localizedDescription)
+        cleanup()
+        return
+      }
+      // Discover the characteristic we want...
+      // Loop through the newly filled peripheral.services array, just in case there's more than one.
+      guard let peripheralServices = peripheral.services else { return }
+      for service in peripheralServices {
+        peripheral.discoverCharacteristics([TransferService.characteristicUUID], for: service)
+      }
+}
+</code></pre>
+
+<h4 id="2-发现服务的特征字段">2 发现服务的特征字段</h4>
+
+<p>当您找到自己感兴趣的服务时，探索外围设备必须提供的下一步就是发现该服务的所有特征。发现服务的所有特征就像发现外围设备的所有服务或指定发现某一种服务一样简单，通过调用discoverCharacteristics:forService:方法，如下所示：（下文中订阅了指定的字段）</p>
+
+<pre><code class="language-swift">func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
+        // Deal with errors (if any).
+        if let error = error {
+            os_log(&quot;Error discovering characteristics: %s&quot;, error.localizedDescription)
+            cleanup()
+            return
+        }
+        // Again, we loop through the array, just in case and check if it's the right one
+        guard let serviceCharacteristics = service.characteristics else { return }
+        for characteristic in serviceCharacteristics where characteristic.uuid == TransferService.characteristicUUID {
+            // If it is, subscribe to it
+            transferCharacteristic = characteristic
+            peripheral.setNotifyValue(true, for: characteristic)
+        }
+        // Once this is complete, we just need to wait for the data to come in.
+    }
+</code></pre>
+
+<h4 id="3-检索特征值-读取和订阅">3 检索特征值（读取和订阅）</h4>
+
+<p>特征包含单个值，该值表示有关外围设备服务的信息。例如，健康温度计服务的温度测量特性可以具有指示摄氏温度的值。您可以通过直接阅读或订阅来检索特征的值。</p>
+
+<p>######## 3-1 读取特征值
+找到感兴趣的服务的特征后，可以通过调用外围设备的readValue(for characteristic: CBCharacteristic)或readValue(for descriptor: CBDescriptor)方法并指定适当的特征来读取特征的值，如下所示：</p>
+
+<pre><code class="language-swift">peripheral.readValue(for characteristic: CBCharacteristic)
+</code></pre>
+
+<p>当您调用此方法以读取特征值时，外围设备将调用其委托对象的方法。如果外设成功读取特征值，则可以通过特征的属性对其进行访问。peripheral(_:didUpdateValueFor:error:)value</p>
+
+<p>并非所有特征都具有可读的值。您可以通过访问枚举的相关属性来确定特征值是否可读。</p>
+
+<p>具体代理方法实现如下：
+<strong>注意，所有的，不管是 read , notify 的特征的值都是在这里读取</strong></p>
+
+<pre><code class="language-swift">   func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?)-&gt; (){
+        if(error != nil){
+            return
+        }
+        switch characteristic.uuid.uuidString {
+        case &quot;***************&quot;:
+            print(&quot;接收到了设备的温度特征的值的变化&quot;)
+        default:
+            print(&quot;收到了其他数据特征数据: \(characteristic.uuid.uuidString)&quot;)
+        }
+    }
+</code></pre>
+
+<p>######## 3-2 订阅特征值
+尽管使用该readValueForCharacteristic:方法读取特征值对于静态值是有效的，但它并不是检索动态值的最有效方法。订阅随时间变化的特征值，例如您的心率。订阅特征值时，当值更改时，您会收到来自外围设备的通知。</p>
+
+<p>通过调用外设的setNotifyValue:forCharacteristic:方法，将第一个参数指定为true，可以订阅您感兴趣的特征的值，如下所示：</p>
+
+<pre><code class="language-swift">peripheral.setNotifyValue(true, for: characteristic)
+</code></pre>
+
+<p>当您订阅（或取消订阅）特征值时，外围设备将调用peripheral:didUpdateNotificationStateForCharacteristic:error:其委托对象的方法。如果订阅请求由于任何原因失败，则可以实现此委托方法以访问错误原因，如以下示例所示：</p>
+
+<pre><code class="language-swift">func peripheral(_ peripheral: CBPeripheral, didUpdateNotificationStateFor characteristic: CBCharacteristic, error: Error?) {
+        // Deal with errors (if any)
+        if let error = error {
+            os_log(&quot;Error changing notification state: %s&quot;, error.localizedDescription)
+            return
+        }
+        
+        // Exit if it's not the transfer characteristic
+        guard characteristic.uuid == TransferService.characteristicUUID else { return }
+        
+        if characteristic.isNotifying {
+            // Notification has started
+            os_log(&quot;Notification began on %@&quot;, characteristic)
+        } else {
+            // Notification has stopped, so disconnect from the peripheral
+            os_log(&quot;Notification stopped on %@. Disconnecting&quot;, characteristic)
+            cleanup()
+        }
+        
+    }
+</code></pre>
+
+<blockquote>
+<p>注意： 并非所有特征都提供订阅。您可以通过检查特征的properties属性是否包含CBCharacteristicPropertyNotify或CBCharacteristicPropertyIndicate常量来确定特征是否提供订阅。</p>
+</blockquote>
+
+<p>成功订阅特征值后，外围设备在值更改后会通知您的应用。每次更改值时，外围设备都会调用peripheral:didUpdateValueForCharacteristic:error:其委托对象的方法。要检索更新后的值，可以采用与上述读取特性值中所述相同的方法来实现此方法。</p>
+
+<h4 id="4-写特征值">4 写特征值</h4>
+
+<p>有时写一个特征的值很有意义。例如，如果您的应用程序与蓝牙低功耗数字恒温器交互，则可能需要为恒温器提供一个设置房间温度的值。如果某个特征的值是可写的，则可以NSData通过调用外围设备的writeValue:forCharacteristic:type:方法将其值与数据（的一个实例）一起写入，如下所示：</p>
+
+<p>写入特征值时，可以指定要执行的写入类型。在上面的示例中，写入类型可以为CBCharacteristicWriteWithResponse，它指示外围设备通过调用peripheral:didWriteValueForCharacteristic:error:其代理对象的方法来让您的应用知道写入是否成功。您可以实现此代理方法来处理错误情况，如以下示例所示：</p>
+
+<pre><code class="language-swift">//MARK: - 检测中心向外设写数据是否成功
+    func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {
+        if(error != nil){
+            print(&quot;发送数据失败!error信息:\(String(describing: error))&quot;)
+        }
+    }
+</code></pre>
+
+<p>相反，如果您将写入类型指定为CBCharacteristicWriteWithoutResponse，则写入操作将尽力而为，并且不能保证也不报告传送。外设不调用任何代理方法。</p>
+
+<blockquote>
+<p>注意： 特征可能仅支持某些类型的写入，或完全不支持。您可以通过检查properties特征的常量CBCharacteristicPropertyWriteWithoutResponse或CBCharacteristicPropertyWrite常量之一来确定特征支持的写入类型（如果有）。</p>
+</blockquote>
+
+    
+
+    
+
+    <h4>See also</h4>
+    <ul>
+        
+            <li><a href="/2020/10/ios-core-bluetooth_3-%E7%94%A8%E4%BD%9C%E4%B8%AD%E5%A4%AE%E8%AE%BE%E5%A4%87%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%951/2/">iOS Core Bluetooth_3 用作中央设备的常用方法（1/2）</a></li>
+        
+            <li><a href="/2020/10/ios-%E5%AE%9E%E4%B9%A0%E9%9D%A2%E8%AF%95%E5%B8%B8%E9%97%AE%E9%97%AE%E9%A2%98/">iOS 实习面试常问问题</a></li>
+        
+            <li><a href="/2020/10/apple-developer-program-%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5%E4%BB%8B%E7%BB%8D/">Apple Developer Program 相关概念介绍</a></li>
+        
+            <li><a href="/2020/10/ios-url-loading-system-%E7%AE%80%E4%BB%8B/">iOS URL Loading System 简介</a></li>
+        
+            <li><a href="/2019/10/core-data%E5%9F%BA%E6%9C%AC%E7%AE%80%E4%BB%8B%E4%B8%80-data-model%E4%B8%8Ecore-data-stack/">Core Data基本简介（一）—— Data Model与Core Data Stack</a></li>
+        
+    </ul>
+
+
+</article>
+
+
+
+        </div>
+
+        <aside class="col-12 col-lg-3 ml-auto blog-sidebar">
+    
+        
+
+
+<section>
+    <h4>Recent Posts</h4>
+    <ol class="list-unstyled">
+        
+        <li>
+            <a href="/2020/10/apple-developer-program-%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5%E4%BB%8B%E7%BB%8D/">Apple Developer Program 相关概念介绍</a>
+        </li>
+        
+        <li>
+            <a href="/post/">Home</a>
+        </li>
+        
+        <li>
+            <a href="/2020/10/ios-core-bluetooth_3-%E7%94%A8%E4%BD%9C%E4%B8%AD%E5%A4%AE%E8%AE%BE%E5%A4%87%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%951/2/">iOS Core Bluetooth_3 用作中央设备的常用方法（1/2）</a>
+        </li>
+        
+        <li>
+            <a href="/2020/10/ios-core-bluetooth_3-%E7%94%A8%E4%BD%9C%E4%B8%AD%E5%A4%AE%E8%AE%BE%E5%A4%87%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%952/2/">iOS Core Bluetooth_3 用作中央设备的常用方法（2/2）</a>
+        </li>
+        
+        <li>
+            <a href="/2020/10/ios-url-loading-system-%E7%AE%80%E4%BB%8B/">iOS URL Loading System 简介</a>
+        </li>
+        
+    </ol>
+</section>
+
+    
+    
+        <section>
+    
+        
+        <h4>Categories</h4>
+        <p>
+            
+            <a class="badge badge-primary" href="/categories/development">development</a>
+            
+        </p>
+        
+    
+        
+        <h4>Tags</h4>
+        <p>
+            
+            <a class="badge badge-primary" href="/tags/apple-developer">apple-developer</a>
+            
+            <a class="badge badge-primary" href="/tags/bluetooth">bluetooth</a>
+            
+            <a class="badge badge-primary" href="/tags/core-data">core-data</a>
+            
+            <a class="badge badge-primary" href="/tags/core-graphics">core-graphics</a>
+            
+            <a class="badge badge-primary" href="/tags/flutter">flutter</a>
+            
+            <a class="badge badge-primary" href="/tags/ios">ios</a>
+            
+            <a class="badge badge-primary" href="/tags/iot">iot</a>
+            
+            <a class="badge badge-primary" href="/tags/loading">loading</a>
+            
+            <a class="badge badge-primary" href="/tags/mvc">mvc</a>
+            
+            <a class="badge badge-primary" href="/tags/nodemcu">nodemcu</a>
+            
+            <a class="badge badge-primary" href="/tags/storage">storage</a>
+            
+            <a class="badge badge-primary" href="/tags/uikit">uikit</a>
+            
+            <a class="badge badge-primary" href="/tags/vc">vc</a>
+            
+        </p>
+        
+    
+</section>
+    
+</aside>
+
+      </div>
+    </div>
+    
+
+    
+      
+
+
+
+
+
+
+
+<footer class="blog-footer w-100">
+    <nav class="navbar navbar-light bg-light">
+        <p class="w-100 text-center">[ A student iOS developer in BUPT 👨🏻‍💻 ]</p>
+        <p class="w-100 text-center"><a href="#">Back to top</a></p>
+    </nav>
+</footer>
+
+    
+
+    
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </body>
+</html>
