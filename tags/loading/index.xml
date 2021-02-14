@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Loading on cmHubs</title>
-    <link>https://zhangchengmin99.github.io/tags/loading/</link>
-    <description>Recent content in Loading on cmHubs</description>
+    <title>Loading on Fantome</title>
+    <link>https://chengmin-z.github.io/tags/loading/</link>
+    <description>Recent content in Loading on Fantome</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>[ A student iOS developer in BUPT 👨🏻‍💻 ]</copyright>
     <lastBuildDate>Wed, 07 Oct 2020 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://zhangchengmin99.github.io/tags/loading/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://chengmin-z.github.io/tags/loading/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>iOS URL Loading System 简介</title>
-      <link>https://zhangchengmin99.github.io/2020/10/ios-url-loading-system-%E7%AE%80%E4%BB%8B/</link>
+      <link>https://chengmin-z.github.io/2020/10/ios-url-loading-system-%E7%AE%80%E4%BB%8B/</link>
       <pubDate>Wed, 07 Oct 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://zhangchengmin99.github.io/2020/10/ios-url-loading-system-%E7%AE%80%E4%BB%8B/</guid>
+      <guid>https://chengmin-z.github.io/2020/10/ios-url-loading-system-%E7%AE%80%E4%BB%8B/</guid>
       <description>&lt;h4 id=&#34;1-总览&#34;&gt;1 总览&lt;/h4&gt;
 
 &lt;p&gt;URL Loading System 提供获取资源的能力通过URLs，使用标准https协议或者是开发者自定义的协议。使用标准Internet协议与URL交互并与服务器通信。且加载执行的过程是异步的，保证了应用界面响应与处理加载数据的同时执行。&lt;/p&gt;</description>

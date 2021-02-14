@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>bluetooth on cmHubs</title>
-    <link>https://zhangchengmin99.github.io/tags/bluetooth/</link>
-    <description>Recent content in bluetooth on cmHubs</description>
+    <title>bluetooth on Fantome</title>
+    <link>https://chengmin-z.github.io/tags/bluetooth/</link>
+    <description>Recent content in bluetooth on Fantome</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>[ A student iOS developer in BUPT 👨🏻‍💻 ]</copyright>
     <lastBuildDate>Wed, 07 Oct 2020 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://zhangchengmin99.github.io/tags/bluetooth/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://chengmin-z.github.io/tags/bluetooth/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>iOS Core Bluetooth_3 用作中央设备的常用方法（1/2）</title>
-      <link>https://zhangchengmin99.github.io/2020/10/ios-core-bluetooth_3-%E7%94%A8%E4%BD%9C%E4%B8%AD%E5%A4%AE%E8%AE%BE%E5%A4%87%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%951/2/</link>
+      <link>https://chengmin-z.github.io/2020/10/ios-core-bluetooth_3-%E7%94%A8%E4%BD%9C%E4%B8%AD%E5%A4%AE%E8%AE%BE%E5%A4%87%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%951/2/</link>
       <pubDate>Wed, 07 Oct 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://zhangchengmin99.github.io/2020/10/ios-core-bluetooth_3-%E7%94%A8%E4%BD%9C%E4%B8%AD%E5%A4%AE%E8%AE%BE%E5%A4%87%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%951/2/</guid>
+      <guid>https://chengmin-z.github.io/2020/10/ios-core-bluetooth_3-%E7%94%A8%E4%BD%9C%E4%B8%AD%E5%A4%AE%E8%AE%BE%E5%A4%87%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%951/2/</guid>
       <description>&lt;h4 id=&#34;写在前面&#34;&gt;写在前面&lt;/h4&gt;
 
 &lt;p&gt;在蓝牙低功耗通信中发挥核心作用的设备执行许多常见任务，例如，发现并连接到可用的外围设备，以及探索外围设备所提供的数据并与之交互。实现外围角色的设备还执行许多常见的其他任务，例如发布和广告服务，以及响应来自连接的中心的读取，写入和订阅请求。&lt;/p&gt;</description>
@@ -25,10 +25,10 @@
     
     <item>
       <title>iOS Core Bluetooth_3 用作中央设备的常用方法（2/2）</title>
-      <link>https://zhangchengmin99.github.io/2020/10/ios-core-bluetooth_3-%E7%94%A8%E4%BD%9C%E4%B8%AD%E5%A4%AE%E8%AE%BE%E5%A4%87%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%952/2/</link>
+      <link>https://chengmin-z.github.io/2020/10/ios-core-bluetooth_3-%E7%94%A8%E4%BD%9C%E4%B8%AD%E5%A4%AE%E8%AE%BE%E5%A4%87%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%952/2/</link>
       <pubDate>Wed, 07 Oct 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://zhangchengmin99.github.io/2020/10/ios-core-bluetooth_3-%E7%94%A8%E4%BD%9C%E4%B8%AD%E5%A4%AE%E8%AE%BE%E5%A4%87%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%952/2/</guid>
+      <guid>https://chengmin-z.github.io/2020/10/ios-core-bluetooth_3-%E7%94%A8%E4%BD%9C%E4%B8%AD%E5%A4%AE%E8%AE%BE%E5%A4%87%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%952/2/</guid>
       <description>&lt;h4 id=&#34;写在前面&#34;&gt;写在前面&lt;/h4&gt;
 
 &lt;p&gt;在上一节中主要介绍了CoreBluetooth中中央设备的实例化、扫描与连接。这一节继续介绍，在连接设备后的查询服务与特征字段，读取、写入、订阅等操作。&lt;/p&gt;</description>

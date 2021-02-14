@@ -1,149 +1,140 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on cmHubs</title>
-    <link>https://zhangchengmin99.github.io/tags/</link>
-    <description>Recent content in Tags on cmHubs</description>
+    <title>Tags on Fantome</title>
+    <link>https://chengmin-z.github.io/tags/</link>
+    <description>Recent content in Tags on Fantome</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>[ A student iOS developer in BUPT 👨🏻‍💻 ]</copyright>
     <lastBuildDate>Wed, 07 Oct 2020 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://zhangchengmin99.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://chengmin-z.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Apple Developer</title>
-      <link>https://zhangchengmin99.github.io/tags/apple-developer/</link>
-      <pubDate>Wed, 07 Oct 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://zhangchengmin99.github.io/tags/apple-developer/</guid>
-      <description></description>
-    </item>
     
     <item>
       <title>bluetooth</title>
-      <link>https://zhangchengmin99.github.io/tags/bluetooth/</link>
+      <link>https://chengmin-z.github.io/tags/bluetooth/</link>
       <pubDate>Wed, 07 Oct 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://zhangchengmin99.github.io/tags/bluetooth/</guid>
+      <guid>https://chengmin-z.github.io/tags/bluetooth/</guid>
       <description></description>
     </item>
     
     <item>
       <title>iOS</title>
-      <link>https://zhangchengmin99.github.io/tags/ios/</link>
+      <link>https://chengmin-z.github.io/tags/ios/</link>
       <pubDate>Wed, 07 Oct 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://zhangchengmin99.github.io/tags/ios/</guid>
+      <guid>https://chengmin-z.github.io/tags/ios/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Loading</title>
-      <link>https://zhangchengmin99.github.io/tags/loading/</link>
+      <link>https://chengmin-z.github.io/tags/loading/</link>
       <pubDate>Wed, 07 Oct 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://zhangchengmin99.github.io/tags/loading/</guid>
+      <guid>https://chengmin-z.github.io/tags/loading/</guid>
       <description></description>
     </item>
     
     <item>
       <title>HTTP</title>
-      <link>https://zhangchengmin99.github.io/tags/http/</link>
+      <link>https://chengmin-z.github.io/tags/http/</link>
       <pubDate>Mon, 02 Dec 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://zhangchengmin99.github.io/tags/http/</guid>
+      <guid>https://chengmin-z.github.io/tags/http/</guid>
       <description></description>
     </item>
     
     <item>
       <title>TCP/IP</title>
-      <link>https://zhangchengmin99.github.io/tags/tcp/ip/</link>
+      <link>https://chengmin-z.github.io/tags/tcp/ip/</link>
       <pubDate>Mon, 02 Dec 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://zhangchengmin99.github.io/tags/tcp/ip/</guid>
+      <guid>https://chengmin-z.github.io/tags/tcp/ip/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Core Data</title>
-      <link>https://zhangchengmin99.github.io/tags/core-data/</link>
+      <link>https://chengmin-z.github.io/tags/core-data/</link>
       <pubDate>Thu, 03 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://zhangchengmin99.github.io/tags/core-data/</guid>
+      <guid>https://chengmin-z.github.io/tags/core-data/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Storage</title>
-      <link>https://zhangchengmin99.github.io/tags/storage/</link>
+      <link>https://chengmin-z.github.io/tags/storage/</link>
       <pubDate>Thu, 03 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://zhangchengmin99.github.io/tags/storage/</guid>
+      <guid>https://chengmin-z.github.io/tags/storage/</guid>
       <description></description>
     </item>
     
     <item>
       <title>MVC</title>
-      <link>https://zhangchengmin99.github.io/tags/mvc/</link>
+      <link>https://chengmin-z.github.io/tags/mvc/</link>
       <pubDate>Wed, 02 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://zhangchengmin99.github.io/tags/mvc/</guid>
+      <guid>https://chengmin-z.github.io/tags/mvc/</guid>
       <description></description>
     </item>
     
     <item>
       <title>UIKit</title>
-      <link>https://zhangchengmin99.github.io/tags/uikit/</link>
+      <link>https://chengmin-z.github.io/tags/uikit/</link>
       <pubDate>Wed, 02 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://zhangchengmin99.github.io/tags/uikit/</guid>
+      <guid>https://chengmin-z.github.io/tags/uikit/</guid>
       <description></description>
     </item>
     
     <item>
       <title>VC</title>
-      <link>https://zhangchengmin99.github.io/tags/vc/</link>
+      <link>https://chengmin-z.github.io/tags/vc/</link>
       <pubDate>Wed, 02 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://zhangchengmin99.github.io/tags/vc/</guid>
+      <guid>https://chengmin-z.github.io/tags/vc/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Core Graphics</title>
-      <link>https://zhangchengmin99.github.io/tags/core-graphics/</link>
+      <link>https://chengmin-z.github.io/tags/core-graphics/</link>
       <pubDate>Sat, 28 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://zhangchengmin99.github.io/tags/core-graphics/</guid>
+      <guid>https://chengmin-z.github.io/tags/core-graphics/</guid>
       <description></description>
     </item>
     
     <item>
       <title>flutter</title>
-      <link>https://zhangchengmin99.github.io/tags/flutter/</link>
+      <link>https://chengmin-z.github.io/tags/flutter/</link>
       <pubDate>Sun, 22 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://zhangchengmin99.github.io/tags/flutter/</guid>
+      <guid>https://chengmin-z.github.io/tags/flutter/</guid>
       <description></description>
     </item>
     
     <item>
       <title>IoT</title>
-      <link>https://zhangchengmin99.github.io/tags/iot/</link>
+      <link>https://chengmin-z.github.io/tags/iot/</link>
       <pubDate>Sat, 21 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://zhangchengmin99.github.io/tags/iot/</guid>
+      <guid>https://chengmin-z.github.io/tags/iot/</guid>
       <description></description>
     </item>
     
     <item>
       <title>nodemcu</title>
-      <link>https://zhangchengmin99.github.io/tags/nodemcu/</link>
+      <link>https://chengmin-z.github.io/tags/nodemcu/</link>
       <pubDate>Sat, 21 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://zhangchengmin99.github.io/tags/nodemcu/</guid>
+      <guid>https://chengmin-z.github.io/tags/nodemcu/</guid>
       <description></description>
     </item>
     
